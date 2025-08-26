@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pywmp - Open Source Watershed Modeling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* CWR3/FAU Color Palette */
+        :root {
+            --fau-blue: #003366;
+            --fau-red: #CC0000;
+            --fau-light-blue: #e6f0ff;
+            --fau-light-gray: #f0f2f5;
+            --fau-text-dark: #1a202c;
+            --fau-text-light: #4a5568;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--fau-text-dark); }
+
+        h1, h2, h3, h4, h5 { font-weight: 700; color: var(--fau-blue); }
+        h1 { border-bottom: 4px solid var(--fau-red); padding-bottom: 0.75rem; }
+        h2 { border-bottom: 2px solid var(--fau-light-gray); padding-bottom: 0.5rem; margin-top: 2.5rem; margin-bottom: 1.5rem; }
+        h3 { margin-top: 2rem; margin-bottom: 1rem; }
+        h4 { color: var(--fau-text-dark); font-weight: 600; }
+
+       .code-block { background: linear-gradient(135deg, #1a202c, #2d3748); border: 1px solid #4a5568; position: relative; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; font-family: 'Roboto Mono', monospace; overflow-x: auto; font-size: 0.875rem; }
+       .code-block::before { content: ''; position: absolute; top: 12px; left: 12px; width: 12px; height: 12px; background: #ff5f56; border-radius: 50%; box-shadow: 20px 0 #ffbd2e, 40px 0 #27ca3f; }
+       
+       .api-entry { border: 1px solid #e5e7eb; border-radius: 0.5rem; margin-bottom: 1.5rem; overflow: hidden; }
+       .api-header { background-color: var(--fau-light-gray); padding: 1rem 1.5rem; border-bottom: 1px solid #e5e7eb; }
+       .api-header .api-type { font-family: 'Roboto Mono', monospace; font-size: 0.8rem; color: var(--fau-red); font-weight: bold; }
+       .api-header .api-name { font-family: 'Roboto Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--fau-blue); }
+       .api-body { padding: 1.5rem; }
+       .api-body h5 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fau-text-light); margin-top: 1rem; margin-bottom: 0.5rem; padding-bottom: 0.25rem; border-bottom: 1px solid #e5e7eb;}
+       .param-table { font-size: 0.9rem; }
+       .param-table code { background-color: #eef2ff; color: #4338ca; padding: 0.1rem 0.4rem; border-radius: 0.25rem; font-weight: 600; }
+       .param-table em { color: #1e40af; font-style: normal; }
+        
+       .sidebar-link { display: block; padding: 0.5rem 1rem; border-radius: 0.375rem; color: var(--fau-text-dark); font-weight: 500; transition: all 0.2s ease-in-out; text-decoration: none; }
+       .sidebar-link:hover { background-color: var(--fau-light-blue); color: var(--fau-blue); }
+       .sidebar-link.active { background-color: var(--fau-blue); color: white; font-weight: 600; }
+
+       .prose p,.prose li { line-height: 1.75; }
+       .prose a { color: var(--fau-red); font-weight: 500; }
+       .prose table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; margin-bottom: 1.5rem; }
+       .prose th,.prose td { border: 1px solid #e2e8f0; padding: 0.75rem 1rem; text-align: left; }
+       .prose th { background-color: var(--fau-light-gray); font-weight: 600; }
+       .prose tr:nth-child(even) { background-color: #fafafa; }
+        
+       .alert { padding: 1rem; border-radius: 0.5rem; border-width: 1px; margin-top: 1rem; }
+       .alert-warning { background-color: #fffbeb; border-color: #fde68a; color: #b45309; }
+       .alert-info { background-color: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
+
+       .hero-section { background: linear-gradient(135deg, var(--fau-blue), #004080); color: white; }
+       .hero-section h1 { color: white; border-color: var(--fau-red); }
+       .hero-section a { transition: transform 0.2s; }
+       .hero-section a:hover { transform: translateY(-2px); }
+        
+       .feature-card { background-color: white; border: 1px solid #e5e7eb; padding: 1.5rem; border-radius: 0.5rem; text-align: center; transition: all 0.3s ease; }
+       .feature-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--fau-blue); }
+       .feature-card svg { margin: 0 auto 1rem; transition: transform 0.3s ease; }
+       .feature-card:hover svg { transform: scale(1.1); }
+
+       .nav-link { color: var(--fau-text-dark); font-weight: 500; transition: color 0.2s; }
+       .nav-link:hover { color: var(--fau-blue); }
+       .nav-link.active { color: var(--fau-red); font-weight: 600; }
+
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Top Navigation -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img src="https://placehold.co/32x32/003366/FFFFFF?text=P" alt="PyWMP Logo" class="rounded">
+                    <span class="ml-2 text-xl font-bold text-[var(--fau-blue)]">pywmp</span>
+                    <span class="ml-2 text-sm text-gray-500">Open Source</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="#installation" class="nav-link">Installation</a>
+                    <a href="#tutorial" class="nav-link">Tutorial</a>
+                    <a href="#api-reference" class="nav-link">API Docs</a>
+                    <a href="https://github.com/mandalanil/pywmp" target="_blank" class="nav-link">GitHub</a>
+                    <a href="pywmp-pro.html" target="_blank" class="bg-[var(--fau-blue)] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-800 transition-colors">Try PyWMP-Pro</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center py-20 px-8">
+        <h1 class="text-6xl font-bold">pywmp</h1>
+        <p class="text-2xl text-gray-300 mt-4 max-w-4xl mx-auto">Open Source Python Library for Network-Based Watershed Modeling</p>
+        <p class="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">Build sophisticated hydrologic models programmatically with the power and flexibility of Python. Perfect for researchers, developers, and anyone who needs full control over their watershed simulations.</p>
+        
+        <!-- Installation badges -->
+        <div class="flex justify-center space-x-4 mt-8 mb-8">
+            <img src="https://img.shields.io/badge/python-3.8+-blue?style=for-the-badge&logo=python" alt="Python 3.8+">
+            <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="MIT License">
+            <img src="https://img.shields.io/badge/status-active-brightgreen?style=for-the-badge" alt="Active Development">
+        </div>
+        
+        <!-- Quick install -->
+        <div class="bg-gray-900 text-green-400 p-6 rounded-lg text-left max-w-2xl mx-auto mb-8">
+            <div class="flex items-center mb-2">
+                <div class="flex space-x-2">
+                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <span class="ml-3 text-sm text-gray-400">Terminal</span>
+            </div>
+            <code class="block text-lg">$ pip install pywmp</code>
+            <code class="block text-gray-400 mt-1"># Ready to model watersheds! 🚀</code>
+        </div>
+        
+        <div class="flex justify-center space-x-4">
+            <a href="#tutorial" class="bg-white text-[var(--fau-blue)] font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all">Get Started</a>
+            <a href="https://github.com/mandalanil/pywmp" target="_blank" class="border-2 border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white hover:text-[var(--fau-blue)] transition-all">View on GitHub</a>
+            <a href="pywmp-pro.html" target="_blank" class="bg-green-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-green-700 transition-colors">Try PyWMP-Pro →</a>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Quick Example -->
+        <section id="example" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-8">5-Minute Example</h2>
+            <p class="text-xl text-center text-gray-600 mb-8">Get started with a simple watershed simulation in just a few lines of code:</p>
+            <pre class="code-block text-sm max-w-4xl mx-auto"><code>import pandas as pd
+from pywmp.models import Cascade2001Model
+from pywmp.simulate import HydrologicSimulator
+
+# Load your watershed data
+df = pd.read_csv('my_watershed.csv')
+
+# Create the network model
+model = Cascade2001Model(df=df, from_col='Basin_ID', to_col='Receives_From')
+
+# Set up and run simulation
+simulator = HydrologicSimulator(
+    graph=model.graph,
+    scenarios={"100yr": "Rainfall_100yr_in"},
+    column_mapping={
+        'name_col': 'Basin_ID',
+        'area_col': 'Area_ac', 
+        'tc_col': 'Time_Concentration_hr'
+    }
+)
+
+# Run the simulation - results saved automatically
+simulator.run()
+
+print("✅ Simulation complete! Check the 'simulation_results' directory.")</code></pre>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-12">Why Choose pywmp?</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Lightning Fast</h4>
+                    <p class="text-gray-600 text-sm">NetworkX-based graph operations and NumPy array processing for high-performance simulations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Research Ready</h4>
+                    <p class="text-gray-600 text-sm">Built for reproducible science with comprehensive documentation and validation against established methods.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Fully Customizable</h4>
+                    <p class="text-gray-600 text-sm">Extend, modify, and integrate with your existing Python workflows. No vendor lock-in.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Well Documented</h4>
+                    <p class="text-gray-600 text-sm">Complete API documentation, tutorials, and examples to get you started quickly.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Community Driven</h4>
+                    <p class="text-gray-600 text-sm">Open source means community contributions, peer review, and continuous improvement.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Integration Ready</h4>
+                    <p class="text-gray-600 text-sm">Works seamlessly with Jupyter, pandas, matplotlib, and the entire scientific Python ecosystem.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation -->
+        <section id="installation" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-8">Installation</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h4 class="font-bold text-gray-900 mb-3">📦 Stable Release (Recommended)</h4>
+                    <pre class="bg-gray-900 text-green-400 p-3 rounded text-sm"><code>pip install pywmp</code></pre>
+                </div>
+                
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h4 class="font-bold text-gray-900 mb-3">🔧 Development Version</h4>
+                    <pre class="bg-gray-900 text-green-400 p-3 rounded text-sm"><code>git clone https://github.com/mandalanil/pywmp.git
+cd pywmp && pip install -e .</code></pre>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-blue-50 p-6 rounded-lg max-w-2xl mx-auto">
+                <h4 class="font-bold text-gray-900 mb-3">⚙️ System Requirements</h4>
+                <ul class="space-y-1 text-sm text-gray-700 grid grid-cols-2 gap-2">
+                    <li>✅ Python 3.8+</li>
+                    <li>✅ NumPy >= 1.19.0</li>
+                    <li>✅ pandas >= 1.2.0</li>
+                    <li>✅ NetworkX >= 2.5</li>
+                    <li>✅ matplotlib >= 3.3.0</li>
+                    <li>💾 ~50MB disk space</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Tutorial Preview -->
+        <section id="tutorial" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-8">Quick Start Tutorial</h2>
+            <div class="bg-gray-50 p-8 rounded-lg">
+                <h3 class="text-2xl font-bold mb-4">Step 1: Import the library</h3>
+                <pre class="code-block mb-6"><code>from pywmp.models import Cascade2001Model
+from pywmp.simulate import HydrologicSimulator
+import pandas as pd</code></pre>
+                
+                <h3 class="text-2xl font-bold mb-4">Step 2: Load your data</h3>
+                <pre class="code-block mb-6"><code># Your CSV should have columns for basin properties and connectivity
+df = pd.read_csv('watershed_data.csv')
+print(df.head())</code></pre>
+                
+                <h3 class="text-2xl font-bold mb-4">Step 3: Create and run simulation</h3>
+                <pre class="code-block"><code># Create the network model
+model = Cascade2001Model(df=df, from_col='Basin_ID', to_col='Receives_From')
+
+# Configure the simulator
+simulator = HydrologicSimulator(
+    graph=model.graph,
+    scenarios={"storm_100yr": "Rainfall_100yr_in"},
+    column_mapping={
+        'name_col': 'Basin_ID',
+        'area_col': 'Area_ac',
+        'tc_col': 'Time_of_Concentration_hr'
+    }
+)
+
+# Run the simulation
+simulator.run()  # Results saved to 'simulation_results/' directory</code></pre>
+            </div>
+        </section>
+
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 CWR3 / Florida Atlantic University. All Rights Reserved.</p>
+            <div class="mt-4 space-x-6">
+                <a href="https://github.com/mandalanil/pywmp" target="_blank" class="hover:text-[var(--fau-red)]">GitHub</a>
+                <a href="pywmp-pro.html" target="_blank" class="hover:text-[var(--fau-red)]">PyWMP-Pro</a>
+                <a href="index.html" target="_blank" class="hover:text-[var(--fau-red)]">Documentation</a>
+                <a href="#" class="hover:text-[var(--fau-red)]">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

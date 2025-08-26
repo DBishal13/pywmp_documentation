@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyWMP & PyWMP-Pro Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* CWR3/FAU Color Palette */
+        :root {
+            --fau-blue: #003366;
+            --fau-red: #CC0000;
+            --fau-light-blue: #e6f0ff;
+            --fau-light-gray: #f0f2f5;
+            --fau-text-dark: #1a202c;
+            --fau-text-light: #4a5568;
+            --arcgis-green: #028c23;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--fau-text-dark); }
+
+        h1, h2, h3, h4, h5 { font-weight: 700; color: var(--fau-blue); }
+        h1 { border-bottom: 4px solid var(--fau-red); padding-bottom: 0.75rem; }
+        h2 { border-bottom: 2px solid var(--fau-light-gray); padding-bottom: 0.5rem; margin-top: 2.5rem; margin-bottom: 1.5rem; }
+        h3 { margin-top: 2rem; margin-bottom: 1rem; }
+        h4 { color: var(--fau-text-dark); font-weight: 600; }
+
+       .code-block { background-color: #2d3748; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; font-family: 'Roboto Mono', monospace; overflow-x: auto; font-size: 0.875rem; }
+       .api-entry { border: 1px solid #e5e7eb; border-radius: 0.5rem; margin-bottom: 1.5rem; overflow: hidden; }
+       .api-header { background-color: var(--fau-light-gray); padding: 1rem 1.5rem; border-bottom: 1px solid #e5e7eb; }
+       .api-header .api-type { font-family: 'Roboto Mono', monospace; font-size: 0.8rem; color: var(--fau-red); font-weight: bold; }
+       .api-header .api-name { font-family: 'Roboto Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--fau-blue); }
+       .api-body { padding: 1.5rem; }
+       .api-body h5 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fau-text-light); margin-top: 1rem; margin-bottom: 0.5rem; padding-bottom: 0.25rem; border-bottom: 1px solid #e5e7eb;}
+       .param-table { font-size: 0.9rem; }
+       .param-table code { background-color: #eef2ff; color: #4338ca; padding: 0.1rem 0.4rem; border-radius: 0.25rem; font-weight: 600; }
+       .param-table em { color: #1e40af; font-style: normal; }
+        
+       .sidebar-link { display: block; padding: 0.5rem 1rem; border-radius: 0.375rem; color: var(--fau-text-dark); font-weight: 500; transition: all 0.2s ease-in-out; text-decoration: none; }
+       .sidebar-link:hover { background-color: var(--fau-light-blue); color: var(--fau-blue); }
+       .sidebar-link.active { background-color: var(--fau-blue); color: white; font-weight: 600; }
+
+       .prose p,.prose li { line-height: 1.75; }
+       .prose a { color: var(--fau-red); font-weight: 500; }
+       .prose table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; margin-bottom: 1.5rem; }
+       .prose th,.prose td { border: 1px solid #e2e8f0; padding: 0.75rem 1rem; text-align: left; }
+       .prose th { background-color: var(--fau-light-gray); font-weight: 600; }
+       .prose tr:nth-child(even) { background-color: #fafafa; }
+        
+       .alert { padding: 1rem; border-radius: 0.5rem; border-width: 1px; margin-top: 1rem; }
+       .alert-warning { background-color: #fffbeb; border-color: #fde68a; color: #b45309; }
+       .alert-info { background-color: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
+
+       .hero-section { background-color: var(--fau-blue); color: white; }
+       .hero-section h1 { color: white; border-color: var(--fau-red); }
+       .hero-section a { transition: transform 0.2s; }
+       .hero-section a:hover { transform: translateY(-2px); }
+        
+       .feature-card { background-color: var(--fau-light-gray); border: 1px solid #e5e7eb; padding: 1.5rem; border-radius: 0.5rem; text-align: center; transition: all 0.3s ease; }
+       .feature-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--fau-blue); }
+       .feature-card svg { margin: 0 auto 1rem; transition: transform 0.3s ease; }
+       .feature-card:hover svg { transform: scale(1.1); }
+
+       /* Professional enhancements */
+       .gradient-text { background: linear-gradient(135deg, var(--fau-blue), var(--fau-red)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+       .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); }
+       .section-divider { background: linear-gradient(90deg, transparent, var(--fau-light-gray), transparent); height: 1px; margin: 3rem 0; }
+       
+       /* Code block improvements */
+       .code-block { background: linear-gradient(135deg, #1a202c, #2d3748); border: 1px solid #4a5568; position: relative; }
+       .code-block::before { content: ''; position: absolute; top: 12px; left: 12px; width: 12px; height: 12px; background: #ff5f56; border-radius: 50%; box-shadow: 20px 0 #ffbd2e, 40px 0 #27ca3f; }
+       
+       /* Improved buttons */
+       .btn-primary { background: linear-gradient(135deg, var(--fau-blue), #0066cc); transition: all 0.3s ease; }
+       .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,51,102,0.3); }
+       .btn-secondary { background: linear-gradient(135deg, var(--fau-red), #ff3333); }
+       .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(204,0,0,0.3); }
+
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Top Navigation -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img src="https://placehold.co/32x32/003366/FFFFFF?text=PyWMP" alt="PyWMP Logo" class="rounded">
+                    <span class="ml-2 text-xl font-bold text-[var(--fau-blue)]">PyWMP</span>
+                    <span class="ml-2 text-sm text-gray-500">Ecosystem</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="#quick-start" class="text-gray-700 hover:text-[var(--fau-blue)] font-medium">Documentation</a>
+                    <a href="pywmp.html" target="_blank" class="text-gray-700 hover:text-[var(--fau-blue)] font-medium">Open Source</a>
+                    <a href="pywmp-pro.html" target="_blank" class="bg-[var(--arcgis-green)] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">PyWMP-Pro</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex">
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="w-1/4 min-w-[320px] h-screen sticky top-0 bg-gray-50 p-6 border-r border-gray-200 flex flex-col transition-all duration-300">
+            <div id="sidebar-content" class="flex-grow overflow-y-auto transition-opacity duration-200">
+                <div class="mb-8 flex items-center space-x-3">
+                    <img src="https://placehold.co/40x40/003366/FFFFFF?text=PyWMP" alt="PyWMP Logo" class="rounded-md">
+                    <div>
+                        <h5 class="text-xl font-bold text-[var(--fau-blue)]">PyWMP</h5>
+                        <p class="text-sm text-gray-500">Watershed Modeling Framework</p>
+                    </div>
+                </div>
+                <nav id="sidebar-nav">
+                    <a href="#quick-start" class="sidebar-link">Quick Start</a>
+                    <a href="#introduction" class="sidebar-link">Introduction</a>
+                    <a href="#features" class="sidebar-link">Key Features</a>
+                    
+                    <h5 class="mt-6 mb-2 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">🐍 Open Source (pywmp)</h5>
+                    <a href="#open-source" class="sidebar-link">Overview & Installation</a>
+                    <a href="#py-tutorials" class="sidebar-link">Python Tutorial</a>
+                    <a href="#py-guide" class="sidebar-link">Developer Guide</a>
+                    <a href="#api-reference" class="sidebar-link">API Reference</a>
+
+                    <h5 class="mt-6 mb-2 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">🗺️ ArcGIS Pro (PyWMP-Pro)</h5>
+                    <a href="#pro-tutorials" class="sidebar-link">ArcGIS Tutorial</a>
+                    <a href="#pro-guide" class="sidebar-link">Tool Guide</a>
+
+                    <h5 class="mt-6 mb-2 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">🗺️ ArcGIS Pro (PyWMP-Pro)</h5>
+                    <a href="#pro-tutorials" class="sidebar-link">ArcGIS Tutorial</a>
+                    <a href="#pro-guide" class="sidebar-link">Tool Guide</a>
+
+                    <h5 class="mt-6 mb-2 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">Scientific Reference</h5>
+                    <a href="#methods" class="sidebar-link">Methodological Foundations</a>
+                    
+                    <h5 class="mt-6 mb-2 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">General</h5>
+                    <a href="#related-projects" class="sidebar-link">Related Projects & Reading</a>
+                    <a href="#limitations" class="sidebar-link">Use Limitations</a>
+                    <a href="#citation" class="sidebar-link">How to Cite</a>
+                    <a href="#references" class="sidebar-link">References</a>
+                </nav>
+            </div>
+            <!-- Toggle Button at the bottom -->
+            <div class="flex-shrink-0 pt-4 mt-4 border-t border-gray-200">
+                <button id="sidebar-toggle" class="w-full flex items-center justify-center p-2 rounded-md text-gray-600 hover:bg-gray-200 focus:outline-none">
+                    <svg id="toggle-icon-collapse" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                    </svg>
+                    <svg id="toggle-icon-expand" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                    </svg>
+                    <span id="toggle-text" class="ml-3 font-medium">Collapse</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content" class="w-3/4 transition-all duration-300">
+            
+                <section id="overview" class="hero-section text-center py-20 px-8">
+                <h1 class="text-5xl font-bold">PyWMP: Professional Watershed Modeling Framework</h1>
+                <p class="text-xl text-gray-300 mt-4 max-w-4xl mx-auto">A comprehensive, network-based hydrologic modeling ecosystem that bridges the gap between intuitive GIS workflows and powerful Python automation for researchers, engineers, and water resource professionals.</p>
+                
+                <!-- Key Stats/Badges -->
+                <div class="mt-8 flex justify-center space-x-6 text-sm">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                        <span class="text-white/80">🐍 Python 3.8+</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                        <span class="text-white/80">🗺️ PyWMP-Pro Ready</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                        <span class="text-white/80">📖 Open Source</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                        <span class="text-white/80">⚡ Fast Setup</span>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-center space-x-4">
+                    <a href="#quick-start" class="bg-white text-[var(--fau-blue)] font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200">📖 Documentation</a>
+                    <a href="pywmp.html" target="_blank" class="bg-[var(--fau-red)] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200">🐍 Open Source</a>
+                    <a href="pywmp-pro.html" target="_blank" class="bg-[var(--arcgis-green)] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200">🗺️ PyWMP-Pro</a>
+                </div>
+            </section>            <div class="p-8 md:p-12 prose max-w-none">
+                
+                <!-- Quick Start Section -->
+                <section id="quick-start" class="bg-gradient-to-r from-blue-50 to-indigo-50 -mx-8 md:-mx-12 px-8 md:px-12 py-12 mb-12 not-prose">
+                    <div class="max-w-6xl mx-auto">
+                        <h2 class="text-3xl font-bold text-center mb-8 text-[var(--fau-blue)]">Get Started in Minutes</h2>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- Python Users -->
+                            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Python Developers</h3>
+                                </div>
+                                <p class="text-gray-600 mb-4">Install the core library and start modeling programmatically:</p>
+                                <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto"><code>pip install pywmp
+# or for development
+git clone https://github.com/mandalanil/pywmp.git
+cd pywmp && pip install -e .</code></pre>
+                                <div class="mt-4 flex space-x-3">
+                                    <a href="#open-source" class="text-blue-600 hover:text-blue-800 font-medium">Open Source Guide →</a>
+                                    <a href="#py-tutorials" class="text-blue-600 hover:text-blue-800 font-medium">Python Tutorial →</a>
+                                    <a href="#api-reference" class="text-gray-600 hover:text-gray-800 font-medium">API Docs →</a>
+                                </div>
+                            </div>
+                            
+                            <!-- ArcGIS Users -->
+                            <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">PyWMP-Pro Users</h3>
+                                </div>
+                                <p class="text-gray-600 mb-4">Download the toolbox and start modeling with familiar GIS tools:</p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium mr-2">1</span>
+                                        <span>Download <code class="bg-gray-100 px-2 py-1 rounded">PyWMP-Pro.pyt</code></span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium mr-2">2</span>
+                                        <span>Add toolbox to ArcGIS Pro</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium mr-2">3</span>
+                                        <span>Run your first simulation</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex space-x-3">
+                                    <a href="#pro-tutorials" class="text-blue-600 hover:text-blue-800 font-medium">View PyWMP-Pro Tutorial →</a>
+                                    <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">Download Toolbox →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="introduction">
+                    <h2>About PyWMP</h2>
+                    
+                    <!-- Overview Cards -->
+                    <div class="grid md:grid-cols-2 gap-6 not-prose mb-8">
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
+                            <h4 class="text-lg font-bold text-blue-900 mb-3">🐍 pywmp (Python Library)</h4>
+                            <p class="text-blue-800 text-sm">Open-source Python framework for programmatic watershed modeling, research automation, and custom analysis workflows.</p>
+                            <div class="mt-3 flex space-x-2">
+                                <span class="bg-blue-200 text-blue-800 px-2 py-1 rounded text-xs">pip install</span>
+                                <span class="bg-blue-200 text-blue-800 px-2 py-1 rounded text-xs">NetworkX</span>
+                                <span class="bg-blue-200 text-blue-800 px-2 py-1 rounded text-xs">Pandas</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200">
+                            <h4 class="text-lg font-bold text-green-900 mb-3">🗺️ PyWMP-Pro (ArcGIS Toolbox)</h4>
+                            <p class="text-green-800 text-sm">Professional GIS toolbox for PyWMP-Pro users, providing point-and-click watershed modeling with enterprise-grade visualization.</p>
+                            <div class="mt-3 flex space-x-2">
+                                <span class="bg-green-200 text-green-800 px-2 py-1 rounded text-xs">PyWMP-Pro</span>
+                                <span class="bg-green-200 text-green-800 px-2 py-1 rounded text-xs">GUI Tools</span>
+                                <span class="bg-green-200 text-green-800 px-2 py-1 rounded text-xs">Visual Output</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Network-Based Watershed Modeling</h3>
+                    <p>PyWMP is an innovative, open-source framework designed for watershed modeling and hydrologic planning. It provides a flexible and extensible toolset for simulating runoff generation and flow routing through complex hydrologic systems using a <strong>network-based approach</strong>.</p>
+                    
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-6 not-prose">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-blue-800 font-medium">Key Innovation: Directed Acyclic Graph (DAG) Approach</h4>
+                                <p class="mt-1 text-blue-700 text-sm">PyWMP represents watersheds as directed graphs, enabling more intuitive and flexible modeling compared to traditional grid-based approaches.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>A key feature of PyWMP is its <strong>fully automated workflow</strong> for generating high-precision <strong>inundation depth raster maps</strong> by leveraging high-resolution <strong>LiDAR Digital Elevation Models (DEM)</strong>. To achieve this, PyWMP conceptualizes the watershed as a <strong>directed acyclic graph (DAG)</strong>, a network-based approach that offers significant advantages over traditional grid-based or lumped-parameter models. In this framework:</p>
+                    <ul>
+                        <li><strong>Nodes</strong> represent hydrologically significant features such as catchment outlets, hydraulic structures (pumps, weirs), and depressions.</li>
+                        <li><strong>Edges</strong> represent the conveyance pathways (e.g., streams, canals) that connect these nodes.</li>
+                    </ul>
+                    <p>By leveraging the <strong>NetworkX</strong> library, PyWMP captures the complex, non-linear relationships within a watershed, providing an intuitive and adaptable method for representing hydrologic systems. The framework calculates runoff at each node and routes these flows through the network, dynamically updating the hydraulic conditions at each simulation interval. This makes PyWMP an effective tool for researchers, water resource managers, and urban planners engaged in flood modeling, water resource management, and environmental conservation.</p>
+                </section>
+
+                <div class="mt-8 border-t-4 border-gray-100"></div>
+
+                <section id="features">
+                    <h2>Key Features</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 not-prose">
+                        <div class="feature-card">
+                            <svg class="w-12 h-12 text-[var(--fau-red)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <h4 class="text-lg">Integrated GIS Workflow</h4>
+                            <p class="text-sm text-gray-600">A dedicated ArcGIS Pro toolbox (`PyWMP-Pro`) for seamless data preparation, simulation, and visualization.</p>
+                        </div>
+                        <div class="feature-card">
+                            <svg class="w-12 h-12 text-[var(--fau-red)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg>
+                            <h4 class="text-lg">Multi-Scenario Analysis</h4>
+                            <p class="text-sm text-gray-600">Efficiently compare the hydrologic impacts of different storm events (e.g., 10-year, 100-year) in a single, automated run.</p>
+                        </div>
+                        <div class="feature-card">
+                            <svg class="w-12 h-12 text-[var(--fau-red)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg>
+                            <h4 class="text-lg">Extensible Python Core</h4>
+                            <p class="text-sm text-gray-600">A modular, object-oriented Python engine (`pywmp`) for custom scripting, research, and automation.</p>
+                        </div>
+                        <div class="feature-card">
+                            <svg class="w-12 h-12 text-[var(--fau-red)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125v-1.5c0-.621.504-1.125 1.125-1.125H20.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h17.25m-17.25 0h17.25" /></svg>
+                            <h4 class="text-lg">Network-Based Routing</h4>
+                            <p class="text-sm text-gray-600">Represents the watershed as a directed graph, enabling efficient and intuitive modeling of complex flow interactions.</p>
+                        </div>
+                        <div class="feature-card">
+                            <svg class="w-12 h-12 text-[var(--fau-red)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 9.75v4.5m0 0l-1.5-1.5m1.5 1.5l1.5-1.5" /></svg>
+                            <h4 class="text-lg">Automated Hydrograph Generation</h4>
+                            <p class="text-sm text-gray-600">Automatically generates and saves detailed hydrograph plots and data tables for each simulated node.</p>
+                        </div>
+                        <div class="feature-card">
+                            <svg class="w-12 h-12 text-[var(--fau-red)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503-10.498l4.284-2.491a.375.375 0 01.513.428l-2.016 7.56a.375.375 0 01-.69.012l-1.41-4.935a.375.375 0 00-.69-.012l-1.41 4.935a.375.375 0 01-.69.012l-2.016-7.56a.375.375 0 01.513-.428l4.284 2.49z" /></svg>
+                            <h4 class="text-lg">High-Resolution Mapping</h4>
+                            <p class="text-sm text-gray-600">Designed to produce high-precision inundation maps from LiDAR-derived Digital Elevation Models.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="mt-8 border-t-4 border-gray-100"></div>
+                
+                <section id="open-source">
+                    <h2>🐍 Open Source Python Library (pywmp)</h2>
+                    
+                    <!-- Hero section for open source -->
+                    <div class="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 -mx-8 md:-mx-12 px-8 md:px-12 py-12 mb-8 not-prose rounded-xl">
+                        <div class="max-w-4xl mx-auto text-center">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Free, Open, and Extensible</h3>
+                            <p class="text-lg text-gray-700 mb-6">The <code class="bg-white px-2 py-1 rounded">pywmp</code> library is the core engine that powers watershed modeling through Python. Perfect for researchers, developers, and anyone who needs programmatic control over hydrologic simulations.</p>
+                            
+                            <!-- Installation badges -->
+                            <div class="flex justify-center space-x-4 mb-6">
+                                <img src="https://img.shields.io/badge/python-3.8+-blue?style=for-the-badge&logo=python" alt="Python 3.8+">
+                                <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="MIT License">
+                                <img src="https://img.shields.io/badge/status-active-brightgreen?style=for-the-badge" alt="Active Development">
+                            </div>
+                            
+                            <!-- Quick install -->
+                            <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-left max-w-2xl mx-auto mb-6">
+                                <div class="flex items-center mb-2">
+                                    <div class="flex space-x-2">
+                                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    </div>
+                                    <span class="ml-3 text-sm text-gray-400">Terminal</span>
+                                </div>
+                                <code class="block">$ pip install pywmp</code>
+                                <code class="block text-gray-400"># Ready to model watersheds! 🚀</code>
+                            </div>
+                            
+                            <div class="flex justify-center space-x-4">
+                                <a href="#py-tutorials" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">Start Tutorial</a>
+                                <a href="https://github.com/mandalanil/pywmp" target="_blank" class="bg-gray-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-900 transition-colors">View on GitHub</a>
+                                <a href="#api-reference" class="border-2 border-gray-600 text-gray-700 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors">API Docs</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features specific to open source -->
+                    <h3>Why Choose the Open Source Library?</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 not-prose mb-8">
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Lightning Fast</h4>
+                            <p class="text-gray-600 text-sm">NetworkX-based graph operations and NumPy array processing for high-performance simulations.</p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Research Ready</h4>
+                            <p class="text-gray-600 text-sm">Built for reproducible science with comprehensive documentation and validation against established methods.</p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Fully Customizable</h4>
+                            <p class="text-gray-600 text-sm">Extend, modify, and integrate with your existing Python workflows. No vendor lock-in.</p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Well Documented</h4>
+                            <p class="text-gray-600 text-sm">Complete API documentation, tutorials, and examples to get you started quickly.</p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Community Driven</h4>
+                            <p class="text-gray-600 text-sm">Open source means community contributions, peer review, and continuous improvement.</p>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Integration Ready</h4>
+                            <p class="text-gray-600 text-sm">Works seamlessly with Jupyter, pandas, matplotlib, and the entire scientific Python ecosystem.</p>
+                        </div>
+                    </div>
+
+                    <!-- Quick example -->
+                    <h3>5-Minute Example</h3>
+                    <p>Get started with a simple watershed simulation in just a few lines of code:</p>
+                    <pre class="code-block"><code>import pandas as pd
+from pywmp.models import Cascade2001Model
+from pywmp.simulate import HydrologicSimulator
+
+# Load your watershed data
+df = pd.read_csv('my_watershed.csv')
+
+# Create the network model
+model = Cascade2001Model(df=df, from_col='Basin_ID', to_col='Receives_From')
+
+# Set up and run simulation
+simulator = HydrologicSimulator(
+    graph=model.graph,
+    scenarios={"100yr": "Rainfall_100yr_in"},
+    column_mapping={
+        'name_col': 'Basin_ID',
+        'area_col': 'Area_ac', 
+        'tc_col': 'Time_Concentration_hr'
+    }
+)
+
+# Run the simulation - results saved automatically
+simulator.run()
+
+print("✅ Simulation complete! Check the 'simulation_results' directory.")</code></pre>
+
+                    <!-- Installation and requirements -->
+                    <h3>Installation & Requirements</h3>
+                    <div class="grid md:grid-cols-2 gap-6 not-prose">
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="font-bold text-gray-900 mb-3">📦 Installation Options</h4>
+                            <div class="space-y-3">
+                                <div>
+                                    <p class="font-medium text-sm text-gray-700">Stable Release (Recommended)</p>
+                                    <code class="block bg-gray-900 text-green-400 p-2 rounded text-sm">pip install pywmp</code>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-sm text-gray-700">Development Version</p>
+                                    <code class="block bg-gray-900 text-green-400 p-2 rounded text-sm">git clone https://github.com/mandalanil/pywmp.git
+cd pywmp && pip install -e .</code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h4 class="font-bold text-gray-900 mb-3">⚙️ System Requirements</h4>
+                            <ul class="space-y-1 text-sm text-gray-700">
+                                <li>✅ Python 3.8 or later</li>
+                                <li>✅ NumPy >= 1.19.0</li>
+                                <li>✅ pandas >= 1.2.0</li>
+                                <li>✅ NetworkX >= 2.5</li>
+                                <li>✅ matplotlib >= 3.3.0</li>
+                                <li>💾 ~50MB disk space</li>
+                                <li>🧠 2GB+ RAM recommended</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="mt-8 border-t-4 border-gray-100"></div>
+                
+                <section id="pro-tutorials">
+                    <h2>PyWMP-Pro (ArcGIS) Tutorial</h2>
+                    <p>This section provides a hands-on tutorial for users of the ArcGIS Pro toolbox. This guide is designed to get you productive with the software quickly through a practical, real-world example.</p>
+                    
+                    <h3>Video Tutorial: Complete Workflow</h3>
+                    <p>This video provides a complete visual guide to using PyWMP-Pro, from project setup to result interpretation. It's the perfect starting point for new users.</p>
+                    <div class="my-8 rounded-lg overflow-hidden shadow-lg">
+                        <img src="https://placehold.co/800x450/e6f0ff/003366?text=PyWMP-Pro+Video+Tutorial" alt="PyWMP-Pro Video Tutorial" class="w-full">
+                    </div>
+
+                    <h3>Workshop: Flood Inundation Mapping</h3>
+                    <p>This workshop guides you through a complete modeling workflow to produce a flood inundation map for a 100-year storm event. For a complete walkthrough, a sample data package can be made available.</p>
+                    
+                    <h4>Step 1: Create the Hydrologic Model</h4>
+                    <p>First, add the <code>PyWMP-Pro.pyt</code> toolbox to your ArcGIS Pro project. Open the <strong>Create Hydrological Model</strong> tool. This tool processes your raw GIS and tabular data (e.g., a CSV or shapefile defining your basins and structures) into a structured JSON file that defines the watershed network. The most important step is to carefully map your data columns to the model's required fields in the tool's interface.</p>
+                    <div class="my-8 rounded-lg overflow-hidden shadow-lg">
+                        <img src="https://placehold.co/800x400/e6f0ff/003366?text=Create+Model+Tool+Screenshot" alt="Create Model Tool Screenshot" class="w-full">
+                    </div>
+                    <h4>Step 2: Run the Simulation and Analyze Results</h4>
+                    <p>Open the <strong>Simulate Multi-Scenario Model</strong> tool. Use the <code>.json</code> file generated in the previous step as the primary input and select the desired storm scenarios to run. The tool automatically runs the simulation and adds a `simulation_results` point layer to your map. Use its attribute table and symbology to visualize peak water stages and identify areas of potential flooding. The output directory will also contain detailed hydrograph plots and CSV files for each simulated node.</p>
+                </section>
+
+                <div class="mt-8 border-t-4 border-gray-100"></div>
+
+                <section id="py-tutorials">
+                    <h2>pywmp (Python) Tutorial</h2>
+                    <p>For developers and researchers who prefer a programmatic approach, this tutorial provides an interactive, code-first introduction to the `pywmp` library.</p>
+
+                    <h3>Video Tutorial: Introduction to the `pywmp` API</h3>
+                    <p>This video introduces the core concepts and objects in the `pywmp` Python library, showing you how to set up your environment and run a basic simulation script.</p>
+                    <div class="my-8 rounded-lg overflow-hidden shadow-lg">
+                        <img src="https://placehold.co/800x450/2d3748/FFFFFF?text=pywmp+API+Video+Tutorial" alt="pywmp API Video Tutorial" class="w-full">
+                    </div>
+
+                    <h3>Example: Scripting a Multi-Scenario Simulation</h3>
+                    <p>This example demonstrates the core workflow: loading data, creating a model network, configuring the simulator, and running a multi-scenario analysis programmatically.</p>
+                    <pre class="code-block"><code>import pandas as pd
+import networkx as nx
+from pywmp.models import Cascade2001Model
+from pywmp.simulate import HydrologicSimulator
+
+# 1. Load data and create the network model
+# The model requires a dataframe with columns defining the basins,
+# their connectivity, and their physical and hydrologic parameters.
+df = pd.read_csv('path/to/your/basin_data.csv')
+model = Cascade2001Model(df=df, from_col='Basin_ID', to_col='Receives_From')
+graph = model.graph
+
+# 2. Define scenarios and instantiate the simulator
+# The keys are the scenario names, and the values are the corresponding
+# rainfall column names in your input dataframe.
+scenarios_to_run = {
+    "1d_100y": "Rainfall_1d_100y_in",
+    "1d_25y": "Rainfall_1d_25y_in"
+}
+
+# The column_mapping dictionary tells the simulator which columns to use
+# for essential parameters.
+column_map = {
+    'name_col': 'Basin_ID', 
+    'area_col': 'Area_ac',
+    'tc_col': 'Time_of_Concentration_hr',
+    'soil_storage_col': 'Soil_Storage_in',
+    'initial_stage_col': 'Initial_Stage_ft',
+    'high_elev_col': 'High_Elevation_ft'
+}
+
+simulator = HydrologicSimulator(
+    graph=graph,
+    outdir="simulation_results",
+    scenarios=scenarios_to_run,
+    column_mapping=column_map,
+    start_hour=0.0,
+    end_hour=72.0,
+    time_interval=1.0
+)
+
+# 3. Run the simulation
+# This will execute all defined scenarios and save results to the output directory.
+simulator.run()
+
+# 4. Access summary results
+# A consolidated summary of all scenarios is saved to the output directory.
+summary_df = pd.read_csv('simulation_results/all_scenarios_summary.csv')
+print(summary_df.head())
+</code></pre>
+                </section>
+
+                <div class="mt-8 border-t-4 border-gray-100"></div>
+
+                <section id="pro-guide">
+                    <h2>PyWMP-Pro Tool Guide</h2>
+                    <p>This guide provides conceptual explanations of the PyWMP-Pro toolbox for ArcGIS, helping you understand its components and how they work together.</p>
+                    <h3>Tool Reference</h3>
+                    <p>The toolbox contains primary tools that guide the user through the modeling process. Refer to each tool's help documentation within ArcGIS Pro for detailed parameter descriptions.</p>
+                    <ul>
+                        <li><strong>Create Hydrological Model:</strong> This tool is the first step in the workflow. It processes your raw GIS and tabular data into a structured JSON file that defines the watershed network, its connectivity, and all associated parameters. This file serves as the master input for the simulation engine.</li>
+                        <li><strong>Simulate Multi-Scenario Model:</strong> This tool is the computational core of the workflow. It takes the JSON model file as input, runs the `pywmp` engine for all user-selected scenarios, and generates a comprehensive set of outputs, including GIS layers with summary results, and detailed hydrograph data tables and plots for each node.</li>
+                    </ul>
+                </section>
+
+                <div class="mt-8 border-t-4 border-gray-100"></div>
+
+                <section id="py-guide">
+                    <h2>pywmp Library Guide</h2>
+                    <p>This guide is for developers and researchers using the core Python library. It explains the library's architecture and data structures.</p>
+                    <h3>Installation</h3>
+                    <p>Since the project is under active development, it is recommended to clone the repository for testing and contributing to improvements:</p>
+                    <pre class="code-block"><code>git clone https://github.com/mandalanil/pywmp.git
+cd pywmp
+pip install -e .</code></pre>
+                    <h3>Module Breakdown</h3>
+                    <p>The `pywmp` library is organized into several key modules, each responsible for a specific part of the hydrologic modeling process:</p>
+                    <ul>
+                        <li><code>simulate</code>: Contains the main <code>HydrologicSimulator</code> class that orchestrates the entire simulation, managing time steps, scenarios, and data flow.</li>
+                        <li><code>models</code>: Includes the <code>Cascade2001Model</code> class, which uses NetworkX to construct the watershed graph from input data.</li>
+                        <li><code>hyetograph</code>: Provides functions like <code>generate_rainfall_table</code> to create rainfall distributions and calculate rainfall excess using the SCS-CN method.</li>
+                        <li><code>hydrograph</code>: Contains functions like <code>generate_runoff_hydrograph</code> to perform convolution and generate direct runoff hydrographs from rainfall excess.</li>
+                        <li><code>stage_storage</code>: Implements functions to relate a basin's storage volume to its water surface elevation (stage).</li>
+                        <li><code>structure_flows</code>: Provides functions to calculate discharge through hydraulic structures like pumps and gated spillways based on hydraulic conditions.</li>
+                    </ul>
+                </section>
+
+                <div class="mt-8 border-t-4 border-gray-100"></div>
+
+                <section id="methods">
+                    <h2>Methodological Foundations</h2>
+                    <p>This section provides a citable, academic-quality reference on the theoretical underpinnings of the models implemented in `pywmp`. Understanding these methods is crucial for conducting and publishing rigorous scientific research.</p>
+
+                    <h3>Rainfall-Runoff Modeling</h3>
+                    <h4>1. Rainfall Excess Generation (SCS-CN)</h4>
+                    <p>PyWMP estimates direct runoff from storm rainfall using the widely-accepted <strong>SCS Curve Number (CN) method</strong>. This empirical model calculates rainfall excess based on total rainfall, soil type, land use, and antecedent moisture conditions. The framework first determines the initial abstraction ($I_a$), the amount of rainfall captured by interception and surface storage before runoff begins, as a function of the potential maximum soil moisture retention ($S$):</p>
+                    <p><code class="text-lg block text-center my-4 bg-gray-100 p-2 rounded">Iₐ = 0.2 * S</code></p>
+                    <p>As the storm continues, the cumulative runoff depth ($Q$) is calculated at each time step based on the cumulative rainfall ($P$):</p>
+                    <p><code class="text-lg block text-center my-4 bg-gray-100 p-2 rounded">Q = (P - Iₐ)² / (P - Iₐ + S) &nbsp;&nbsp;&nbsp; for P > Iₐ</code></p>
+                    <p>The retention parameter $S$ is derived from the user-provided Curve Number: <code class="text-lg block text-center my-4 bg-gray-100 p-2 rounded">S = (1000 / CN) - 10</code>. The model then calculates the incremental rainfall excess for each time step, which becomes the input for hydrograph generation.</p>
+                    
+                    <h4>2. Runoff Hydrograph Generation (Unit Hydrograph & Convolution)</h4>
+                    <p>The incremental rainfall excess is transformed into a direct runoff hydrograph using the <strong>synthetic unit hydrograph</strong> method. The framework generates a unit hydrograph (UH), representing the response of the watershed to one inch of excess rainfall over a specific duration. This UH is then convoluted with the rainfall excess time series to produce the final runoff hydrograph.</p>
+                    <p>The shape of the unit hydrograph is determined by the basin's time of concentration ($t_c$) and area. The time to peak ($t_p$) and peak discharge ($q_p$) of the unit hydrograph are calculated using specific empirical relationships implemented in the code. The resulting runoff hydrograph represents the inflow to a specific node in the watershed network.</p>
+
+                    <h3>Hydrologic Routing and Hydraulic Structures</h3>
+                    <h4>Level-Pool Routing (Storage Routing)</h4>
+                    <p>For outlet nodes that represent storage features like ponds or reservoirs, PyWMP employs a <strong>Level-Pool Routing</strong> (also known as Modified Puls or storage routing) method. This is a hydrologic (lumped) routing technique that solves the continuity equation:</p>
+                    <p><code class="text-lg block text-center my-4 bg-gray-100 p-2 rounded">Inflow - Outflow = ΔStorage / Δt</code></p>
+                    <p>At each time step ($\Delta t$), the model performs the following calculations for a given node:</p>
+                    <ol>
+                        <li>The inflow volume is determined from the node's own runoff hydrograph plus the routed outflows from any upstream nodes.</li>
+                        <li>The outflow is calculated as the sum of discharges from all immediately downstream structures (e.g., pumps, weirs), based on the current water stage at the node.</li>
+                        <li>The change in storage is calculated, and the total storage volume is updated.</li>
+                        <li>A new water surface elevation (stage) is calculated from the updated storage volume using a predefined stage-storage relationship. In the current implementation, this is handled by the <code>simple_average</code> function, which assumes a linear relationship between stage and storage.</li>
+                    </ol>
+                    <p>This iterative process provides a time-series of stage and discharge for each storage node in the network.</p>
+                    
+                    <h4>Hydraulic Control Structures</h4>
+                    <p>The outflow from a storage node is controlled by the hydraulic characteristics of its downstream structures. PyWMP models two primary types of control structures:</p>
+                    <ul>
+                        <li><strong>Pumps:</strong> Modeled as simple on/off devices. When the headwater elevation at the storage node exceeds a defined "on" elevation, the pump operates at its full rated capacity. Below this elevation, its discharge is zero.</li>
+                        <li><strong>Gated Spillways and Weirs:</strong> Modeled using standard hydraulic equations that account for different flow regimes. The model can simulate free-orifice flow, submerged-orifice flow, and weir flow based on the relative headwater and tailwater elevations compared to the structure's crest and gate opening. Submergence corrections are applied to accurately reduce discharge when tailwater effects become significant.</li>
+                    </ul>
+                </section>
+
+                <div class="mt-8 border-t-4 border-gray-100"></div>
+
+                <section id="api-reference">
+                    <h2>API Reference</h2>
+                    <p>The API Reference is the definitive, code-level guide for developers. It is auto-generated from the docstrings in the `pywmp` source code to ensure it is always accurate and up-to-date with the latest version of the software. Each function and class entry includes detailed parameter descriptions, return values, and practical, executable examples. This section provides a reference for the most critical components of the library.</p>
+                    
+                    <div class="not-prose mt-8">
+                        <!-- API Entry for HydrologicSimulator -->
+                        <div class="api-entry">
+                            <div class="api-header">
+                                <div class="api-type">CLASS</div>
+                                <div class="api-name">pywmp.simulate.HydrologicSimulator</div>
+                            </div>
+                            <div class="api-body">
+                                <p>Encapsulates the data and methods for a watershed hydrologic simulation across multiple scenarios. This is the main class that orchestrates the simulation.</p>
+                                <h5>Parameters</h5>
+                                <table class="w-full param-table">
+                                    <tbody>
+                                        <tr><td class="w-1/3"><code>graph</code></td><td class="w-1/3"><em>nx.DiGraph</em></td><td>A NetworkX directed graph representing the watershed, with node attributes containing all necessary parameters.</td></tr>
+                                        <tr><td><code>outdir</code></td><td><em>str</em></td><td>The root output directory where all result files will be saved.</td></tr>
+                                        <tr><td><code>scenarios</code></td><td><em>dict</em></td><td>A dictionary mapping user-friendly scenario names to the corresponding rainfall column names in the input data.</td></tr>
+                                        <tr><td><code>column_mapping</code></td><td><em>dict</em></td><td>A dictionary to map standard parameter names (e.g., 'area_col') to the actual column names in the input data.</td></tr>
+                                        <tr><td><code>start_hour</code></td><td><em>float</em></td><td>The simulation start time in hours. Default is 0.0.</td></tr>
+                                        <tr><td><code>end_hour</code></td><td><em>float</em></td><td>The simulation end time in hours. Default is 72.0.</td></tr>
+                                        <tr><td><code>time_interval</code></td><td><em>float</em></td><td>The time step for the simulation in hours. Default is 1.0.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- API Entry for generate_rainfall_table -->
+                        <div class="api-entry">
+                            <div class="api-header">
+                                <div class="api-type">FUNCTION</div>
+                                <div class="api-name">pywmp.hyetograph.generate_rainfall_table(...)</div>
+                            </div>
+                            <div class="api-body">
+                                <p>Generates a rainfall table including cumulative and incremental rainfall, and calculates rainfall excess using the SCS-CN methodology.</p>
+                                <h5>Parameters</h5>
+                                <table class="w-full param-table">
+                                    <tbody>
+                                        <tr><td class="w-1/3"><code>total_rainfall</code></td><td class="w-1/3"><em>float</em></td><td>Total rainfall depth for the storm event, in inches.</td></tr>
+                                        <tr><td><code>soil_storage_constant</code></td><td><em>float</em></td><td>The soil storage parameter 'S' from the SCS-CN method.</td></tr>
+                                        <tr><td><code>start_time</code>, <code>end_time</code>, <code>time_interval</code></td><td><em>float</em></td><td>Parameters defining the simulation time window and step, in hours.</td></tr>
+                                    </tbody>
+                                </table>
+                                <h5>Returns</h5>
+                                <p><code>pandas.DataFrame</code> with columns: "Time (hrs)", "Cumulative Rainfall (in)", "Incremental Rainfall (in)", and "Rainfall Excess (in)".</p>
+                            </div>
+                        </div>
+
+                        <!-- API Entry for generate_runoff_hydrograph -->
+                        <div class="api-entry">
+                            <div class="api-header">
+                                <div class="api-type">FUNCTION</div>
+                                <div class="api-name">pywmp.hydrograph.generate_runoff_hydrograph(...)</div>
+                            </div>
+                            <div class="api-body">
+                                <p>Generates a direct runoff hydrograph by convoluting a rainfall excess time-series with a synthetic unit hydrograph.</p>
+                                <h5>Parameters</h5>
+                                <table class="w-full param-table">
+                                    <tbody>
+                                        <tr><td class="w-1/3"><code>rainfall_excess</code></td><td class="w-1/3"><em>np.ndarray</em></td><td>A NumPy array of incremental rainfall excess values, in inches.</td></tr>
+                                        <tr><td><code>tc</code></td><td><em>float</em></td><td>The time of concentration for the watershed, in hours.</td></tr>
+                                        <tr><td><code>drainage_area_acres</code></td><td><em>float</em></td><td>The watershed area in acres.</td></tr>
+                                        <tr><td><code>start_time</code>, <code>end_time</code>, <code>time_interval</code></td><td><em>float</em></td><td>Parameters defining the simulation time window and step, in hours.</td></tr>
+                                    </tbody>
+                                </table>
+                                <h5>Returns</h5>
+                                <p><code>pandas.DataFrame</code> with columns: "Time (hrs)" and "Runoff (cfs)".</p>
+                            </div>
+                        </div>
+                        
+                        <!-- API Entry for pump_discharge -->
+                        <div class="api-entry">
+                            <div class="api-header">
+                                <div class="api-type">FUNCTION</div>
+                                <div class="api-name">pywmp.structure_flows.pump_discharge(...)</div>
+                            </div>
+                            <div class="api-body">
+                                <p>Calculates pump discharge based on a simple on/off stage elevation.</p>
+                                <h5>Parameters</h5>
+                                <table class="w-full param-table">
+                                    <tbody>
+                                        <tr><td class="w-1/3"><code>stage</code></td><td class="w-1/3"><em>float</em></td><td>Current water surface elevation at the pump intake.</td></tr>
+                                        <tr><td><code>on_elev</code></td><td><em>float</em></td><td>The elevation at which the pump turns on.</td></tr>
+                                        <tr><td><code>capacity</code></td><td><em>float</em></td><td>The rated discharge capacity of the pump in cfs.</td></tr>
+                                    </tbody>
+                                </table>
+                                <h5>Returns</h5>
+                                <p><code>float</code> representing the pump discharge in cfs.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- API Entry for gated_spillway_discharge -->
+                        <div class="api-entry">
+                            <div class="api-header">
+                                <div class="api-type">FUNCTION</div>
+                                <div class="api-name">pywmp.structure_flows.gated_spillway_discharge(...)</div>
+                            </div>
+                            <div class="api-body">
+                                <p>Estimates flow through a gated spillway or uncontrolled weir, accounting for multiple flow regimes and submergence.</p>
+                                <h5>Parameters</h5>
+                                <table class="w-full param-table">
+                                    <tbody>
+                                        <tr><td class="w-1/3"><code>headwater_elev</code></td><td class="w-1/3"><em>float</em></td><td>Upstream water surface elevation.</td></tr>
+                                        <tr><td><code>tailwater_elev</code></td><td><em>float</em></td><td>Downstream water surface elevation.</td></tr>
+                                        <tr><td><code>crest_elev</code></td><td><em>float</em></td><td>Elevation of the spillway crest.</td></tr>
+                                        <tr><td><code>gate_opening_height</code></td><td><em>float</em></td><td>Vertical opening of the gate.</td></tr>
+                                        <tr><td><code>spillway_width</code></td><td><em>float</em></td><td>Width of the spillway.</td></tr>
+                                    </tbody>
+                                </table>
+                                <h5>Returns</h5>
+                                <p><code>float</code> representing the estimated discharge in cfs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="mt-8 border-t-4 border-gray-100"></div>
+
+                <section id="related-projects">
+                    <h2>Related Projects & Further Reading</h2>
+                    <ol class="list-decimal list-inside columns-2">
+                        <li><a href="https://github.com/pyswmm/pyswmm/" target="_blank">pyswmm</a></li>
+                        <li><a href="https://github.com/passaH2O/GeoFlood" target="_blank">GeoFlood</a></li>
+                        <li><a href="https://github.com/PublicDomainRelease/GSFLOW" target="_blank">GSFLOW</a></li>
+                        <li><a href="https://github.com/benjiyamin/pyflo" target="_blank">pyflo</a></li>
+                        <li><a href="https://www.sfwmd.gov/sites/default/files/documents/cascade_routing_info.pdf" target="_blank">Cascade</a></li>
+                        <li><a href="https://triton.ornl.gov/documentation/" target="_blank">Triton</a></li>
+                        <li><a href="https://wikiwatershed.org/wp-content/uploads/GWLFManual.pdf" target="_blank">GWLF</a></li>
+                        <li><a href="https://rdrr.io/github/tanerumit/hydrosystems/man/abcdQest.html" target="_blank">ABCD</a></li>
+                        <li><a href="https://github.com/t-ott/stormcatchments" target="_blank">stormcatchments</a></li>
+                        <li><a href="https://github.com/sclaw/muskingum-cunge/tree/main" target="_blank">muskingum-cunge</a></li>
+                        <li><a href="https://xon.sdsu.edu/why_is_the_muskingum_cunge_the_best.pdf" target="_blank">Why is the Muskingum-Cunge the best...</a></li>
+                        <li><a href="https://github.com/raoulcollenteur/Python-Hydrology-Tools" target="_blank">Python Hydrology Tools</a></li>
+                        <li><a href="https://github.com/opengeos/lidar/tree/master" target="_blank">lidar</a></li>
+                        <li><a href="https://nhess.copernicus.org/articles/19/2405/2019/" target="_blank">HAND</a></li>
+                        <li><a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024WR037268" target="_blank">A scale-adaptive urban hydrologic framework...</a></li>
+                        <li><a href="https://github.com/philip928lin/HydroCNHS" target="_blank">HydroCNHS</a></li>
+                        <li><a href="https://waterdata.usgs.gov/nwis/sw" target="_blank">USGS Surface Water Data</a></li>
+                        <li><a href="https://hydroinfotheory.github.io/Engineering_Hydrology_Notebooks/notebooks/Notebook_4/Notebook_4.html" target="_blank">Engineering Hydrology Notebooks</a></li>
+                    </ol>
+                </section>
+
+                <div class="mt-8 border-t-4 border-gray-100"></div>
+
+                <section id="limitations">
+                    <h2>Use Limitations</h2>
+                    <p>Both PyWMP-Pro and the `pywmp` library are intended for planning-level analysis, not for detailed engineering design where high-precision hydraulics are required. The primary limitation stems from the use of hydrologic routing methods.</p>
+                    <div class="alert alert-warning">
+                        <p class="font-bold">No Backwater Analysis</p>
+                        <p class="mt-2">The Level-Pool routing method assumes a horizontal water surface within each storage node. Therefore, the model **cannot simulate backwater effects** caused by downstream obstructions, tides, or complex channel confluences. This makes the software unsuitable for low-gradient systems, tidally influenced areas, or channel networks where downstream controls significantly affect upstream water levels.</p>
+                    </div>
+                </section>
+
+                <section id="citation">
+                    <h2>How to Cite</h2>
+                    <p>If you use PyWMP or PyWMP-Pro in your research, please cite it as follows:</p>
+                    <div class="alert alert-info not-prose">
+                        <p>[Author, A. A.]. (2025). PyWMP: An Open-Source Framework for Network-Based Watershed Modeling (Version X.X). [Link to software/paper - dummy]</p>
+                    </div>
+                </section>
+
+                <section id="references">
+                    <h2>References</h2>
+                    <p>The methods implemented in `pywmp` are based on foundational and widely accepted literature in the field of hydrology.</p>
+                    <ol class="list-decimal list-inside">
+                        <li>Chow, V. T., Maidment, D. R., & Mays, L. W. (1988). *Applied Hydrology*. McGraw-Hill.</li>
+                        <li>U.S. Department of Agriculture, Natural Resources Conservation Service. (1986). *National Engineering Handbook, Part 630: Hydrology*. Washington, D.C.</li>
+                    </ol>
+                </section>
+            </div>
+            
+            <footer class="bg-gray-800 text-white mt-12 p-8 text-center not-prose">
+                <p>&copy; 2025 CWR3 / Florida Atlantic University. All Rights Reserved.</p>
+                <div class="mt-4 space-x-6">
+                    <a href="#" class="hover:text-[var(--fau-red)]">Contact Us (dummy)</a>
+                    <a href="#" class="hover:text-[var(--fau-red)]">GitHub (dummy)</a>
+                    <a href="#" class="hover:text-[var(--fau-red)]">Report an Issue (dummy)</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Sidebar Collapse Functionality ---
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const toggleButton = document.getElementById('sidebar-toggle');
+            const sidebarContent = document.getElementById('sidebar-content');
+            const toggleText = document.getElementById('toggle-text');
+            const collapseIcon = document.getElementById('toggle-icon-collapse');
+            const expandIcon = document.getElementById('toggle-icon-expand');
+
+            toggleButton.addEventListener('click', () => {
+                // Toggle sidebar classes
+                sidebar.classList.toggle('w-1/4');
+                sidebar.classList.toggle('min-w-[320px]');
+                sidebar.classList.toggle('w-24'); // Collapsed width
+                sidebar.classList.toggle('p-6');
+                sidebar.classList.toggle('p-2');
+
+                // Toggle main content classes
+                mainContent.classList.toggle('w-3/4');
+                mainContent.classList.toggle('w-[calc(100%-6rem)]'); // Full width minus collapsed sidebar
+
+                // Hide/show sidebar content with a fade effect
+                sidebarContent.classList.toggle('opacity-100');
+                sidebarContent.classList.toggle('opacity-0');
+                sidebarContent.classList.toggle('invisible');
+                
+                // Update button text and icons
+                const isCollapsed = sidebar.classList.contains('w-24');
+                toggleText.textContent = isCollapsed ? '' : 'Collapse';
+                collapseIcon.classList.toggle('hidden', isCollapsed);
+                expandIcon.classList.toggle('hidden', !isCollapsed);
+                if (isCollapsed) {
+                   toggleButton.classList.remove('justify-start');
+                   toggleButton.classList.add('justify-center');
+                } else {
+                   toggleButton.classList.add('justify-start');
+                   toggleButton.classList.remove('justify-center');
+                }
+            });
+
+            // --- Active Link Scrolling Functionality ---
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('#sidebar-nav a.sidebar-link');
+            
+            const onScroll = () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href').substring(1);
+                    if (href === current) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', onScroll);
+            onScroll(); // Run on page load
+        });
+    </script>
+</body>
+</html>
