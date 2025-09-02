@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PyWMP & PyWMP-Pro Documentation</title>
+    
+    <!-- Preload critical font files for better performance -->
+    <link rel="preload" href="assets/fonts/Studio-Feixen-Sans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Studio-Feixen-Sans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Studio-Feixen-Sans-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Custom Studio-Feixen-Sans theme -->
+    <link rel="stylesheet" href="assets/css/studio-theme.css">
+    
     <style>
-        /* CWR3/FAU Color Palette */
+        /* CWR3/FAU Color Palette - Enhanced with Studio-Feixen-Sans */
         :root {
             --fau-blue: #003366;
             --fau-red: #CC0000;
@@ -20,83 +30,346 @@
             --arcgis-green: #028c23;
         }
 
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; color: var(--fau-text-dark); }
+        /* Override base styles to use Studio-Feixen-Sans font stack */
+        body { 
+            font-family: var(--font-primary);
+            color: var(--fau-text-dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            letter-spacing: -0.01em;
+        }
 
-        h1, h2, h3, h4, h5 { font-weight: 700; color: var(--fau-blue); }
-        h1 { border-bottom: 4px solid var(--fau-red); padding-bottom: 0.75rem; }
-        h2 { border-bottom: 2px solid var(--fau-light-gray); padding-bottom: 0.5rem; margin-top: 2.5rem; margin-bottom: 1.5rem; }
-        h3 { margin-top: 2rem; margin-bottom: 1rem; }
-        h4 { color: var(--fau-text-dark); font-weight: 600; }
-
-       .code-block { background-color: #2d3748; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; font-family: 'Roboto Mono', monospace; overflow-x: auto; font-size: 0.875rem; }
-       .api-entry { border: 1px solid #e5e7eb; border-radius: 0.5rem; margin-bottom: 1.5rem; overflow: hidden; }
-       .api-header { background-color: var(--fau-light-gray); padding: 1rem 1.5rem; border-bottom: 1px solid #e5e7eb; }
-       .api-header .api-type { font-family: 'Roboto Mono', monospace; font-size: 0.8rem; color: var(--fau-red); font-weight: bold; }
-       .api-header .api-name { font-family: 'Roboto Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--fau-blue); }
-       .api-body { padding: 1.5rem; }
-       .api-body h5 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fau-text-light); margin-top: 1rem; margin-bottom: 0.5rem; padding-bottom: 0.25rem; border-bottom: 1px solid #e5e7eb;}
-       .param-table { font-size: 0.9rem; }
-       .param-table code { background-color: #eef2ff; color: #4338ca; padding: 0.1rem 0.4rem; border-radius: 0.25rem; font-weight: 600; }
-       .param-table em { color: #1e40af; font-style: normal; }
+        h1, h2, h3, h4, h5 { 
+            font-family: var(--font-primary);
+            font-weight: 600; 
+            color: var(--fau-blue);
+            letter-spacing: -0.025em;
+        }
         
-       .sidebar-link { display: block; padding: 0.5rem 1rem; border-radius: 0.375rem; color: var(--fau-text-dark); font-weight: 500; transition: all 0.2s ease-in-out; text-decoration: none; }
-       .sidebar-link:hover { background-color: var(--fau-light-blue); color: var(--fau-blue); }
-       .sidebar-link.active { background-color: var(--fau-blue); color: white; font-weight: 600; }
-
-       .prose p,.prose li { line-height: 1.75; }
-       .prose a { color: var(--fau-red); font-weight: 500; }
-       .prose table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; margin-bottom: 1.5rem; }
-       .prose th,.prose td { border: 1px solid #e2e8f0; padding: 0.75rem 1rem; text-align: left; }
-       .prose th { background-color: var(--fau-light-gray); font-weight: 600; }
-       .prose tr:nth-child(even) { background-color: #fafafa; }
+        h1 { 
+            font-weight: 700;
+            border-bottom: 4px solid var(--fau-red); 
+            padding-bottom: 0.75rem; 
+        }
         
-       .alert { padding: 1rem; border-radius: 0.5rem; border-width: 1px; margin-top: 1rem; }
-       .alert-warning { background-color: #fffbeb; border-color: #fde68a; color: #b45309; }
-       .alert-info { background-color: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
-
-       .hero-section { background-color: var(--fau-blue); color: white; }
-       .hero-section h1 { color: white; border-color: var(--fau-red); }
-       .hero-section a { transition: transform 0.2s; }
-       .hero-section a:hover { transform: translateY(-2px); }
+        h2 { 
+            border-bottom: 2px solid var(--fau-light-gray); 
+            padding-bottom: 0.5rem; 
+            margin-top: 2.5rem; 
+            margin-bottom: 1.5rem; 
+        }
         
-       .feature-card { background-color: var(--fau-light-gray); border: 1px solid #e5e7eb; padding: 1.5rem; border-radius: 0.5rem; text-align: center; transition: all 0.3s ease; }
-       .feature-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--fau-blue); }
-       .feature-card svg { margin: 0 auto 1rem; transition: transform 0.3s ease; }
-       .feature-card:hover svg { transform: scale(1.1); }
+        h3 { 
+            margin-top: 2rem; 
+            margin-bottom: 1rem; 
+        }
+        
+        h4 { 
+            color: var(--fau-text-dark); 
+            font-weight: 500; 
+        }
 
-       /* Professional enhancements */
-       .gradient-text { background: linear-gradient(135deg, var(--fau-blue), var(--fau-red)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-       .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); }
-       .section-divider { background: linear-gradient(90deg, transparent, var(--fau-light-gray), transparent); height: 1px; margin: 3rem 0; }
+        .code-block { 
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            color: #e2e8f0; 
+            padding: 1rem; 
+            border-radius: 0.75rem; 
+            font-family: var(--font-mono);
+            overflow-x: auto; 
+            font-size: 0.875rem;
+            border: 1px solid #4a5568;
+            position: relative;
+        }
+        
+        .code-block::before { 
+            content: ''; 
+            position: absolute; 
+            top: 12px; 
+            left: 12px; 
+            width: 12px; 
+            height: 12px; 
+            background: #ff5f56; 
+            border-radius: 50%; 
+            box-shadow: 20px 0 #ffbd2e, 40px 0 #27ca3f; 
+        }
+        
+        .api-entry { 
+            border: 1px solid #e5e7eb; 
+            border-radius: 0.75rem; 
+            margin-bottom: 1.5rem; 
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .api-entry:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--fau-blue);
+        }
+        
+        .api-header { 
+            background-color: var(--fau-light-gray); 
+            padding: 1rem 1.5rem; 
+            border-bottom: 1px solid #e5e7eb; 
+        }
+        
+        .api-header .api-type { 
+            font-family: var(--font-mono);
+            font-size: 0.8rem; 
+            color: var(--fau-red); 
+            font-weight: 600; 
+        }
+        
+        .api-header .api-name { 
+            font-family: var(--font-mono);
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            color: var(--fau-blue); 
+        }
+        
+        .api-body { 
+            padding: 1.5rem; 
+        }
+        
+        .api-body h5 { 
+            font-family: var(--font-primary);
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+            color: var(--fau-text-light); 
+            margin-top: 1rem; 
+            margin-bottom: 0.5rem; 
+            padding-bottom: 0.25rem; 
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .param-table { 
+            font-size: 0.9rem; 
+        }
+        
+        .param-table code { 
+            background-color: #eef2ff; 
+            color: #4338ca; 
+            padding: 0.1rem 0.4rem; 
+            border-radius: 0.25rem; 
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+        
+        .param-table em { 
+            color: #1e40af; 
+            font-style: normal; 
+        }
+        
+        .sidebar-link { 
+            display: block; 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.5rem; 
+            color: var(--fau-text-dark); 
+            font-family: var(--font-primary);
+            font-weight: 500; 
+            transition: all 0.2s ease-in-out; 
+            text-decoration: none; 
+        }
+        
+        .sidebar-link:hover { 
+            background-color: var(--fau-light-blue); 
+            color: var(--fau-blue); 
+            transform: translateX(4px);
+        }
+        
+        .sidebar-link.active { 
+            background-color: var(--fau-blue); 
+            color: white; 
+            font-weight: 600; 
+        }
+
+        .prose p, .prose li { 
+            line-height: 1.75; 
+            font-family: var(--font-primary);
+        }
+        
+        .prose a { 
+            color: var(--fau-red); 
+            font-weight: 500; 
+            transition: color 0.2s ease;
+        }
+        
+        .prose a:hover {
+            color: #ff3333;
+        }
+        
+        .prose table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 1.5rem; 
+            margin-bottom: 1.5rem; 
+        }
+        
+        .prose th, .prose td { 
+            border: 1px solid #e2e8f0; 
+            padding: 0.75rem 1rem; 
+            text-align: left; 
+        }
+        
+        .prose th { 
+            background-color: var(--fau-light-gray); 
+            font-weight: 600;
+            font-family: var(--font-primary);
+        }
+        
+        .prose tr:nth-child(even) { 
+            background-color: #fafafa; 
+        }
+        
+        .alert { 
+            padding: 1rem; 
+            border-radius: 0.75rem; 
+            border-width: 1px; 
+            margin-top: 1rem; 
+            font-family: var(--font-primary);
+        }
+        
+        .alert-warning { 
+            background-color: #fffbeb; 
+            border-color: #fde68a; 
+            color: #b45309; 
+        }
+        
+        .alert-info { 
+            background-color: #eff6ff; 
+            border-color: #bfdbfe; 
+            color: #1e40af; 
+        }
+
+        .hero-section { 
+            background: linear-gradient(135deg, var(--fau-blue) 0%, #0066cc 100%);
+            color: white; 
+        }
+        
+        .hero-section h1 { 
+            color: white; 
+            border-color: var(--fau-red);
+            font-family: var(--font-primary);
+            font-weight: 700;
+        }
+        
+        .hero-section a { 
+            transition: all 0.3s ease; 
+        }
+        
+        .hero-section a:hover { 
+            transform: translateY(-2px); 
+        }
+        
+        .feature-card { 
+            background-color: var(--fau-light-gray); 
+            border: 1px solid #e5e7eb; 
+            padding: 1.5rem; 
+            border-radius: 0.75rem; 
+            text-align: center; 
+            transition: all 0.3s ease; 
+        }
+        
+        .feature-card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+            border-color: var(--fau-blue); 
+        }
+        
+        .feature-card svg { 
+            margin: 0 auto 1rem; 
+            transition: transform 0.3s ease; 
+        }
+        
+        .feature-card:hover svg { 
+            transform: scale(1.1); 
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-primary);
+            font-weight: 600;
+        }
+
+        /* Professional enhancements */
+        .gradient-text { 
+            background: linear-gradient(135deg, var(--fau-blue), var(--fau-red)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text; 
+            font-family: var(--font-primary);
+            font-weight: 700;
+        }
+        
+        .glass-effect { 
+            backdrop-filter: blur(10px); 
+            background: rgba(255, 255, 255, 0.1); 
+        }
+        
+        .section-divider { 
+            background: linear-gradient(90deg, transparent, var(--fau-light-gray), transparent); 
+            height: 1px; 
+            margin: 3rem 0; 
+        }
        
-       /* Code block improvements */
-       .code-block { background: linear-gradient(135deg, #1a202c, #2d3748); border: 1px solid #4a5568; position: relative; }
-       .code-block::before { content: ''; position: absolute; top: 12px; left: 12px; width: 12px; height: 12px; background: #ff5f56; border-radius: 50%; box-shadow: 20px 0 #ffbd2e, 40px 0 #27ca3f; }
-       
-       /* Improved buttons */
-       .btn-primary { background: linear-gradient(135deg, var(--fau-blue), #0066cc); transition: all 0.3s ease; }
-       .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,51,102,0.3); }
-       .btn-secondary { background: linear-gradient(135deg, var(--fau-red), #ff3333); }
-       .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(204,0,0,0.3); }
+        /* Improved buttons */
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--fau-blue), #0066cc); 
+            transition: all 0.3s ease;
+            font-family: var(--font-primary);
+            font-weight: 500;
+            border-radius: 0.5rem;
+        }
+        
+        .btn-primary:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(0,51,102,0.3); 
+        }
+        
+        .btn-secondary { 
+            background: linear-gradient(135deg, var(--fau-red), #ff3333);
+            font-family: var(--font-primary);
+            font-weight: 500;
+            border-radius: 0.5rem;
+        }
+        
+        .btn-secondary:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(204,0,0,0.3); 
+        }
 
+        /* Navigation enhancements */
+        .nav-brand {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-link {
+            font-family: var(--font-primary);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-1px);
+        }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-white font-sans">
 
     <!-- Top Navigation -->
-    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 backdrop-blur-sm bg-white/95">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <img src="https://placehold.co/32x32/003366/FFFFFF?text=PyWMP" alt="PyWMP Logo" class="rounded">
-                    <span class="ml-2 text-xl font-bold text-[var(--fau-blue)]">PyWMP</span>
-                    <span class="ml-2 text-sm text-gray-500">Ecosystem</span>
+                    <span class="ml-2 text-xl nav-brand text-[var(--fau-blue)]">PyWMP</span>
+                    <span class="ml-2 text-sm text-gray-500 font-medium">Ecosystem</span>
                 </div>
                 <div class="flex items-center space-x-6">
-                    <a href="#quick-start" class="text-gray-700 hover:text-[var(--fau-blue)] font-medium">Documentation</a>
-                    <a href="pywmp.html" target="_blank" class="text-gray-700 hover:text-[var(--fau-blue)] font-medium">Open Source</a>
-                    <a href="pywmp-pro.html" target="_blank" class="bg-[var(--arcgis-green)] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">PyWMP-Pro</a>
+                    <a href="#quick-start" class="nav-link text-gray-700 hover:text-[var(--fau-blue)]">Documentation</a>
+                    <a href="pywmp.html" target="_blank" class="nav-link text-gray-700 hover:text-[var(--fau-blue)]">Open Source</a>
+                    <a href="pywmp-pro.html" target="_blank" class="bg-[var(--arcgis-green)] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-all duration-200 hover:transform hover:scale-105">PyWMP-Pro</a>
                 </div>
             </div>
         </div>
@@ -118,24 +391,21 @@
                     <a href="#introduction" class="sidebar-link">Introduction</a>
                     <a href="#features" class="sidebar-link">Key Features</a>
                     
-                    <h5 class="mt-6 mb-2 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">🐍 Open Source (pywmp)</h5>
+                    <h5 class="mt-8 mb-3 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">🐍 Open Source (pywmp)</h5>
                     <a href="#open-source" class="sidebar-link">Overview & Installation</a>
                     <a href="#py-tutorials" class="sidebar-link">Python Tutorial</a>
                     <a href="#py-guide" class="sidebar-link">Developer Guide</a>
                     <a href="#api-reference" class="sidebar-link">API Reference</a>
 
-                    <h5 class="mt-6 mb-2 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">🗺️ ArcGIS Pro (PyWMP-Pro)</h5>
+                    <h5 class="mt-8 mb-3 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">🗺️ ArcGIS Pro (PyWMP-Pro)</h5>
                     <a href="#pro-tutorials" class="sidebar-link">ArcGIS Tutorial</a>
                     <a href="#pro-guide" class="sidebar-link">Tool Guide</a>
 
-                    <h5 class="mt-6 mb-2 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">🗺️ ArcGIS Pro (PyWMP-Pro)</h5>
-                    <a href="#pro-tutorials" class="sidebar-link">ArcGIS Tutorial</a>
-                    <a href="#pro-guide" class="sidebar-link">Tool Guide</a>
-
-                    <h5 class="mt-6 mb-2 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">Scientific Reference</h5>
+                    <h5 class="mt-8 mb-3 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">� Scientific Reference</h5>
                     <a href="#methods" class="sidebar-link">Methodological Foundations</a>
+                    <a href="#case-studies" class="sidebar-link">Case Studies</a>
                     
-                    <h5 class="mt-6 mb-2 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">General</h5>
+                    <h5 class="mt-8 mb-3 px-4 text-sm font-bold text-gray-500 uppercase tracking-wider">📋 General</h5>
                     <a href="#related-projects" class="sidebar-link">Related Projects & Reading</a>
                     <a href="#limitations" class="sidebar-link">Use Limitations</a>
                     <a href="#citation" class="sidebar-link">How to Cite</a>
@@ -160,8 +430,8 @@
         <main id="main-content" class="w-3/4 transition-all duration-300">
             
                 <section id="overview" class="hero-section text-center py-20 px-8">
-                <h1 class="text-5xl font-bold">PyWMP: Professional Watershed Modeling Framework</h1>
-                <p class="text-xl text-gray-300 mt-4 max-w-4xl mx-auto">A comprehensive, network-based hydrologic modeling ecosystem that bridges the gap between intuitive GIS workflows and powerful Python automation for researchers, engineers, and water resource professionals.</p>
+                <h1 class="display-title text-5xl font-bold">PyWMP: Professional Watershed Modeling Framework</h1>
+                <p class="text-subtitle text-xl text-gray-300 mt-4 max-w-4xl mx-auto leading-relaxed">A comprehensive, network-based hydrologic modeling ecosystem that bridges the gap between intuitive GIS workflows and powerful Python automation for researchers, engineers, and water resource professionals.</p>
                 
                 <!-- Key Stats/Badges -->
                 <div class="mt-8 flex justify-center space-x-6 text-sm">
@@ -180,16 +450,16 @@
                 </div>
 
                 <div class="mt-8 flex justify-center space-x-4">
-                    <a href="#quick-start" class="bg-white text-[var(--fau-blue)] font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200">📖 Documentation</a>
-                    <a href="pywmp.html" target="_blank" class="bg-[var(--fau-red)] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200">🐍 Open Source</a>
-                    <a href="pywmp-pro.html" target="_blank" class="bg-[var(--arcgis-green)] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200">🗺️ PyWMP-Pro</a>
+                    <a href="#quick-start" class="btn-secondary bg-white text-[var(--fau-blue)] font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:transform hover:scale-105">📖 Documentation</a>
+                    <a href="pywmp.html" target="_blank" class="btn-primary bg-[var(--fau-red)] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:transform hover:scale-105">🐍 Open Source</a>
+                    <a href="pywmp-pro.html" target="_blank" class="btn-primary bg-[var(--arcgis-green)] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:transform hover:scale-105">🗺️ PyWMP-Pro</a>
                 </div>
             </section>            <div class="p-8 md:p-12 prose max-w-none">
                 
                 <!-- Quick Start Section -->
                 <section id="quick-start" class="bg-gradient-to-r from-blue-50 to-indigo-50 -mx-8 md:-mx-12 px-8 md:px-12 py-12 mb-12 not-prose">
                     <div class="max-w-6xl mx-auto">
-                        <h2 class="text-3xl font-bold text-center mb-8 text-[var(--fau-blue)]">Get Started in Minutes</h2>
+                        <h2 class="section-title text-3xl font-bold text-center mb-8 text-[var(--fau-blue)]">Get Started in Minutes</h2>
                         <div class="grid md:grid-cols-2 gap-8">
                             <!-- Python Users -->
                             <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
@@ -199,7 +469,7 @@
                                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
                                     </div>
-                                    <h3 class="text-xl font-bold text-gray-900">Python Developers</h3>
+                                    <h3 class="card-title text-xl font-bold text-gray-900">Python Developers</h3>
                                 </div>
                                 <p class="text-gray-600 mb-4">Install the core library and start modeling programmatically:</p>
                                 <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto"><code>pip install pywmp
@@ -221,7 +491,7 @@ cd pywmp && pip install -e .</code></pre>
                                             <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
                                         </svg>
                                     </div>
-                                    <h3 class="text-xl font-bold text-gray-900">PyWMP-Pro Users</h3>
+                                    <h3 class="card-title text-xl font-bold text-gray-900">PyWMP-Pro Users</h3>
                                 </div>
                                 <p class="text-gray-600 mb-4">Download the toolbox and start modeling with familiar GIS tools:</p>
                                 <div class="space-y-2 text-sm">
@@ -253,7 +523,7 @@ cd pywmp && pip install -e .</code></pre>
                     <!-- Overview Cards -->
                     <div class="grid md:grid-cols-2 gap-6 not-prose mb-8">
                         <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
-                            <h4 class="text-lg font-bold text-blue-900 mb-3">🐍 pywmp (Python Library)</h4>
+                            <h4 class="subsection-title text-lg font-bold text-blue-900 mb-3">🐍 pywmp (Python Library)</h4>
                             <p class="text-blue-800 text-sm">Open-source Python framework for programmatic watershed modeling, research automation, and custom analysis workflows.</p>
                             <div class="mt-3 flex space-x-2">
                                 <span class="bg-blue-200 text-blue-800 px-2 py-1 rounded text-xs">pip install</span>
@@ -262,7 +532,7 @@ cd pywmp && pip install -e .</code></pre>
                             </div>
                         </div>
                         <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200">
-                            <h4 class="text-lg font-bold text-green-900 mb-3">🗺️ PyWMP-Pro (ArcGIS Toolbox)</h4>
+                            <h4 class="subsection-title text-lg font-bold text-green-900 mb-3">🗺️ PyWMP-Pro (ArcGIS Toolbox)</h4>
                             <p class="text-green-800 text-sm">Professional GIS toolbox for PyWMP-Pro users, providing point-and-click watershed modeling with enterprise-grade visualization.</p>
                             <div class="mt-3 flex space-x-2">
                                 <span class="bg-green-200 text-green-800 px-2 py-1 rounded text-xs">PyWMP-Pro</span>
@@ -343,7 +613,7 @@ cd pywmp && pip install -e .</code></pre>
                     <!-- Hero section for open source -->
                     <div class="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 -mx-8 md:-mx-12 px-8 md:px-12 py-12 mb-8 not-prose rounded-xl">
                         <div class="max-w-4xl mx-auto text-center">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Free, Open, and Extensible</h3>
+                            <h3 class="section-title text-2xl font-bold text-gray-900 mb-4">Free, Open, and Extensible</h3>
                             <p class="text-lg text-gray-700 mb-6">The <code class="bg-white px-2 py-1 rounded">pywmp</code> library is the core engine that powers watershed modeling through Python. Perfect for researchers, developers, and anyone who needs programmatic control over hydrologic simulations.</p>
                             
                             <!-- Installation badges -->
@@ -384,7 +654,7 @@ cd pywmp && pip install -e .</code></pre>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                                 </svg>
                             </div>
-                            <h4 class="text-lg font-bold text-gray-900 mb-2">Lightning Fast</h4>
+                            <h4 class="card-title text-lg font-bold text-gray-900 mb-2">Lightning Fast</h4>
                             <p class="text-gray-600 text-sm">NetworkX-based graph operations and NumPy array processing for high-performance simulations.</p>
                         </div>
                         
@@ -394,7 +664,7 @@ cd pywmp && pip install -e .</code></pre>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
                                 </svg>
                             </div>
-                            <h4 class="text-lg font-bold text-gray-900 mb-2">Research Ready</h4>
+                            <h4 class="card-title text-lg font-bold text-gray-900 mb-2">Research Ready</h4>
                             <p class="text-gray-600 text-sm">Built for reproducible science with comprehensive documentation and validation against established methods.</p>
                         </div>
                         
