@@ -5,7 +5,7 @@
 ## 🚀 **Published Documentation Sites**
 
 ### 📋 Interactive Documentation Requirements Tracker
-**Live Tool**: [https://dbishal13.github.io/pywmp_documentation/tools/python_documentation_requirements.html](https://dbishal13.github.io/pywmp_documentation/tools/python_documentation_requirements.html)
+**Live Tool**: [https://dbishal13.github.io/pywmp_documentation/tools/python_documentation_requirements.html](https://dbishal13.github.io/pywmp_documentation/docs/python_documentation_requirements.html)
 
 **Features**: 
 - ✅ Persistent progress tracking with localStorage
