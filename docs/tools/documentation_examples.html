@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Documentation Examples & Inspiration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .search-bar {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .search-bar input {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            width: 400px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: #e74c3c;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .package-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .package-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .package-name {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .category-badge {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+            color: white;
+        }
+
+        .data-science { background: #e74c3c; }
+        .web-framework { background: #9b59b6; }
+        .scientific { background: #3498db; }
+        .ml-ai { background: #e67e22; }
+        .testing { background: #27ae60; }
+        .dev-tools { background: #34495e; }
+        .async { background: #f39c12; }
+        .visualization { background: #16a085; }
+
+        .package-description {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .links {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .link-docs {
+            background: #3498db;
+            color: white;
+        }
+
+        .link-github {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .link-pypi {
+            background: #f39c12;
+            color: white;
+        }
+
+        .link-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .highlights {
+            margin-top: 15px;
+        }
+
+        .highlights h4 {
+            color: #2c3e50;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .highlight-list {
+            list-style: none;
+        }
+
+        .highlight-list li {
+            padding: 3px 0;
+            font-size: 0.85em;
+            color: #555;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .highlight-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-bar input {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .filters {
+                justify-content: center;
+            }
+        }
+
+        .floating-info {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .floating-info:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐍 Python Documentation Examples</h1>
+            <p>Inspiring documentation from popular Python packages - Learn from the best!</p>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="🔍 Search packages by name, category, or feature...">
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="data-science">Data Science</button>
+            <button class="filter-btn" data-filter="web-framework">Web Frameworks</button>
+            <button class="filter-btn" data-filter="scientific">Scientific</button>
+            <button class="filter-btn" data-filter="ml-ai">ML/AI</button>
+            <button class="filter-btn" data-filter="testing">Testing</button>
+            <button class="filter-btn" data-filter="dev-tools">Dev Tools</button>
+            <button class="filter-btn" data-filter="async">Async</button>
+            <button class="filter-btn" data-filter="visualization">Visualization</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number" id="totalPackages">0</span>
+                <span>Total Packages</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="visiblePackages">0</span>
+                <span>Showing</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="categories">9</span>
+                <span>Categories</span>
+            </div>
+        </div>
+
+        <div class="grid" id="packagesGrid">
+            <!-- Data Science -->
+            <div class="package-card" data-category="data-science">
+                <div class="package-header">
+                    <h3 class="package-name">pandas</h3>
+                    <span class="category-badge data-science">Data Science</span>
+                </div>
+                <p class="package-description">
+                    Powerful data structures and data analysis tools. Excellent example of comprehensive API documentation with examples.
+                </p>
+                <div class="links">
+                    <a href="https://pandas.pydata.org/docs/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/pandas-dev/pandas" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/pandas/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Comprehensive API reference with examples</li>
+                        <li>User guide with real-world scenarios</li>
+                        <li>Interactive tutorials and cookbook</li>
+                        <li>Performance tips and best practices</li>
+                        <li>Migration guides between versions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="data-science">
+                <div class="package-header">
+                    <h3 class="package-name">NumPy</h3>
+                    <span class="category-badge data-science">Data Science</span>
+                </div>
+                <p class="package-description">
+                    Fundamental package for scientific computing. Gold standard for mathematical library documentation.
+                </p>
+                <div class="links">
+                    <a href="https://numpy.org/doc/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/numpy/numpy" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/numpy/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Excellent mathematical notation rendering</li>
+                        <li>Detailed tutorials for beginners to advanced</li>
+                        <li>Performance benchmarks and comparisons</li>
+                        <li>Developer documentation and contributing guide</li>
+                        <li>Multiple output formats (HTML, PDF)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="scientific">
+                <div class="package-header">
+                    <h3 class="package-name">SciPy</h3>
+                    <span class="category-badge scientific">Scientific</span>
+                </div>
+                <p class="package-description">
+                    Scientific computing library. Excellent example of documenting complex mathematical functions.
+                </p>
+                <div class="links">
+                    <a href="https://docs.scipy.org/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/scipy/scipy" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/scipy/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Mathematical formulas with proper notation</li>
+                        <li>Algorithm references and citations</li>
+                        <li>Performance notes and complexity analysis</li>
+                        <li>Extensive examples with visualizations</li>
+                        <li>Tutorial notebooks and gallery</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Web Frameworks -->
+            <div class="package-card" data-category="web-framework">
+                <div class="package-header">
+                    <h3 class="package-name">Django</h3>
+                    <span class="category-badge web-framework">Web Framework</span>
+                </div>
+                <p class="package-description">
+                    High-level web framework. Exceptional documentation structure and tutorial progression.
+                </p>
+                <div class="links">
+                    <a href="https://docs.djangoproject.com/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/django/django" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/Django/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Progressive tutorial from beginner to advanced</li>
+                        <li>Topic guides for specific features</li>
+                        <li>Complete reference documentation</li>
+                        <li>How-to guides for common problems</li>
+                        <li>Deployment and scaling guides</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="web-framework">
+                <div class="package-header">
+                    <h3 class="package-name">FastAPI</h3>
+                    <span class="category-badge web-framework">Web Framework</span>
+                </div>
+                <p class="package-description">
+                    Modern, fast web framework. Outstanding interactive documentation with automatic API docs.
+                </p>
+                <div class="links">
+                    <a href="https://fastapi.tiangolo.com/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/tiangolo/fastapi" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/fastapi/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Interactive API documentation (Swagger/OpenAPI)</li>
+                        <li>Step-by-step tutorials with code examples</li>
+                        <li>Advanced features with real-world examples</li>
+                        <li>Performance benchmarks</li>
+                        <li>Deployment guides for various platforms</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="web-framework">
+                <div class="package-header">
+                    <h3 class="package-name">Flask</h3>
+                    <span class="category-badge web-framework">Web Framework</span>
+                </div>
+                <p class="package-description">
+                    Lightweight web framework. Clean, minimal documentation style that's easy to follow.
+                </p>
+                <div class="links">
+                    <a href="https://flask.palletsprojects.com/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/pallets/flask" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/Flask/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Clear, concise writing style</li>
+                        <li>Practical quickstart guide</li>
+                        <li>Pattern guides for common use cases</li>
+                        <li>Extension ecosystem documentation</li>
+                        <li>Testing and debugging guides</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ML/AI -->
+            <div class="package-card" data-category="ml-ai">
+                <div class="package-header">
+                    <h3 class="package-name">scikit-learn</h3>
+                    <span class="category-badge ml-ai">ML/AI</span>
+                </div>
+                <p class="package-description">
+                    Machine learning library. Excellent balance of theory, practice, and visual examples.
+                </p>
+                <div class="links">
+                    <a href="https://scikit-learn.org/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/scikit-learn/scikit-learn" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/scikit-learn/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Extensive example gallery with plots</li>
+                        <li>Algorithm explanations with theory</li>
+                        <li>User guide with decision trees</li>
+                        <li>Performance comparison tables</li>
+                        <li>Glossary of machine learning terms</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="ml-ai">
+                <div class="package-header">
+                    <h3 class="package-name">TensorFlow</h3>
+                    <span class="category-badge ml-ai">ML/AI</span>
+                </div>
+                <p class="package-description">
+                    Machine learning platform. Comprehensive documentation with multiple learning paths.
+                </p>
+                <div class="links">
+                    <a href="https://www.tensorflow.org/api_docs" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/tensorflow/tensorflow" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/tensorflow/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Multiple learning paths (beginner to expert)</li>
+                        <li>Interactive notebooks in documentation</li>
+                        <li>Video tutorials and courses</li>
+                        <li>Model zoo with pre-trained models</li>
+                        <li>Community contributions and examples</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Testing -->
+            <div class="package-card" data-category="testing">
+                <div class="package-header">
+                    <h3 class="package-name">pytest</h3>
+                    <span class="category-badge testing">Testing</span>
+                </div>
+                <p class="package-description">
+                    Testing framework. Clear documentation with practical examples and plugin ecosystem.
+                </p>
+                <div class="links">
+                    <a href="https://docs.pytest.org/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/pytest-dev/pytest" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/pytest/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Getting started guide for beginners</li>
+                        <li>Fixture system explained clearly</li>
+                        <li>Plugin architecture documentation</li>
+                        <li>Examples for common testing patterns</li>
+                        <li>Integration guides for CI/CD</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Development Tools -->
+            <div class="package-card" data-category="dev-tools">
+                <div class="package-header">
+                    <h3 class="package-name">Sphinx</h3>
+                    <span class="category-badge dev-tools">Dev Tools</span>
+                </div>
+                <p class="package-description">
+                    Documentation generator. Meta-example: documentation for making documentation!
+                </p>
+                <div class="links">
+                    <a href="https://www.sphinx-doc.org/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/sphinx-doc/sphinx" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/Sphinx/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Tutorial and usage guides</li>
+                        <li>Extension development documentation</li>
+                        <li>Theme customization guides</li>
+                        <li>reStructuredText primer</li>
+                        <li>Internationalization support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="dev-tools">
+                <div class="package-header">
+                    <h3 class="package-name">Click</h3>
+                    <span class="category-badge dev-tools">Dev Tools</span>
+                </div>
+                <p class="package-description">
+                    Command line interface creation kit. Excellent examples of documenting CLI tools.
+                </p>
+                <div class="links">
+                    <a href="https://click.palletsprojects.com/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/pallets/click" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/click/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Clear command-line examples</li>
+                        <li>Progressive complexity in tutorials</li>
+                        <li>Advanced features well explained</li>
+                        <li>Integration patterns</li>
+                        <li>Testing CLI applications guide</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Async -->
+            <div class="package-card" data-category="async">
+                <div class="package-header">
+                    <h3 class="package-name">asyncio</h3>
+                    <span class="category-badge async">Async</span>
+                </div>
+                <p class="package-description">
+                    Asynchronous I/O library. Standard library documentation with excellent async/await examples.
+                </p>
+                <div class="links">
+                    <a href="https://docs.python.org/3/library/asyncio.html" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/python/cpython/tree/main/Lib/asyncio" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>High-level vs low-level API distinction</li>
+                        <li>Coroutine examples with timing</li>
+                        <li>Common patterns and anti-patterns</li>
+                        <li>Debug mode and troubleshooting</li>
+                        <li>Integration with other libraries</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="async">
+                <div class="package-header">
+                    <h3 class="package-name">aiohttp</h3>
+                    <span class="category-badge async">Async</span>
+                </div>
+                <p class="package-description">
+                    Async HTTP client/server framework. Great example of documenting async web frameworks.
+                </p>
+                <div class="links">
+                    <a href="https://docs.aiohttp.org/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/aio-libs/aiohttp" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/aiohttp/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Client and server usage examples</li>
+                        <li>Middleware development guide</li>
+                        <li>WebSocket implementation examples</li>
+                        <li>Performance tuning tips</li>
+                        <li>Security considerations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Visualization -->
+            <div class="package-card" data-category="visualization">
+                <div class="package-header">
+                    <h3 class="package-name">Matplotlib</h3>
+                    <span class="category-badge visualization">Visualization</span>
+                </div>
+                <p class="package-description">
+                    Plotting library. Extensive gallery of examples with visual outputs for every function.
+                </p>
+                <div class="links">
+                    <a href="https://matplotlib.org/stable/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/matplotlib/matplotlib" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/matplotlib/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Massive gallery of plot examples</li>
+                        <li>Tutorials from basic to advanced</li>
+                        <li>Customization guides</li>
+                        <li>Performance tips and best practices</li>
+                        <li>Style sheets and themes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="visualization">
+                <div class="package-header">
+                    <h3 class="package-name">Plotly</h3>
+                    <span class="category-badge visualization">Visualization</span>
+                </div>
+                <p class="package-description">
+                    Interactive plotting library. Interactive documentation with live plot examples.
+                </p>
+                <div class="links">
+                    <a href="https://plotly.com/python/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/plotly/plotly.py" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/plotly/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Live, interactive examples in docs</li>
+                        <li>Copy-paste ready code snippets</li>
+                        <li>Chart type recommendations</li>
+                        <li>Dashboard creation guides</li>
+                        <li>JavaScript integration examples</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- More packages -->
+            <div class="package-card" data-category="data-science">
+                <div class="package-header">
+                    <h3 class="package-name">Seaborn</h3>
+                    <span class="category-badge data-science">Data Science</span>
+                </div>
+                <p class="package-description">
+                    Statistical data visualization. Beautiful visual documentation with example datasets.
+                </p>
+                <div class="links">
+                    <a href="https://seaborn.pydata.org/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/mwaskom/seaborn" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/seaborn/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Gallery with downloadable examples</li>
+                        <li>Tutorial progression from basic to advanced</li>
+                        <li>Built-in dataset documentation</li>
+                        <li>Color palette guides</li>
+                        <li>Statistical explanation alongside code</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="dev-tools">
+                <div class="package-header">
+                    <h3 class="package-name">Requests</h3>
+                    <span class="category-badge dev-tools">Dev Tools</span>
+                </div>
+                <p class="package-description">
+                    HTTP library. Simple, elegant documentation that makes complex HTTP operations accessible.
+                </p>
+                <div class="links">
+                    <a href="https://requests.readthedocs.io/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/psf/requests" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/requests/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Human-friendly quickstart</li>
+                        <li>Advanced features clearly explained</li>
+                        <li>Authentication patterns</li>
+                        <li>Error handling best practices</li>
+                        <li>Community updates and resources</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="scientific">
+                <div class="package-header">
+                    <h3 class="package-name">SymPy</h3>
+                    <span class="category-badge scientific">Scientific</span>
+                </div>
+                <p class="package-description">
+                    Symbolic mathematics library. Excellent example of documenting mathematical software.
+                </p>
+                <div class="links">
+                    <a href="https://docs.sympy.org/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/sympy/sympy" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/sympy/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Mathematical notation rendering</li>
+                        <li>Interactive examples with output</li>
+                        <li>Comprehensive tutorial series</li>
+                        <li>Module reference with examples</li>
+                        <li>Contributing guide for mathematicians</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="ml-ai">
+                <div class="package-header">
+                    <h3 class="package-name">Hugging Face Transformers</h3>
+                    <span class="category-badge ml-ai">ML/AI</span>
+                </div>
+                <p class="package-description">
+                    State-of-the-art NLP models. Modern documentation with model cards and interactive demos.
+                </p>
+                <div class="links">
+                    <a href="https://huggingface.co/docs/transformers/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/huggingface/transformers" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/transformers/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Model hub with interactive demos</li>
+                        <li>Task-specific tutorials</li>
+                        <li>Performance benchmarks</li>
+                        <li>Model cards with metadata</li>
+                        <li>Community contributions showcase</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="package-card" data-category="dev-tools">
+                <div class="package-header">
+                    <h3 class="package-name">Pydantic</h3>
+                    <span class="category-badge dev-tools">Dev Tools</span>
+                </div>
+                <p class="package-description">
+                    Data validation library. Clean documentation with type hints and validation examples.
+                </p>
+                <div class="links">
+                    <a href="https://docs.pydantic.dev/" class="link-btn link-docs" target="_blank">📚 Documentation</a>
+                    <a href="https://github.com/pydantic/pydantic" class="link-btn link-github" target="_blank">⭐ GitHub</a>
+                    <a href="https://pypi.org/project/pydantic/" class="link-btn link-pypi" target="_blank">📦 PyPI</a>
+                </div>
+                <div class="highlights">
+                    <h4>Documentation Highlights:</h4>
+                    <ul class="highlight-list">
+                        <li>Type hint examples throughout</li>
+                        <li>Validation error examples</li>
+                        <li>Integration guides (FastAPI, etc.)</li>
+                        <li>Performance considerations</li>
+                        <li>Migration guides between versions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-info" onclick="showInfo()">
+        💡
+    </div>
+
+    <script>
+        // Initialize stats
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', handleSearch);
+
+            // Filter buttons
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => handleFilter(btn));
+            });
+        }
+
+        function handleSearch(event) {
+            const searchTerm = event.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.package-card');
+            
+            cards.forEach(card => {
+                const name = card.querySelector('.package-name').textContent.toLowerCase();
+                const description = card.querySelector('.package-description').textContent.toLowerCase();
+                const category = card.dataset.category.toLowerCase();
+                const highlights = card.querySelector('.highlight-list').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || 
+                    description.includes(searchTerm) || 
+                    category.includes(searchTerm) ||
+                    highlights.includes(searchTerm)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            
+            updateStats();
+        }
+
+        function handleFilter(clickedBtn) {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            clickedBtn.classList.add('active');
+
+            const filter = clickedBtn.dataset.filter;
+            const cards = document.querySelectorAll('.package-card');
+
+            cards.forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            
+            updateStats();
+        }
+
+        function updateStats() {
+            const allCards = document.querySelectorAll('.package-card');
+            const visibleCards = document.querySelectorAll('.package-card:not(.hidden)');
+            
+            document.getElementById('totalPackages').textContent = allCards.length;
+            document.getElementById('visiblePackages').textContent = visibleCards.length;
+        }
+
+        function showInfo() {
+            alert(`🐍 Python Documentation Examples\n\nThis page showcases ${document.querySelectorAll('.package-card').length} popular Python packages with excellent documentation.\n\nUse these as inspiration for your PyWMP documentation:\n• Study their structure and organization\n• Note their writing style and tone\n• Learn from their example galleries\n• Observe their navigation patterns\n• See how they handle API documentation\n\nClick on the documentation links to explore each example!`);
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            if (event.key === '/') {
+                event.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+        });
+    </script>
+</body>
+</html>
