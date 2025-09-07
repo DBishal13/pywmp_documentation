@@ -5,7 +5,7 @@
 ## 🚀 **Published Documentation Sites**
 
 ### 📋 Interactive Documentation Requirements Tracker
-**Live Tool**: [https://dbishal13.github.io/pywmp_documentation/docs/python_documentation_requirements.html](https://dbishal13.github.io/pywmp_documentation/docs/python_documentation_requirements.html)
+**Live Tool**: [https://dbishal13.github.io/pywmp_documentation/docs/tools/python_documentation_requirements.html](https://dbishal13.github.io/pywmp_documentation/docs/tools/python_documentation_requirements.html)
 
 **Features**: 
 - ✅ Persistent progress tracking with localStorage
@@ -15,7 +15,7 @@
 - 👥 Team collaboration ready
 
 ### 🎨 Documentation Examples Gallery  
-**Live Tool**: [https://dbishal13.github.io/pywmp_documentation/tools/documentation_examples.html](https://dbishal13.github.io/pywmp_documentation/tools/documentation_examples.html)
+**Live Tool**: [https://dbishal13.github.io/pywmp_documentation/docs/tools/documentation_examples.html](https://dbishal13.github.io/pywmp_documentation/docs/tools/documentation_examples.html)
 
 **Features**:
 - 📚 18 popular Python packages with excellent documentation
@@ -34,7 +34,7 @@
 - **API Reference**: Complete API documentation
 
 ### Interactive Tools
-- **Live Tools**: [https://dbishal13.github.io/pywmp_documentation/tools/](https://dbishal13.github.io/pywmp_documentation/tools/)
+- **Live Tools**: [https://dbishal13.github.io/pywmp_documentation/tools/](https://dbishal13.github.io/pywmp_documentation/docs/tools/)
 - **Documentation Requirements Tracker**: Interactive checklist with progress tracking
 - **Documentation Examples Gallery**: Curated examples from popular Python packages
 
