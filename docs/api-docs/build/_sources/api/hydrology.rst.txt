@@ -1,0 +1,34 @@
+Models Module
+=============
+
+The :mod:`pywmp.models` module provides core watershed modeling functionality.
+
+Cascade2001Model Class
+----------------------
+
+The Cascade2001Model implements the Cascade 2001 methodology for watershed routing and flow simulation.
+
+.. note::
+   The complete API documentation will be available when the package is properly installed.
+   
+   Key classes in this module:
+   
+   - ``Cascade2001Model`` - Main model class for Cascade 2001 implementation
+
+Basin Delineation
+-----------------
+
+Functions for watershed delineation and stream network analysis:
+
+- ``delineate_watershed()`` - Automatic watershed boundary delineation from DEM
+- ``extract_streams()`` - Stream network extraction from flow direction  
+- ``calculate_flow_direction()`` - Flow direction calculation from DEM
+
+Network Analysis
+----------------
+
+Functions for analyzing watershed networks:
+
+- ``create_channel_network()`` - Create NetworkX graph from stream data
+- ``calculate_network_properties()`` - Calculate network topology metrics
+- ``find_critical_nodes()`` - Identify critical points in network

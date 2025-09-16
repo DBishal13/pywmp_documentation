@@ -1,0 +1,52 @@
+Stage Storage Module
+====================
+
+The :mod:`pywmp.stage_storage` module provides stage-storage relationship calculations.
+
+Simple Average Function
+-----------------------
+
+Functions for calculating stage-storage relationships and water level computations.
+
+.. note::
+   The complete API documentation will be available when the package is properly installed.
+   
+   Key functions in this module:
+   
+   - ``simple_average()`` - Calculate simple average for stage-storage relationships
+
+Hydrograph Plotting
+-------------------
+
+Functions for plotting hydrograph data:
+
+- ``plot_hydrograph()`` - Plot single hydrograph
+- ``plot_multiple_hydrographs()`` - Plot multiple hydrographs for comparison
+- ``plot_rainfall_runoff()`` - Plot rainfall and runoff together
+
+Network Visualization
+---------------------
+
+Functions for visualizing watershed networks:
+
+- ``plot_network()`` - Plot watershed network topology
+- ``plot_stream_network()`` - Plot stream network with attributes
+- ``plot_3d_terrain()`` - Create 3D terrain visualizations
+
+Inundation Mapping
+------------------
+
+Functions for flood visualization:
+
+- ``plot_inundation_map()`` - Create inundation depth maps
+- ``create_flood_animation()`` - Generate flood animation sequences
+- ``plot_depth_duration_curves()`` - Plot depth-duration relationships
+
+Interactive Plotting
+--------------------
+
+Functions for interactive visualizations:
+
+- ``create_interactive_map()`` - Create interactive web maps
+- ``dashboard_app()`` - Launch interactive dashboard
+- ``export_to_web()`` - Export visualizations for web

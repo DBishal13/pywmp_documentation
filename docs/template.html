@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyWMP Documentation Template</title>
+    
+    <!-- Font Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts Fallbacks -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Main PyWMP Documentation Styles -->
+    <link rel="stylesheet" href="assets/css/pywmp-docs.css">
+    
+    <!-- Optional: Tailwind for additional utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <button data-menu-toggle aria-expanded="false" class="btn btn-secondary md:hidden">Menu</button>
+            <ul data-menu>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#pywmp">PyWMP</a></li>
+                <li><a href="#pywmp-pro">PyWMP-Pro</a></li>
+                <li><a href="#docs">Documentation</a></li>
+                <li><a href="#tools">Tools</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>PyWMP Documentation</h1>
+            <p class="text-lg">Comprehensive watershed modeling tools and documentation</p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" 
+                   class="form-input search-input" 
+                   placeholder="Search documentation..." 
+                   data-search=".searchable-item"
+                   aria-label="Search documentation">
+            <div data-search-results class="text-sm text-muted mt-2" style="display: none;"></div>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="mb-xl" data-filter-group=".filterable-item">
+            <button class="btn btn-secondary active mr-2 mb-2" data-filter="all">All</button>
+            <button class="btn btn-secondary mr-2 mb-2" data-filter="complete">Complete</button>
+            <button class="btn btn-secondary mr-2 mb-2" data-filter="pending">Pending</button>
+            <button class="btn btn-secondary mr-2 mb-2" data-filter="missing">Missing</button>
+        </div>
+
+        <!-- Progress Tracking -->
+        <div class="card" data-progress>
+            <h3>Documentation Progress</h3>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 0%;"></div>
+            </div>
+            <p class="progress-text text-sm text-muted">Calculating...</p>
+        </div>
+
+        <!-- Content Cards -->
+        <div class="card-grid">
+            <div class="card searchable-item filterable-item" data-category="complete" data-status="complete">
+                <h3>PyWMP Core</h3>
+                <p>Main watershed modeling package with hydrological analysis tools.</p>
+                <div class="status-complete">Complete</div>
+                <a href="#" class="btn btn-primary mt-md">View Documentation</a>
+            </div>
+
+            <div class="card searchable-item filterable-item" data-category="pending" data-status="pending">
+                <h3>PyWMP-Pro</h3>
+                <p>ArcGIS Pro integration for advanced spatial watershed modeling.</p>
+                <div class="status-pending">In Progress</div>
+                <a href="#" class="btn btn-primary mt-md">View Documentation</a>
+            </div>
+
+            <div class="card searchable-item filterable-item" data-category="missing" data-status="missing">
+                <h3>API Reference</h3>
+                <p>Complete API documentation for all PyWMP modules and functions.</p>
+                <div class="status-missing">Missing</div>
+                <a href="#" class="btn btn-secondary mt-md">Create Documentation</a>
+            </div>
+        </div>
+
+        <!-- Table Example -->
+        <div class="card">
+            <h3>Documentation Requirements</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="searchable-item" data-status="complete">
+                        <td>Installation Guide</td>
+                        <td>User Documentation</td>
+                        <td><span class="status-complete">Complete</span></td>
+                        <td>High</td>
+                    </tr>
+                    <tr class="searchable-item" data-status="pending">
+                        <td>API Reference</td>
+                        <td>Technical Documentation</td>
+                        <td><span class="status-pending">In Progress</span></td>
+                        <td>High</td>
+                    </tr>
+                    <tr class="searchable-item" data-status="missing">
+                        <td>Tutorials</td>
+                        <td>User Documentation</td>
+                        <td><span class="status-missing">Missing</span></td>
+                        <td>Medium</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Code Example -->
+        <div class="card">
+            <h3>Code Example</h3>
+            <p>Here's how to use PyWMP in your projects:</p>
+            
+            <pre><code class="language-python">import pywmp
+
+# Create a watershed model
+model = pywmp.WatershedModel()
+
+# Load data
+model.load_dem("watershed.tif")
+model.load_rainfall("rainfall.csv")
+
+# Run simulation
+results = model.simulate()
+
+# Export results
+results.export("output.csv")</code></pre>
+        </div>
+
+        <!-- Alert Examples -->
+        <div class="alert alert-info">
+            <strong>Info:</strong> This is an informational message about PyWMP documentation.
+        </div>
+
+        <div class="alert alert-success">
+            <strong>Success:</strong> Documentation has been successfully updated!
+        </div>
+
+        <div class="alert alert-warning">
+            <strong>Warning:</strong> Some documentation sections are still under development.
+        </div>
+
+        <div class="alert alert-error">
+            <strong>Error:</strong> Unable to load some documentation files.
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="card">
+            <h3>Table of Contents</h3>
+            <div data-toc></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 PyWMP Documentation. Built with Studio-Feixen-Sans typography.</p>
+            <p class="text-sm mt-sm">Florida Atlantic University - College of Engineering and Computer Science</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/pywmp-docs.js"></script>
+    
+    <!-- Optional: Theme toggle -->
+    <script>
+        // Add theme toggle button if needed
+        const themeToggle = document.createElement('button');
+        themeToggle.setAttribute('data-theme-toggle', '');
+        themeToggle.className = 'btn btn-secondary';
+        themeToggle.textContent = '🌙';
+        themeToggle.style.position = 'fixed';
+        themeToggle.style.top = '1rem';
+        themeToggle.style.right = '1rem';
+        themeToggle.style.zIndex = '1000';
+        document.body.appendChild(themeToggle);
+    </script>
+</body>
+</html>

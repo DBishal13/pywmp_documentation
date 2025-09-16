@@ -1,0 +1,333 @@
+/* Custom PyWMP Documentation Styles with Studio-Feixen-Sans */
+
+/* Font Face Declarations for Studio-Feixen-Sans */
+@font-face {
+    font-family: 'Studio-Feixen-Sans';
+    src: url('../fonts/Studio-Feixen-Sans-Regular.woff2') format('woff2'),
+         url('../fonts/Studio-Feixen-Sans-Regular.woff') format('woff'),
+         url('../fonts/Studio-Feixen-Sans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Studio-Feixen-Sans';
+    src: url('../fonts/Studio-Feixen-Sans-Medium.woff2') format('woff2'),
+         url('../fonts/Studio-Feixen-Sans-Medium.woff') format('woff'),
+         url('../fonts/Studio-Feixen-Sans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Studio-Feixen-Sans';
+    src: url('../fonts/Studio-Feixen-Sans-SemiBold.woff2') format('woff2'),
+         url('../fonts/Studio-Feixen-Sans-SemiBold.woff') format('woff'),
+         url('../fonts/Studio-Feixen-Sans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Studio-Feixen-Sans';
+    src: url('../fonts/Studio-Feixen-Sans-Bold.woff2') format('woff2'),
+         url('../fonts/Studio-Feixen-Sans-Bold.woff') format('woff'),
+         url('../fonts/Studio-Feixen-Sans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Studio-Feixen-Sans';
+    src: url('../fonts/Studio-Feixen-Sans-ExtraBold.woff2') format('woff2'),
+         url('../fonts/Studio-Feixen-Sans-ExtraBold.woff') format('woff'),
+         url('../fonts/Studio-Feixen-Sans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* CSS Custom Properties - Font System */
+:root {
+    /* Primary Font Stack with web fonts as primary */
+    --font-primary: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Roboto Mono', 'Fira Code', 'Consolas', monospace;
+    
+    /* Font Weights */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    
+    /* Typography Scale */
+    --font-size-xs: 0.75rem;      /* 12px */
+    --font-size-sm: 0.875rem;     /* 14px */
+    --font-size-base: 1rem;       /* 16px */
+    --font-size-lg: 1.125rem;     /* 18px */
+    --font-size-xl: 1.25rem;      /* 20px */
+    --font-size-2xl: 1.5rem;      /* 24px */
+    --font-size-3xl: 1.875rem;    /* 30px */
+    --font-size-4xl: 2.25rem;     /* 36px */
+    --font-size-5xl: 3rem;        /* 48px */
+    --font-size-6xl: 3.75rem;     /* 60px */
+    
+    /* Heading Sizes */
+    --font-size-h1: var(--font-size-4xl);
+    --font-size-h2: var(--font-size-3xl);
+    --font-size-h3: var(--font-size-2xl);
+    --font-size-h4: var(--font-size-xl);
+    --font-size-h5: var(--font-size-lg);
+    --font-size-h6: var(--font-size-base);
+    
+    /* Line Heights */
+    --line-height-tight: 1.25;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+    
+    /* Base Line Heights for Different Elements */
+    --line-height-base: var(--line-height-normal);
+    --line-height-heading: var(--line-height-tight);
+    
+    /* Letter Spacing */
+    --letter-spacing-tight: -0.025em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.025em;
+    
+    /* PyWMP Color Palette */
+    --pywmp-navy: #003366;
+    --pywmp-navy-light: #e6f0ff;
+    --pywmp-red: #CC0000;
+    --pywmp-red-light: #ffe6e6;
+    --pywmp-green: #028c23;
+    --pywmp-green-light: #e6f7ea;
+    
+    /* Text Colors */
+    --text-primary: #1a202c;
+    --text-secondary: #2d3748;
+    --text-muted: #718096;
+    --text-light: #a0aec0;
+    
+    /* Background Colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f7fafc;
+    --bg-muted: #edf2f7;
+    
+    /* Border Colors */
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e0;
+    --border-dark: #a0aec0;
+    
+    /* Spacing Scale */
+    --space-xs: 0.25rem;   /* 4px */
+    --space-sm: 0.5rem;    /* 8px */
+    --space-md: 1rem;      /* 16px */
+    --space-lg: 1.5rem;    /* 24px */
+    --space-xl: 2rem;      /* 32px */
+    --space-2xl: 3rem;     /* 48px */
+    --space-3xl: 4rem;     /* 64px */
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Typography Classes */
+.display-title {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-5xl);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--pywmp-navy);
+}
+
+.section-title {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-height-heading);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--pywmp-navy);
+}
+
+.card-title {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-snug);
+    color: var(--text-primary);
+}
+
+.body-text {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--text-primary);
+}
+
+.body-text-lg {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-primary);
+}
+
+.caption-text {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--text-muted);
+}
+
+.code-text {
+    font-family: var(--font-mono);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    :root {
+        --font-size-h1: var(--font-size-3xl);
+        --font-size-h2: var(--font-size-2xl);
+        --font-size-h3: var(--font-size-xl);
+    }
+    
+    .display-title {
+        font-size: var(--font-size-4xl);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+}
+
+/* Utility Classes */
+.font-studio {
+    font-family: var(--font-primary);
+}
+
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+.text-navy { color: var(--pywmp-navy); }
+.text-red { color: var(--pywmp-red); }
+.text-green { color: var(--pywmp-green); }
+.text-muted { color: var(--text-muted); }
+
+.font-regular { font-weight: var(--font-weight-regular); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+.font-extrabold { font-weight: var(--font-weight-extrabold); }
+
+/* Enhanced Text Rendering */
+.text-render-optimized {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Focus and Interaction States */
+.interactive-element {
+    transition: all 0.2s ease-in-out;
+}
+
+.interactive-element:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+}
+
+.interactive-element:focus {
+    outline: 2px solid var(--pywmp-navy);
+    outline-offset: 2px;
+}
+
+/* Component-specific Styles */
+.documentation-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease-in-out;
+}
+
+.documentation-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--pywmp-navy);
+}
+
+.code-block {
+    background: linear-gradient(135deg, #1a202c, #2d3748);
+    color: #e2e8f0;
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-mono);
+    overflow-x: auto;
+    font-size: var(--font-size-sm);
+    border: 1px solid var(--border-medium);
+    box-shadow: var(--shadow-sm);
+}
+
+.highlight-box {
+    background: var(--pywmp-navy-light);
+    border-left: 4px solid var(--pywmp-navy);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    margin: var(--space-lg) 0;
+}
+
+.warning-box {
+    background: var(--pywmp-red-light);
+    border-left: 4px solid var(--pywmp-red);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    margin: var(--space-lg) 0;
+}
+
+.success-box {
+    background: var(--pywmp-green-light);
+    border-left: 4px solid var(--pywmp-green);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    margin: var(--space-lg) 0;
+}
+
+/* Print Styles */
+@media print {
+    :root {
+        --font-size-base: 12pt;
+        --line-height-base: 1.4;
+    }
+    
+    .display-title,
+    .section-title {
+        color: black;
+    }
+    
+    .documentation-card {
+        border: 1px solid #000;
+        box-shadow: none;
+    }
+}
