@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pywmp - Open Source Watershed Modeling</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Studio-Feixen-Sans Font System -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/studio-theme.css">
+    
     <style>
         /* CWR3/FAU Color Palette */
         :root {
@@ -20,13 +28,23 @@
         }
 
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; color: var(--fau-text-dark); }
+        body { 
+            font-family: var(--font-primary); 
+            font-weight: var(--font-weight-regular);
+            color: var(--fau-text-dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-        h1, h2, h3, h4, h5 { font-weight: 700; color: var(--fau-blue); }
+        h1, h2, h3, h4, h5 { 
+            font-family: var(--font-primary);
+            font-weight: var(--font-weight-bold); 
+            color: var(--fau-blue); 
+        }
         h1 { border-bottom: 4px solid var(--fau-red); padding-bottom: 0.75rem; }
         h2 { border-bottom: 2px solid var(--fau-light-gray); padding-bottom: 0.5rem; margin-top: 2.5rem; margin-bottom: 1.5rem; }
         h3 { margin-top: 2rem; margin-bottom: 1rem; }
-        h4 { color: var(--fau-text-dark); font-weight: 600; }
+        h4 { color: var(--fau-text-dark); font-weight: var(--font-weight-semibold); }
 
        .code-block { background: linear-gradient(135deg, #1a202c, #2d3748); border: 1px solid #4a5568; position: relative; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; font-family: 'Roboto Mono', monospace; overflow-x: auto; font-size: 0.875rem; }
        .code-block::before { content: ''; position: absolute; top: 12px; left: 12px; width: 12px; height: 12px; background: #ff5f56; border-radius: 50%; box-shadow: 20px 0 #ffbd2e, 40px 0 #27ca3f; }

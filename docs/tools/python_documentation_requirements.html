@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Package Documentation Requirements</title>
+    
+    <!-- Studio-Feixen-Sans Font System -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/studio-theme.css">
+    
     <style>
         * {
             margin: 0;
@@ -12,11 +19,13 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-primary);
             line-height: 1.6;
             color: #333;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
@@ -32,17 +41,24 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .header h1 {
-            color: #2c3e50;
+            font-family: var(--font-primary);
+            font-weight: var(--font-bold);
+            color: var(--fau-blue);
             font-size: 2.5em;
             margin-bottom: 10px;
+            letter-spacing: var(--tracking-tight);
         }
 
         .header p {
-            color: #7f8c8d;
+            font-family: var(--font-primary);
+            color: var(--fau-text-light);
             font-size: 1.1em;
+            font-weight: var(--font-normal);
+            line-height: var(--leading-relaxed);
         }
 
         .search-bar {
