@@ -111,17 +111,8 @@
             position: relative;
         }
         
-        .code-block::before { 
-            content: ''; 
-            position: absolute; 
-            top: 12px; 
-            left: 12px; 
-            width: 12px; 
-            height: 12px; 
-            background: #ff5f56; 
-            border-radius: 50%; 
-            box-shadow: 20px 0 #ffbd2e, 40px 0 #27ca3f; 
-        }
+    /* Remove Mac-style traffic lights that can overlap content */
+    .code-block::before { display: none; }
         
         .api-entry { 
             border: 1px solid #e5e7eb; 
@@ -503,6 +494,91 @@
         .mobile-open {
             overflow: hidden;
         }
+
+    /* Code blocks: toolbar (copy + expand) placed above the code */
+    pre, .code-block { position: relative; }
+    .code-wrap { position: relative; margin-top: 0.5rem; }
+    /* Legacy toolbar (kept for fallback) */
+    .code-toolbar { position: relative; display: flex; gap: 0.25rem; justify-content: flex-end; margin-bottom: 0.25rem; z-index: 1; }
+    /* Inline actions beside the heading/label */
+    .code-inline-actions{ display:inline-flex; align-items:center; gap:6px; margin-left:8px; vertical-align:middle; }
+    .code-inline-actions .code-icon { background:#eef2ff; color:#3730a3; border-color:#c7d2fe; }
+    .code-icon { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 0.375rem; background: rgba(17,24,39,0.4); color: #e5e7eb; border: 1px solid rgba(229,231,235,0.25); }
+    .code-icon:hover { background: rgba(17,24,39,0.55); }
+    .code-tooltip { position: absolute; top: -1.5rem; right: 0; font-size: 0.7rem; background: #111827; color: #e5e7eb; padding: 2px 6px; border-radius: 4px; display: none; }
+    .code-icon.copied::after{ content: 'Copied'; position:absolute; top:-22px; left:50%; transform:translateX(-50%); background:#111827; color:#fff; font-size:10px; padding:2px 6px; border-radius:4px; white-space:nowrap; }
+    /* Hide legacy copy buttons injected by other scripts and collapse inline code */
+    pre .copy, pre .copy-btn, pre .btn-copy, pre .code-copy, pre [data-clipboard-button], pre [title="Copy"] { display: none !important; }
+    pre.is-collapsed { display: none !important; }
+
+        /* Hide the Mac-style colored dots header above hero code block */
+        section#open-source .bg-gray-900 .flex.items-center.mb-2 { display: none; }
+
+        /* Multi-column layouts for selected sections */
+        #references ul.space-y-2 {
+            display: grid; grid-template-columns: 1fr; gap: 0.5rem 1rem;
+        }
+        @media (min-width: 768px) { #references ul.space-y-2 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+        @media (min-width: 1280px) { #references ul.space-y-2 { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+        #related-projects ul.list-disc { display: grid; grid-template-columns: 1fr; gap: 0.25rem 1rem; }
+        @media (min-width: 768px) { #related-projects ul.list-disc { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+        @media (min-width: 1280px) { #related-projects ul.list-disc { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+    /* Modal overlay for expanded code */
+    #code-modal-overlay { position: fixed; inset: 0; background: rgba(17,24,39,0.55); backdrop-filter: blur(2px); display: none; align-items: center; justify-content: center; z-index: 100; padding: 1rem; }
+    #code-modal { background: #0f172a; color: #e5e7eb; border-radius: 0.75rem; width: min(900px, 100%); max-height: 85vh; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); }
+    #code-modal-header { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0.75rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    #code-modal-body { padding: 0.75rem; }
+    #code-modal-body pre { margin: 0; max-width: 100% !important; }
+    #code-modal-body pre.is-collapsed { display: block !important; }
+    .modal-btn { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 0.375rem; background: transparent; border: 1px solid rgba(229,231,235,0.2); color: #e5e7eb; }
+    .modal-btn:hover { background: rgba(255,255,255,0.06); }
+
+        /* Code typography: monospaced, normal weight */
+        :root { --mono: 'JetBrains Mono', Consolas, 'Courier New', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; }
+        code, pre, pre code, kbd, samp {
+            font-family: var(--mono) !important;
+            font-style: normal;
+            font-weight: 400;
+            letter-spacing: 0;
+        }
+
+        /* API entries in responsive columns (2 on md, 3 on xl) */
+        section#open-source .not-prose.mt-8 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            section#open-source .not-prose.mt-8 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (min-width: 1280px) {
+            section#open-source .not-prose.mt-8 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+
+        /* ---- Spacing compaction: code blocks, grids, separators ---- */
+        /* Limit overly-wide code blocks and center them */
+        main pre,
+        main pre.code-block {
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        @media (min-width: 1536px) {
+            main pre,
+            main pre.code-block { max-width: 1200px; }
+        }
+
+        /* Tighten common grid gaps without stretching boxes */
+        .grid.gap-6 { gap: 1rem !important; }
+        .grid.gap-8 { gap: 1.25rem !important; }
+
+        /* Make thick separators lighter and closer */
+        .mt-8.border-t-4 { margin-top: 1rem !important; border-top-width: 1px !important; }
+        .section-divider { margin: 1.5rem 0 !important; }
     </style>
 </head>
 <body class="bg-white font-sans">
@@ -605,6 +681,7 @@
                             <li><a href="#related-projects" class="sidebar-link text-sm">Projects</a></li>
                             <li><a href="#limitations" class="sidebar-link text-sm">Limitations</a></li>
                             <li><a href="#citation" class="sidebar-link text-sm">Citation</a></li>
+                            <li><a href="#github-issues" class="sidebar-link text-sm">GitHub Bugs</a></li>
                             <li><a href="#references" class="sidebar-link text-sm">References</a></li>
                         </ul>
                     </div>
@@ -704,6 +781,7 @@
                                 <li><a href="#related-projects" class="sidebar-link mobile-link">Related Projects</a></li>
                                 <li><a href="#limitations" class="sidebar-link mobile-link">Limitations</a></li>
                                 <li><a href="#citation" class="sidebar-link mobile-link">Citation</a></li>
+                                <li><a href="#github-issues" class="sidebar-link mobile-link">GitHub Bugs</a></li>
                                 <li><a href="#references" class="sidebar-link mobile-link">References</a></li>
                             </ul>
                         </div>
@@ -728,8 +806,8 @@
             </section>
                 
                 <!-- Quick Start Section -->
-                <section id="quick-start" class="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 md:px-8 lg:px-12 py-6 mb-6 not-prose">
-                        <div class="max-w-6xl mx-auto">
+        <section id="quick-start" class="bg-gradient-to-r from-blue-50 to-indigo-50 px-4 md:px-6 lg:px-8 py-6 mb-6 not-prose">
+            <div class="max-w-7xl mx-auto">
                         <h2 class="section-title text-3xl font-bold text-center mb-4 text-[var(--fau-blue)]">Get Started in Minutes</h2>
                         <div class="grid md:grid-cols-2 gap-6">
                             <!-- Python Users -->
@@ -743,7 +821,7 @@
                                     <h3 class="card-title text-xl font-bold text-gray-900">Python Developers</h3>
                                 </div>
                                 <p class="text-gray-600 mb-4">Install the core library and start modeling programmatically:</p>
-                                <pre class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm overflow-x-auto"><code>pip install pywmp
+                                <pre class="bg-gray-900 text-green-400 p-3 rounded-lg text-sm overflow-x-auto"><code>pip install pywmp
 # or for development
 git clone https://github.com/mandalanil/pywmp.git
 cd pywmp && pip install -e .</code></pre>
@@ -927,7 +1005,10 @@ cd pywmp && pip install -e .</code></pre>
                     </div>
                 </section>
 
-                <div class="mt-8 border-t-4 border-gray-100"></div>
+                <div class="mt-4 border-t border-gray-200"></div>
+
+                
+                <div class="mt-4 border-t border-gray-200"></div>
 
                 <section id="features">
                     <h2>Key Features</h2>
@@ -965,14 +1046,14 @@ cd pywmp && pip install -e .</code></pre>
                     </div>
                 </section>
 
-                <div class="mt-8 border-t-4 border-gray-100"></div>
+                <div class="mt-4 border-t border-gray-200"></div>
                 
                 <section id="open-source">
                     <h2>🐍 Open Source Python Library (pywmp)</h2>
                     
                     <!-- Hero section for open source -->
-                    <div class="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 px-6 md:px-8 lg:px-12 py-8 mb-6 not-prose rounded-xl">
-                        <div class="max-w-4xl mx-auto text-center">
+                    <div class="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 px-4 md:px-6 lg:px-8 py-6 mb-5 not-prose rounded-xl">
+                        <div class="max-w-5xl mx-auto text-center">
                             <h3 class="section-title text-2xl font-bold text-gray-900 mb-4">Free, Open, and Extensible</h3>
                             <p class="text-lg text-gray-700 mb-6">The <code class="bg-white px-2 py-1 rounded">pywmp</code> library is the core engine that powers watershed modeling through Python. Perfect for researchers, developers, and anyone who needs programmatic control over hydrologic simulations.</p>
                             
@@ -2003,6 +2084,29 @@ print(summary_df.head())
                     </div>
                 </section>
 
+                <!-- GitHub Issues (Bugs) Section MOVED above citation -->
+                <section id="github-issues" class="mt-12">
+                    <h2>GitHub Bugs</h2>
+                    <p class="text-sm text-gray-600 max-w-3xl">Track active and resolved bugs for the open-source project. These links take you directly to filtered GitHub issue lists for the <code class="bg-gray-100 px-1 rounded">mandalanil/pywmp</code> repository.</p>
+                    <div class="mt-4 grid md:grid-cols-3 gap-4 not-prose">
+                        <a href="https://github.com/mandalanil/pywmp/issues?q=is%3Aissue+is%3Aopen+label%3Abug" target="_blank" class="block p-4 border border-red-200 rounded-lg bg-red-50 hover:bg-red-100 transition-colors">
+                            <h3 class="text-sm font-semibold text-[var(--fau-red)] mb-1">Open Bug Issues</h3>
+                            <p class="text-xs text-gray-700">Current backlog of confirmed or reported bugs.</p>
+                        </a>
+                        <a href="https://github.com/mandalanil/pywmp/issues?q=is%3Aissue+label%3Abug+is%3Aclosed+sort%3Aupdated-desc" target="_blank" class="block p-4 border border-green-200 rounded-lg bg-green-50 hover:bg-green-100 transition-colors">
+                            <h3 class="text-sm font-semibold text-green-700 mb-1">Recently Closed Bugs</h3>
+                            <p class="text-xs text-gray-700">Recently fixed / resolved issues (latest first).</p>
+                        </a>
+                        <a href="https://github.com/mandalanil/pywmp/issues" target="_blank" class="block p-4 border border-blue-200 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
+                            <h3 class="text-sm font-semibold text-blue-700 mb-1">All Issues & Filters</h3>
+                            <p class="text-xs text-gray-700">Browse or refine by labels, milestones, or assignee.</p>
+                        </a>
+                    </div>
+                    <p class="mt-3 text-[11px] text-gray-500">Tip: Add custom filters in GitHub (e.g., <code class="bg-gray-100 px-1 rounded">label:enhancement</code>) to track features vs. bugs separately.</p>
+                </section>
+
+                <div class="mt-8 border-t border-gray-200"></div>
+
                 <section id="citation">
                     <h2>How to Cite</h2>
                     <p class="mb-4">If you use PyWMP or PyWMP-Pro in your research, please cite it as follows:</p>
@@ -2205,10 +2309,197 @@ print(summary_df.head())
 
             window.addEventListener('scroll', onScroll);
             onScroll(); // Run on page load
-        });
 
+            // Build inline actions for all <pre> blocks; place buttons next to the nearest heading/description
+            function addToolbar(pre) {
+                if (pre.dataset.enhanced === '1') return;
+
+                // Find suitable label element before the code: prefer paragraph, then heading
+                const findLabelEl = (node) => {
+                    let el = node.previousElementSibling;
+                    let hops = 0;
+                    while (el && hops < 20) {
+                        const tn = el.tagName ? el.tagName.toLowerCase() : '';
+                        if (['p','h1','h2','h3','h4','h5','h6','label'].includes(tn)) return el;
+                        // try to find a heading/paragraph inside this sibling
+                        const inner = el.querySelector && el.querySelector('h6,h5,h4,h3,h2,h1,p');
+                        if (inner) return inner;
+                        el = el.previousElementSibling; hops++;
+                    }
+                    // fallback: walk up ancestors and search previous siblings
+                    let parent = node.parentElement;
+                    let level = 0;
+                    while (parent && parent !== document.body && level < 6) {
+                        // try previous siblings of parent
+                        let sib = parent.previousElementSibling;
+                        let sh = 0;
+                        while (sib && sh < 10) {
+                            const innerHead = sib.querySelector && sib.querySelector('h6,h5,h4,h3,h2,h1,p');
+                            if (innerHead) return innerHead;
+                            const tn2 = sib.tagName ? sib.tagName.toLowerCase() : '';
+                            if (['p','h1','h2','h3','h4','h5','h6','label'].includes(tn2)) return sib;
+                            sib = sib.previousElementSibling; sh++;
+                        }
+                        parent = parent.parentElement;
+                        level++;
+                    }
+                    return null;
+                };
+
+                const labelEl = findLabelEl(pre);
+                const labelText = labelEl ? (labelEl.textContent || '') : '';
+                // Detect if this pre belongs to the "Python Developers" quick-start card
+                const isPythonDevs = (() => {
+                    if (/python developers/i.test(labelText)) return true;
+                    let a = pre.parentElement;
+                    let depth = 0;
+                    while (a && a !== document.body && depth < 8) {
+                        const h = a.querySelector && a.querySelector('h3');
+                        if (h && /python developers/i.test((h.textContent || ''))) return true;
+                        a = a.parentElement; depth++;
+                    }
+                    return false;
+                })();
+
+                // Skip collapsing and do not add inline actions for the small Python Developers snippet
+                if (isPythonDevs) {
+                    pre.dataset.enhanced = '1';
+                    pre.classList.remove('is-collapsed');
+                    pre.removeAttribute('aria-hidden');
+                    return;
+                }
+
+                // Collapse inline by default
+                pre.classList.add('is-collapsed');
+                pre.setAttribute('aria-hidden', 'true');
+                pre.dataset.enhanced = '1';
+
+                // Create inline action buttons (Expand + Copy)
+                const actions = document.createElement('span');
+                actions.className = 'code-inline-actions';
+
+                const expandBtn = document.createElement('button');
+                expandBtn.className = 'code-icon';
+                expandBtn.title = 'Expand code';
+                expandBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M6 3h5v2H8.41L12 8.59 10.59 10 7 6.41V8H5V3zm12 18h-5v-2h2.59L12 15.41 13.41 14 17 17.59V15h2v6zM6 21H5v-6h2v2.59L10.59 14 12 15.41 8.41 19H11v2H6zm13-9h-2V8.41L14 12 12.59 10 16.59 6H14V4h5v5z"/></svg>';
+                expandBtn.addEventListener('click', (e) => { e.preventDefault(); openCodeModal(pre); });
+
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'code-icon';
+                copyBtn.title = 'Copy code';
+                copyBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>';
+                copyBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    try {
+                        await navigator.clipboard.writeText(pre.innerText.trim());
+                        copyBtn.classList.add('copied');
+                        setTimeout(()=>copyBtn.classList.remove('copied'), 1200);
+                    } catch(err) { console.warn('Copy failed', err); }
+                });
+
+                actions.appendChild(expandBtn);
+                actions.appendChild(copyBtn);
+
+                if (labelEl) {
+                    // Avoid duplicates if actions already exist
+                    if (!labelEl.querySelector('.code-inline-actions')) {
+                        labelEl.appendChild(actions);
+                    } else {
+                        // If a container exists, append into it
+                        labelEl.querySelector('.code-inline-actions').appendChild(actions);
+                    }
+                } else {
+                    // Strong fallback: ensure the buttons render right before the code
+                    const bar = document.createElement('div');
+                    bar.className = 'code-toolbar';
+                    bar.style.marginTop = '0.25rem';
+                    bar.style.marginBottom = '0.25rem';
+                    bar.appendChild(actions);
+                    // If pre has a wrapper, place before it; else directly before pre
+                    const wrap = pre.parentElement;
+                    if (wrap && wrap.classList && wrap.classList.contains('code-wrap')) {
+                        wrap.parentNode.insertBefore(bar, wrap);
+                    } else {
+                        pre.parentNode.insertBefore(bar, pre);
+                    }
+                }
+
+                // Clean up legacy copy buttons around this code block
+                const container = pre.parentElement || document;
+                container.querySelectorAll('.copy, .copy-btn, .btn-copy, .code-copy, [data-clipboard-button], [title="Copy"]').forEach(el => el.remove());
+            }
+
+            document.querySelectorAll('pre').forEach(addToolbar);
+        });
+    </script>
+
+    <!-- Code modal viewer -->
+    <div id="code-modal-overlay">
+        <div id="code-modal" role="dialog" aria-modal="true" aria-labelledby="code-modal-title">
+            <div id="code-modal-header">
+                <div id="code-modal-title">Code</div>
+                <div id="code-modal-actions">
+                    <button id="code-modal-copy" class="modal-btn" title="Copy">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    </button>
+                    <button id="code-modal-close" class="modal-btn" title="Close">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+            <div id="code-modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Modal helpers (separate script to keep organized)
+        (function(){
+            const overlay = document.getElementById('code-modal-overlay');
+            const body = document.getElementById('code-modal-body');
+            const closeBtn = document.getElementById('code-modal-close');
+            const copyBtn = document.getElementById('code-modal-copy');
+            let currentPre = null;
+
+            window.openCodeModal = function(pre){
+                currentPre = pre;
+                body.innerHTML = '';
+                const clone = pre.cloneNode(true);
+                // remove toolbar from clone
+                const tb = clone.querySelector('.code-toolbar');
+                if (tb) tb.remove();
+                clone.classList.remove('has-toolbar');
+                clone.classList.remove('is-collapsed');
+                clone.removeAttribute('aria-hidden');
+                // ensure smaller width that fits code comfortably
+                clone.style.maxWidth = '720px';
+                body.appendChild(clone);
+                overlay.style.display = 'flex';
+            }
+
+            function close(){ overlay.style.display = 'none'; body.innerHTML = ''; currentPre = null; }
+            closeBtn.addEventListener('click', close);
+            overlay.addEventListener('click', (e)=>{ if(e.target === overlay) close(); });
+            document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
+            copyBtn.addEventListener('click', ()=>{
+                const code = body.querySelector('code');
+                if (!code) return;
+                navigator.clipboard.writeText(code.innerText);
+            });
+        })();
+    </script>
+    <script>
         // Mobile navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Remove any stray "Copy" buttons injected after load
+            const legacySelectors = ['.copy', '.copy-btn', '.btn-copy', '.code-copy', '[data-clipboard-button]', '[title="Copy"]'];
+            const mo = new MutationObserver((mutList) => {
+                mutList.forEach(m => {
+                    legacySelectors.forEach(sel => {
+                        document.querySelectorAll('pre ' + sel).forEach(el => el.remove());
+                    });
+                });
+            });
+            mo.observe(document.body, { childList: true, subtree: true });
             const mobileMenuToggle = document.getElementById('top-mobile-menu-toggle');
             const mobileMenuClose = document.getElementById('mobile-menu-close');
             const mobileSidebarOverlay = document.getElementById('mobile-sidebar-overlay');
