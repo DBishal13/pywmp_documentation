@@ -1,9 +1,9 @@
 site_name: PyWMP
 site_description: "PyWMP is an open-source Python based watershed modelling and planning tool for 1D, 2D, and hybrid simulations."
-site_author: Anil Mandal, Florida Atlantic University
-site_url: https://mandalanil.github.io/PyWMP/
+site_author: PyWMP Contributors
+site_url: https://dbishal13.github.io/pywmp_documentation/
 repo_name: GitHub
-repo_url: https://github.com/mandalanil/PyWMP
+repo_url: https://github.com/DBishal13/pywmp_documentation
 nav:
   - Home: index.md
   - Installation: installation.md
