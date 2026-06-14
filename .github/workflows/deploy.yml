@@ -30,7 +30,16 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Install pywmp (needed for mkdocstrings)
-        run: pip install git+https://github.com/mandalanil/pywmp.git
+        # mandalanil/pywmp is private — skipped until PYWMP_READ_TOKEN secret is added
+        # To activate: create a PAT with read access to mandalanil/pywmp, store as PYWMP_READ_TOKEN in pywmp_documentation secrets
+        env:
+          PYWMP_TOKEN: ${{ secrets.PYWMP_READ_TOKEN }}
+        run: |
+          if [ -n "$PYWMP_TOKEN" ]; then
+            pip install "git+https://${PYWMP_TOKEN}@github.com/mandalanil/pywmp.git"
+          else
+            echo "PYWMP_READ_TOKEN not set — skipping pywmp install (add secret to enable mkdocstrings auto-docs)"
+          fi
 
       - name: Build site
         run: mkdocs build --site-dir site
