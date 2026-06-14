@@ -1,704 +1,532 @@
 # Module Reference
 
-Complete API reference for all PyWMP modules. Each section covers the key classes, their parameters, method-selection guidance, and a runnable example.
+Complete API summary for all PyWMP v0.2.0 modules. For conceptual background see
+[Concepts](../concepts.md); for end-to-end examples see the [Tutorials](../tutorials/full_pipeline.md).
 
 ---
 
-## `pywmp.datasets` — Automated Data Downloaders
+## `pywmp.units` and `pywmp.time_series`
 
-Downloads and caches all geospatial inputs for a watershed model from open-access federal data sources.
-
-### `DatasetManager`
+Every PyWMP module accepts and returns these two primitives.
 
 ```python
-DatasetManager(aoi, output_dir, cache=True)
+from pywmp.units import UnitSystem, USC, SI
+from pywmp.time_series import TimeSeries
+
+ts = TimeSeries(times=t_array, values=v_array, units="USC")
 ```
 
-| Parameter | Type | Description |
-|---|---|---|
-| `aoi` | `tuple[float,float,float,float]` | Bounding box `(minx, miny, maxx, maxy)` in WGS-84 decimal degrees |
-| `output_dir` | `str \| Path` | Directory where downloaded files are saved |
-| `cache` | `bool` | Reuse existing files rather than re-downloading (default `True`) |
+**`UnitSystem`**: `USC` (US Customary, ft-cfs-in) or `SI` (metres-m3/s-mm).
 
-**Methods:**
+**`TimeSeries`**: `times` (hr), `values` (units depend on context), `units` string.
 
-| Method | What it downloads | Output file |
-|---|---|---|
-| `download_dem(resolution_m=10)` | USGS 3DEP lidar DEM | `dem.tif` |
-| `download_watershed(huc_level=12)` | USGS NHD WBD boundaries | `huc12.gpkg` |
-| `download_nhd()` | NHDPlus flowlines + catchments | `flowlines.gpkg`, `catchments.gpkg` |
-| `download_nlcd(year=2021)` | NLCD 30 m land cover | `nlcd.tif` |
-| `download_soils()` | USDA SSURGO hydrologic soil groups | `hsg.tif` |
-| `download_cn()` | SCS Curve Number raster (NLCD × HSG) | `cn.tif` |
-| `download_atlas14(lat, lon)` | NOAA Atlas 14 IDF curves | `atlas14.json` |
-| `download_floodzone()` | FEMA NFHL flood hazard areas | `fema_sfha.gpkg` |
-| `download_all(lat, lon)` | All of the above in dependency order | — |
-| `summary()` | Print download status table | — |
+---
 
-**Example:**
+## `pywmp.meteorology`
+
+Precipitation sources and storm definitions.
+
+| Class / function | Purpose |
+|-----------------|---------|
+| `DesignStorm` | Wrapper around a hyetograph array |
+| `IDFCurve` | IDF data with `depth(duration, return_period)` |
+| `scs_type_hyetograph(storm_type, duration_hr, dt_hr, total_in, units)` | SCS Type I / IA / II / III |
+| `balanced_storm_hyetograph(depth, dt)` | NOAA balanced-storm distribution |
+| `read_netcdf_precipitation(path)` | Gridded NetCDF precipitation |
+| `read_mrms_grib2(path)` | MRMS GRIB2 precipitation |
+
+IDF/Atlas 14 functions live in `pywmp.meteorology.noaa_atlas14`:
+
+```python
+from pywmp.meteorology.noaa_atlas14 import get_idf_offline, fetch_idf_online
+
+idf = get_idf_offline(region="SE")             # bundled Southeast US Atlas 14 data
+idf = fetch_idf_online(lat=26.08, lon=-80.33)  # live NOAA HDSC API call
+depth_100yr = idf.depth(duration_hr=24, return_period_yr=100)
+```
+
+---
+
+## `pywmp.losses`
+
+| Class | Method | Key parameters | Reference |
+|-------|--------|----------------|-----------|
+| `InitialConstantLoss` | `compute(precip_ts)` | `ia` (in), `fc` (in/hr) | USACE, 2023 |
+| `SCSCurveLoss` | `compute(precip_ts)` | `CN`, `amc` (I/II/III) | NRCS, 2004; USDA SCS, 1986 |
+| `GreenAmptLoss` | `compute(precip_ts)` | `Ks`, `psi`, `theta_i`, `eta` | Green & Ampt, 1911 |
+| `SMALoss` | `compute(precip_ts, pe_ts)` | six storage-zone parameters | Bennett, 1998 |
+
+---
+
+## `pywmp.transform`
+
+| Class | Key parameters | Reference |
+|-------|----------------|-----------|
+| `SCSUnitHydrograph` | `lag_hr`, `area_mi2` | NRCS, 2004; Mockus, 1957 |
+| `ClarkUH` | `Tc` (hr), `R` (hr), time-area curve | Clark, 1945 |
+| `SnyderUH` | `Cp`, `Ct`, `tp` | Snyder, 1938 |
+| `UserUH` | tabular UH array | — |
+
+---
+
+## `pywmp.routing`
+
+| Class | Key parameters | Reference |
+|-------|----------------|-----------|
+| `MuskingumRouting` | `K_hr`, `x`, `steps` | McCarthy, 1938 |
+| `MuskingumCungeRouting` | channel geometry, Manning's n | Cunge, 1969 |
+| `ModifiedPulsRouting` | storage-outflow relationship | Puls, 1928 |
+| `LagRouting` | `lag_hr` | — |
+
+---
+
+## `pywmp.workflow`
+
+High-level model builders.
+
+```python
+from pywmp.workflow.design_storm import DesignStormSimulation
+
+sim = DesignStormSimulation(
+    storm_type="SCS_II",
+    total_depth_in=13.7,
+    duration_hr=24,
+    dt_hr=0.1,
+)
+sim.add_subbasin("Sub1", area_mi2=2.5,
+                 loss_method="SCS_CN", loss_params={"CN": 80},
+                 transform_method="SCS", transform_params={"lag_hr": 1.2})
+sim.add_reach("Sub1", "Outlet",
+              method="Muskingum", params={"K_hr": 0.5, "x": 0.2, "steps": 3})
+results = sim.run()
+print(results.summary())
+```
+
+Helper functions: `build_basin_model()`, `build_subbasin_masks()`,
+`estimate_scs_lag()`, `estimate_muskingum_k_x()`.
+
+---
+
+## `pywmp.rom`
+
+2D rain-on-mesh finite-volume solver.
+
+### ROMGrid
+
+```python
+from pywmp.rom.mesh import ROMGrid
+grid = ROMGrid.from_tif("dem.tif", units="USC")
+# grid.shape -> (nrows, ncols)
+# grid.dx_ft, grid.dy_ft  (cell size)
+```
+
+### ROMSimulation
+
+```python
+from pywmp.rom.simulation import ROMSimulation
+
+sim = ROMSimulation(
+    grid=grid,
+    precipitation=precip,       # UniformPrecipitation or GriddedPrecipitation
+    infiltration=infilt,        # DeficitConstantInfiltration, GriddedGreenAmpt, GriddedSCS, or None
+    manning=manning,            # ManningField
+    boundary_conditions=[bc],   # list of boundary condition objects
+    duration_hr=24.0,
+    output_interval_hr=1.0,
+    backend="auto",             # "numpy", "numba", "cuda"
+    solver=None,                # optional FiniteVolumeSolver with custom h_dry / cfl / max_dt_sec
+    sediment=None,              # attach SuspendedSedimentTransport here
+    units="USC",
+    # Solver uses first-order HLL (Harten et al., 1983) finite-volume scheme;
+    # wetting/drying follows Bates & De Roo (2000); CFL stability (Courant et al., 1928)
+)
+results = sim.run()
+results.save_max_depth_tif("depth.tif")
+```
+
+### Boundary conditions
+
+| Class | Usage |
+|-------|-------|
+| `NormalDepthOutlet(edge)` | Free outfall at domain edge ("north"/"south"/"east"/"west") |
+| `FixedStageBC(edge, stage_ts)` | Time-varying water surface elevation at domain edge |
+| `InflowBC(cell_row, cell_col, q_ts)` | Point inflow (1D hydrograph coupling) |
+| `InternalInflowBC(mask, q_ts)` | Distributed inflow over a cell mask |
+
+### Infiltration
+
+| Class | Key parameters |
+|-------|----------------|
+| `DeficitConstantInfiltration(initial_loss, fc, units, grid_shape)` | SCS-equivalent |
+| `GriddedGreenAmptInfiltration(Ks, psi, theta_i, eta)` | spatially distributed |
+| `GriddedSCSInfiltration(cn_array)` | CN from raster |
+
+---
+
+## `pywmp.hybrid`
+
+```python
+from pywmp.hybrid.coupler import HybridSimulation, HybridExcessPrecipSimulation
+
+# Outlet-to-inflow mode
+hybrid = HybridSimulation(
+    upstream_model=sim_1d,
+    rom_grid=grid,
+    boundary_spec="outlet",
+)
+h_results = hybrid.run()
+
+# Excess-precipitation mode
+excess = HybridExcessPrecipSimulation(
+    upstream_model=sim_1d,
+    rom_grid=grid,
+    mask_spec=subbasin_masks,   # SubbasinMaskSpec
+)
+e_results = excess.run()
+```
+
+---
+
+## `pywmp.sediment`
+
+```python
+import numpy as np
+from pywmp.sediment import (
+    SedimentParameters, RUSLEErosion,
+    SuspendedSedimentTransport, BedloadTransport, SedimentResults
+)
+from pywmp.sediment.ls_factor import compute_ls_from_tif
+
+# Build parameter grid
+params = SedimentParameters(
+    K=0.28 * np.ones(grid.shape),   # RUSLE K (Wischmeier & Smith, 1978; Renard et al., 1997)
+    C=0.15 * np.ones(grid.shape),   # cover-management factor (Renard et al., 1997)
+    D50_mm=0.25 * np.ones(grid.shape),  # median grain size
+    P=1.0,                          # support-practice factor
+)
+
+# Derive LS from DEM slope arrays (returned by rom grid or computed separately)
+Sx, Sy = ...   # slope arrays from DEM, same shape as grid
+erosion = RUSLEErosion(params, Sx, Sy)
+
+sst = SuspendedSedimentTransport(
+    params=params,
+    grid=grid,
+    erosion=erosion,
+)
+
+# Attach to ROMSimulation
+sim = ROMSimulation(..., sediment=sst)
+results = sim.run()
+
+sed_results = results.sediment    # SedimentResults
+print(sed_results.total_erosion_tons, sed_results.total_deposition_tons)
+```
+
+**LS factor helpers**:
+
+```python
+from pywmp.sediment.ls_factor import compute_ls_from_tif, compute_ls_single_cell
+ls = compute_ls_from_tif("dem.tif")   # returns LS raster array
+```
+
+**Bedload (gravel channels)**:
+
+```python
+bl = BedloadTransport(
+    params, Sx, Sy, dx=grid.dx_ft,
+    theta_cr=0.0495,      # Wong & Parker (2006) corrected Shields criterion
+    use_wong_parker=True,  # corrects MPM (1948) coefficient from 8.0 to 3.97
+)
+sst = SuspendedSedimentTransport(params, grid, erosion=erosion, bedload=bl)
+```
+
+---
+
+## `pywmp.wq`
+
+```python
+from pywmp.wq import TSSModel, TPModel, WQTransport, EMC_TP_BY_NLCD
+
+tss = TSSModel(
+    shape=grid.shape,
+    dx=grid.dx_ft,
+    D=0.5,              # diffusion coefficient (ft2/s)
+    init_conc_mg_L=5.0,
+)
+
+tp = TPModel(
+    shape=grid.shape,
+    dx=grid.dx_ft,
+    emc_tp_mg_L=0.3,    # EMC approach: USEPA (1983); Driver & Tasker (1990)
+    k_settle=1e-5,      # settling rate (m/s)
+)
+
+# Step both models at each ROM time step using depth/velocity arrays
+tss.step(h, u, v, dt)
+tp.step(h, u, v, dt)
+
+# Retrieve load at outlet
+print(tss.outlet_load_kg, tp.outlet_load_kg)
+```
+
+`EMC_TP_BY_NLCD` is a dict mapping NLCD integer class to TP event mean concentration (mg/L).
+
+---
+
+## `pywmp.coastal`
+
+```python
+from pywmp.coastal import SeawallSLRSweep, SeawallGeometry
+
+# SeawallGeometry is typically built from a DEM and seawall mask via a helper
+# (see the coastal simulation module for the from_dem constructor)
+sweep = SeawallSLRSweep(
+    geometry=geom,
+    slr_levels_ft=[0.0, 0.5, 1.0, 1.5, 2.5],
+    rain_ts=rain_ts,             # optional TimeSeries for compound event
+    normal_tide_ft=0.52,         # MHHW baseline
+    ocean_edge="south",
+    duration_hr=24.0,
+    backend="auto",
+)
+sweep_results = sweep.run()
+print(sweep_results.summary())   # peak stage, flooded area, overtopping per SLR level
+```
+
+---
+
+## `pywmp.calibration`
+
+```python
+from pywmp.calibration import CalibrationEngine, ParameterSet, ParameterBound
+
+def run_model(params: dict) -> np.ndarray:
+    # build and run your model; return simulated array
+    ...
+
+ps = ParameterSet([
+    ParameterBound("CN",    lo=60.0, hi=98.0, initial=80.0),
+    ParameterBound("lag_hr", lo=0.3, hi=4.0,  initial=1.2),
+])
+
+engine = CalibrationEngine(
+    model_fn=run_model,
+    observed=obs_array,
+    params=ps,
+    objective="kge",       # "nse", "kge", "rmse", "volume_error", or Callable
+    verbose=True,
+)
+
+# Run differential evolution global search (Storn & Price, 1997)
+results = engine.run_differential_evolution(maxiter=300, popsize=15)
+print(results.summary())
+# results.best_params   -> dict of parameter name -> value
+# results.best_objective -> float (NSE/KGE; Nash & Sutcliffe, 1970 / Gupta et al., 2009)
+# results.history       -> list of CalibrationRecord
+```
+
+---
+
+## `pywmp.validation`
+
+```python
+from pywmp.validation import (
+    HydroMetrics, ModelVsObserved, GaugeStation,
+    SpatialFloodValidation,
+    download_streamflow, download_stage,
+    nse, kge, rmse, pbias, peak_flow_error
+)
+
+# Scalar metrics from arrays
+# NSE: Nash & Sutcliffe (1970); KGE: Gupta et al. (2009); Kling et al. (2012)
+m = HydroMetrics(obs=obs_array, sim=sim_array)
+print(m.nse, m.kge.r, m.kge.alpha, m.kge.beta, m.rmse, m.pbias)
+
+# USGS NWIS gauge comparison
+gauge = GaugeStation("02298202", name="Peace River at Arcadia",
+                     lat=27.21, lon=-81.87, da_mi2=1367.0)
+obs_df = download_streamflow("02298202", start="2020-09-01", end="2020-09-30")
+comparison = ModelVsObserved(obs_df["q_cfs"], sim_series, gauge=gauge)
+print(comparison.metrics())
+
+# Spatial flood extent comparison (vs FEMA NFHL or SAR)
+sv = SpatialFloodValidation(
+    sim_depth=depth_array,     # float array, ft
+    ref_mask=fema_ae_mask,     # bool array (True = flooded in reference; FEMA, 2023)
+    valid_mask=domain_mask,    # bool array (True = valid domain cells)
+    depth_threshold=0.1,
+)
+# CSI: Schaefer (1990); HR/FAR: Wing et al. (2017); performance: Bates et al. (2010)
+print(sv.csi, sv.hit_rate, sv.far, sv.f1)
+```
+
+Standalone functions: `nse(obs, sim)`, `kge(obs, sim) -> KGEComponents`,
+`rmse(obs, sim)`, `pbias(obs, sim)`, `peak_flow_error(obs, sim)`,
+`peak_timing_error(obs, sim)`.
+
+---
+
+## `pywmp.datasets`
 
 ```python
 from pywmp.datasets import DatasetManager
 
 dm = DatasetManager(
-    aoi=(-82.05, 28.02, -81.98, 28.07),  # west-central Florida
-    output_dir="data/my_watershed",
+    aoi=(-81.70, 27.85, -81.50, 27.95),   # (minx, miny, maxx, maxy) WGS-84
+    output_dir="data/watershed/",
+    cache=True,                            # skip re-download if file exists
 )
-dm.download_all(lat=28.044, lon=-82.013)
+
+dm.download_dem(resolution_m=10)
+dm.download_watershed(huc_level=12)
+dm.download_nhd()
+dm.download_nlcd(year=2021)
+dm.download_soils()
+dm.download_cn()                          # requires NLCD and soils
+dm.download_atlas14(lat=27.9, lon=-81.6)
+dm.download_floodzone()
 print(dm.summary())
 ```
 
-**Dependency order:** DEM → watershed → NHD → NLCD + soils → CN → Atlas 14 + flood zones.  
-`download_cn()` requires both NLCD and soils to already be present.
+Standalone helper: `download_for_aoi(aoi, output_dir, lat, lon)` runs all
+eight downloaders in sequence.
 
-### `download_for_aoi()` — one-call shortcut
+---
+
+## `pywmp.flood`
 
 ```python
-from pywmp.datasets import download_for_aoi
+from pywmp.flood.dem_io import read_tif, write_tif
+from pywmp.flood.watershed import WatershedDelineator
+from pywmp.flood.hand import HANDRaster
+from pywmp.flood.inundation import compute_stats
 
-dm = download_for_aoi(
-    aoi=(-82.05, 28.02, -81.98, 28.07),
-    output_dir="data/my_watershed",
-    lat=28.044,
-    lon=-82.013,
-)
+# DEM I/O
+dem, cell_size_ft, nodata, transform, crs = read_tif("dem.tif")
+
+# HAND raster
+hand = HANDRaster.from_tif("dem.tif")
+hand.compute()  # fills sinks, D8 flow, flow accumulation, HAND
+
+# Inundation statistics
+stats = compute_stats(depth_array, cell_size=cell_size_ft)
+print(stats.flooded_area_acres, stats.mean_depth_ft, stats.max_depth_ft)
 ```
 
 ---
 
-## `pywmp.losses` — Rainfall Loss Methods
+## `pywmp.cascade`
 
-All loss classes share the interface `.compute(rainfall_ts) → (excess_ts, loss_ts)`.
-
-### Method comparison
-
-| Method | Best for | Key parameters | Notes |
-|---|---|---|---|
-| `InitialConstantLoss` | Simple event models, minimal data | `Ia`, `fc` | Fast; no soil-layer bookkeeping |
-| `SCSCurveLoss` | NRCS-based design hydrology | `CN`, `ia_ratio`, `amc` | Industry standard; CN from SSURGO or NLCD |
-| `GreenAmptLoss` | Physically based soil infiltration | `Ks`, `psi`, `theta_i`, `eta` | Best when soil texture data is available |
-| `SMALoss` | Long continuous simulations | many (canopy, surface, soil, percolation layers) | Most complex; needed for multi-event continuous modeling |
-
-### `InitialConstantLoss`
+SFWMD Cascade 2001 project parser and detention routing engine.
 
 ```python
-InitialConstantLoss(Ia_in, fc_in_hr, units=UnitSystem.USC)
-```
+from pywmp.cascade import parse_cascade_dat, CascadeSimulation
 
-| Parameter | Type | Description |
-|---|---|---|
-| `Ia_in` | `float` | Initial abstraction depth (inches) |
-| `fc_in_hr` | `float` | Constant infiltration rate after Ia is satisfied (in/hr) |
+# Parse an official .dat project file
+project = parse_cascade_dat("my_project.dat")
 
-### `SCSCurveLoss`
-
-```python
-SCSCurveLoss(CN, ia_ratio=0.2, amc=2, units=UnitSystem.USC)
-```
-
-| Parameter | Type | Description |
-|---|---|---|
-| `CN` | `float` | SCS Curve Number (0–100); higher = more runoff |
-| `ia_ratio` | `float` | Fraction of S used as initial abstraction (default 0.2) |
-| `amc` | `int` | Antecedent Moisture Condition: 1 (dry), 2 (normal), 3 (wet) |
-
-**Theory:**
-
-$$S = \frac{1000}{\text{CN}} - 10 \quad I_a = 0.2S \quad Q_{cum} = \frac{(P_{cum}-I_a)^2}{P_{cum}-I_a+S}$$
-
-**When to use:** Standard design hydrology. CN = 78 is a typical composite for mixed residential/suburban catchments. Use AMC III for pre-wetted conditions or consecutive storms.
-
-### `GreenAmptLoss`
-
-```python
-GreenAmptLoss(Ks, psi, theta_i, eta, units=UnitSystem.USC)
-```
-
-| Parameter | Type | Description |
-|---|---|---|
-| `Ks` | `float` | Saturated hydraulic conductivity (in/hr) |
-| `psi` | `float` | Wetting-front suction head (in) |
-| `theta_i` | `float` | Initial volumetric moisture content (0–1) |
-| `eta` | `float` | Soil porosity (0–1) |
-
-**Theory:** Green & Ampt equation (HEC-HMS TRM §3.4):
-
-$$f(t) = K_s \left(1 + \frac{\psi \cdot \Delta\theta}{F(t)}\right)$$
-
-Solved implicitly via Newton-Raphson per timestep.
-
-**Typical soil values (Rawls et al., 1983):**
-
-| Texture | Ks (in/hr) | ψ (in) | η |
-|---|---|---|---|
-| Sand | 4.74 | 1.95 | 0.437 |
-| Sandy loam | 1.09 | 4.33 | 0.453 |
-| Loam | 0.52 | 3.50 | 0.463 |
-| Clay loam | 0.10 | 8.22 | 0.464 |
-| Clay | 0.03 | 12.45 | 0.475 |
-
-### `SMALoss`
-
-Soil Moisture Accounting (HEC-HMS TRM §3.7). Suitable for long-duration continuous simulations where soil-layer storage dynamics matter. Requires canopy, surface depression, soil tension zone, and percolation parameters. See HEC-HMS documentation for full parameter guidance.
-
-**Example:**
-
-```python
-from pywmp.losses import SCSCurveLoss
-from pywmp.time_series import TimeSeries
-import numpy as np
-
-# 24-hour SCS Type II storm at 0.1-hr intervals
-t = np.arange(0, 24.1, 0.1)
-rain = np.zeros_like(t)
-rain[60:180] = 0.15  # peak burst (in/hr)
-
-rainfall_ts = TimeSeries(t, rain, dt=0.1, units="in/hr")
-loss = SCSCurveLoss(CN=78, ia_ratio=0.2, amc=2)
-excess_ts, loss_ts = loss.compute(rainfall_ts)
-print(f"Total excess: {excess_ts.values.sum() * 0.1:.2f} in")
-```
-
----
-
-## `pywmp.transform` — Unit Hydrograph Methods
-
-All transform classes share the interface `.ordinates() → np.ndarray` and can convolve with an excess rainfall time series.
-
-### Method comparison
-
-| Method | Best for | Key parameters | Calibration difficulty |
-|---|---|---|---|
-| `SCSUnitHydrograph` | Ungauged basins, NRCS design | `lag_hr`, `area` | Low — lag estimated from geometry |
-| `ClarkUH` | Gauged or well-characterized basins | `Tc`, `R`, `area` | Medium — requires calibration of R |
-| `SnyderUH` | Regional studies with historical coefficients | `Ct`, `Cp`, `Lc`, `Lca` | Medium — regional coefficients required |
-| `UserUH` | Directly observed unit hydrograph | `ordinates` | N/A — used as-is |
-
-### `SCSUnitHydrograph`
-
-```python
-SCSUnitHydrograph(lag_hr, area, dt=0.1, units=UnitSystem.USC)
-```
-
-| Parameter | Type | Description |
-|---|---|---|
-| `lag_hr` | `float` | Basin lag time (hours); estimated as 0.6 × Tc |
-| `area` | `float` | Basin area (mi² for USC, km² for SI) |
-| `dt` | `float` | Computational timestep (hours) |
-
-**Lag estimation:** `lag_hr ≈ 0.6 × Tc`, where `Tc` can be estimated from the TR-55 Velocity Method or `estimate_scs_lag()` in `pywmp.workflow`.
-
-### `ClarkUH`
-
-```python
-ClarkUH(Tc, R, area, dt=0.1, time_area_curve=None, units=UnitSystem.USC)
-```
-
-| Parameter | Type | Description |
-|---|---|---|
-| `Tc` | `float` | Time of concentration (hours) |
-| `R` | `float` | Linear reservoir storage coefficient (hours). Controls recession limb flatness. |
-| `area` | `float` | Basin area |
-| `time_area_curve` | `array-like \| None` | Custom time-area table `[[t_ratio, area_ratio],...]`; uses synthetic ellipse if `None` |
-
-**Theory:** Translation hydrograph routed through a linear reservoir:
-
-$$O(t+\Delta t) = C_1 \cdot \bar{I}(t,t+\Delta t) + C_2 \cdot O(t)$$
-
-where $C_1 = \Delta t/(R + 0.5\Delta t)$ and $C_2 = 1 - C_1$.
-
-Larger R → flatter, longer recession. Typical R ≈ 0.5–2.0 × Tc.
-
-### `SnyderUH`
-
-```python
-SnyderUH(Ct, Cp, Lc, Lca, dt=0.1, units=UnitSystem.USC)
-```
-
-| Parameter | Type | Description |
-|---|---|---|
-| `Ct` | `float` | Timing coefficient (0.4–2.2 for US basins) |
-| `Cp` | `float` | Peaking coefficient (0.4–0.8) |
-| `Lc` | `float` | Length of main channel (miles) |
-| `Lca` | `float` | Length from centroid to outlet along channel (miles) |
-
-### `UserUH`
-
-```python
-UserUH(ordinates, dt, area, units=UnitSystem.USC)
-```
-
-Provide observed unit hydrograph ordinates directly (cfs/in or m³/s per mm). Use when you have a measured UH from a gauged storm.
-
-**Example:**
-
-```python
-from pywmp.transform import ClarkUH
-
-uh = ClarkUH(Tc=2.0, R=1.5, area=3.2, dt=0.1)
-# convolve with a 1-inch excess rainfall pulse
-ordinates = uh.ordinates()
-print(f"Peak: {ordinates.max():.1f} cfs/in at t={ordinates.argmax()*0.1:.1f} hr")
-```
-
----
-
-## `pywmp.routing` — Channel Routing Methods
-
-All routing classes share the interface `.route(inflow_ts) → outflow_ts`.
-
-### Method comparison
-
-| Method | Best for | Key parameters | Notes |
-|---|---|---|---|
-| `MuskingumRouting` | Natural channels, simple reach | `K`, `X`, `steps` | Standard; requires K·2X < Δt < 2K(1-X) |
-| `MuskingumCungeRouting` | Variable discharge, kinematic wave | `length`, `slope`, `n`, `width` | Automatically computes K and X from Manning's |
-| `ModifiedPulsRouting` | Reservoirs, detention ponds | `storage_curve` | Requires storage-discharge relationship |
-| `LagRouting` | Pure translation (e.g., storm drains) | `lag_hr` | No attenuation — flow shifted in time only |
-
-### `MuskingumRouting`
-
-```python
-MuskingumRouting(K_hr, X, steps=1, units=UnitSystem.USC)
-```
-
-| Parameter | Type | Description |
-|---|---|---|
-| `K_hr` | `float` | Travel time through reach (hours). Roughly equal to reach length ÷ wave celerity. |
-| `X` | `float` | Weighting factor (0 to 0.5). X=0 → pure storage (reservoir-like); X=0.5 → pure translation (no attenuation). Typical: 0.1–0.3 |
-| `steps` | `int` | Number of sub-reaches (increases numerical stability for short timesteps) |
-
-**Theory (HEC-HMS TRM §7.2):**
-
-$$O_{j+1} = C_0 I_{j+1} + C_1 I_j + C_2 O_j \quad \text{where} \quad C_0+C_1+C_2 = 1$$
-
-**Stability:** Negative C₀ means parameters are unstable — increase `steps` or reduce `K_hr`.
-
-### `MuskingumCungeRouting`
-
-```python
-MuskingumCungeRouting(length_ft, slope, n, width_ft, units=UnitSystem.USC)
-```
-
-Automatically derives K and X from the hydraulic properties at mean discharge. Best for reaches where channel geometry is known but routing parameters are not calibrated.
-
-### `ModifiedPulsRouting`
-
-```python
-ModifiedPulsRouting(storage_curve, units=UnitSystem.USC)
-```
-
-`storage_curve` is a 2D array `[[storage_af, discharge_cfs],...]` (storage in acre-feet, discharge in cfs for USC). Use for detention basins with outlet structures.
-
-### `LagRouting`
-
-```python
-LagRouting(lag_hr, units=UnitSystem.USC)
-```
-
-Shifts the inflow hydrograph forward by `lag_hr` with no attenuation. Use for short piped reaches or conveyance channels where travel time dominates.
-
-**Example:**
-
-```python
-from pywmp.routing import MuskingumRouting
-from pywmp.time_series import TimeSeries
-import numpy as np
-
-t = np.linspace(0, 24, 241)
-# triangular inflow hydrograph peaking at 300 cfs at hour 10
-inflow = np.interp(t, [0, 10, 24], [0, 300, 0])
-inflow_ts = TimeSeries(t, inflow, dt=0.1, units="cfs")
-
-router = MuskingumRouting(K_hr=1.5, X=0.2, steps=3)
-outflow_ts = router.route(inflow_ts)
-print(f"Peak attenuation: {inflow.max() - outflow_ts.values.max():.1f} cfs")
-```
-
----
-
-## `pywmp.meteorology` — Precipitation & Design Storms
-
-### `DesignStorm`
-
-```python
-DesignStorm(storm_type, total_depth_in, duration_hr, dt_hr=0.1)
-```
-
-| `storm_type` | Description |
-|---|---|
-| `"SCS_I"` | SCS Type I — Pacific coast, gentle slopes |
-| `"SCS_IA"` | SCS Type IA — Pacific Northwest |
-| `"SCS_II"` | SCS Type II — most of eastern/central US (default for humid regions) |
-| `"SCS_III"` | SCS Type III — Gulf Coast, humid subtropics |
-| `"SFWMD_24hr"` | South Florida Water Management District 24-hour |
-| `"SFWMD_72hr"` | SFWMD 72-hour |
-| `"SFWMD_120hr"` | SFWMD 120-hour (5-day) |
-
-### `IDFCurve`
-
-```python
-IDFCurve(atlas14_json_path)  # load from downloaded Atlas 14 file
-```
-
-| Method | Returns |
-|---|---|
-| `.intensity(duration_hr, return_period_yr)` | Rainfall intensity (in/hr) |
-| `.depth(duration_hr, return_period_yr)` | Rainfall depth (in) |
-| `.plot()` | Matplotlib figure of intensity-duration-frequency curves |
-
-**Return periods available:** 1, 2, 5, 10, 25, 50, 100, 200, 500, 1000 years.
-
-**Example:**
-
-```python
-from pywmp.meteorology import IDFCurve
-
-idf = IDFCurve("data/my_watershed/atlas14.json")
-depth_100yr_24hr = idf.depth(24, 100)
-print(f"100-year 24-hour depth: {depth_100yr_24hr:.2f} in")
-```
-
----
-
-## `pywmp.simulation` — Basin Model Engine
-
-### `BasinModel`
-
-```python
-BasinModel(name)
-```
-
-Directed-acyclic-graph engine that runs a network of hydrologic elements in topological order.
-
-**Methods:**
-
-| Method | Description |
-|---|---|
-| `add_element(el)` | Add a `SubbasinElement`, `ReachElement`, `JunctionElement`, `ReservoirElement`, or `ROMElement` |
-| `connect(upstream, downstream)` | Wire two elements together by name |
-| `run(rainfall_dict, dt=None)` | Execute the model; returns `SimResults` |
-
-### `SimResults`
-
-| Attribute / Method | Description |
-|---|---|
-| `.outflows` | `dict[name, TimeSeries]` — outflow hydrograph at each element |
-| `.peak_flow(name)` | Peak discharge (cfs or m³/s) at element `name` |
-| `.total_volume(name)` | Total runoff volume at element `name` |
-| `.summary()` | Print peak flow + volume table for all elements |
-| `.to_dict()` | JSON-serializable representation |
-| `.plot(names=None)` | Matplotlib figure of selected hydrographs |
-
----
-
-## `pywmp.rom` / `pywmp.sim2d` — 2D Rain-on-Mesh Solver
-
-### `ROMGrid`
-
-```python
-ROMGrid.from_tif(path, resolution_m=None, crs=None)
-ROMGrid.from_tif_bbox(path, bbox, resolution_m=None)
-```
-
-| Parameter | Description |
-|---|---|
-| `path` | Path to a GeoTIFF DEM |
-| `resolution_m` | Resample to this cell size (meters). `None` preserves native resolution. |
-| `bbox` | `(minx, miny, maxx, maxy)` in the DEM's CRS |
-
-**Attributes:**
-
-| Attribute | Description |
-|---|---|
-| `.dem` | Numpy array of elevations (m or ft) |
-| `.nx`, `.ny` | Grid dimensions |
-| `.dx`, `.dy` | Cell size |
-| `.crs` | Coordinate reference system |
-| `.summary()` | Print grid metadata |
-
-### `ROMSimulation`
-
-```python
-ROMSimulation(
-    grid,
-    precipitation,
-    infiltration=None,
-    boundary_conditions=None,
-    roughness=None,
-    duration_hr=24,
-    dt_s=None,
-    backend="auto",
-)
-```
-
-| Parameter | Description |
-|---|---|
-| `grid` | `ROMGrid` object |
-| `precipitation` | `UniformPrecipitation` or `GriddedPrecipitation` |
-| `infiltration` | Loss method object (optional; default = no infiltration) |
-| `boundary_conditions` | List of BC objects (outlet, stage, inflow, etc.) |
-| `roughness` | `ManningField` or scalar n value (default 0.035) |
-| `duration_hr` | Total simulation time (hours) |
-| `backend` | `"auto"`, `"cuda"`, `"numba"`, or `"numpy"` |
-
-**Backends:** `auto` selects the fastest available. Use `pywmp.available_backends()` to see what's installed.
-
-### Boundary conditions
-
-| Class | When to use |
-|---|---|
-| `NormalDepthOutlet()` | Standard open outfall at domain edge |
-| `FixedStageBC(ts)` | Prescribed tailwater stage (TimeSeries) |
-| `InflowBC(cells, ts)` | Prescribed point inflow hydrograph |
-| `InternalInflowBC(cells, ts)` | Distributed inflow across interior cells (used in hybrid coupling) |
-
-**Example:**
-
-```python
-from pywmp.rom import ROMGrid, ROMSimulation, UniformPrecipitation, NormalDepthOutlet
-from pywmp.meteorology import DesignStorm
-
-grid = ROMGrid.from_tif("data/my_watershed/dem.tif", resolution_m=10)
-storm = DesignStorm("SCS_II", total_depth_in=5.0, duration_hr=24, dt_hr=0.1)
-precip = UniformPrecipitation(storm.hyetograph())
-
-sim = ROMSimulation(
-    grid=grid,
-    precipitation=precip,
-    boundary_conditions=[NormalDepthOutlet()],
-    duration_hr=24,
-)
+# Run the simulation
+sim = CascadeSimulation(project)
 results = sim.run()
-print(results.summary())
-print(f"Peak depth: {results.max_depth:.2f} m")
+results.to_json("cascade_results.json")
 ```
+
+Structure types: `CascadeGravityStructure`, `CascadeGatedSpillway`,
+`CascadePumpStation`, `CascadeDropInlet`.
 
 ---
 
-## `pywmp.hybrid` — One-Way 1D→2D Coupling
+## `pywmp.api`
 
-### Two coupling modes
-
-**Mode A — Outlet-to-inflow BC (`HybridSimulation`):**  
-The 1D reach outlet hydrograph is injected as a boundary inflow into the 2D domain. Use when the watershed drains into a 2D floodplain at a known channel location.
-
-**Mode B — Excess-precip distribution (`HybridExcessPrecipSimulation`):**  
-The 1D network computes per-subbasin losses; excess precipitation is spatially distributed onto the 2D mesh through subbasin masks. Use when rainfall-on-mesh with spatially varying losses is needed.
-
-### `HybridSimulation`
-
-```python
-HybridSimulation(upstream_model, rom_grid, outlet_specs)
-```
-
-| Parameter | Description |
-|---|---|
-| `upstream_model` | A configured `DesignStormSimulation` or `BasinModel` |
-| `rom_grid` | `ROMGrid` for the 2D domain |
-| `outlet_specs` | List of `OutletBCSpec` objects mapping 1D element names to 2D mesh edge cells |
-
-### `HybridExcessPrecipSimulation`
-
-```python
-HybridExcessPrecipSimulation(upstream_model, rom_grid, mask_spec)
-```
-
-| Parameter | Description |
-|---|---|
-| `mask_spec` | `SubbasinMaskSpec` — maps each 1D subbasin name to a set of 2D grid cells |
-
-### `SubbasinMaskSpec`
-
-```python
-SubbasinMaskSpec.from_delineation(delineator, grid)
-```
-
-Automatically builds masks from a `WatershedDelineator` result and a `ROMGrid`. Each subbasin's catchment polygon is rasterized onto the 2D grid.
-
-### `HybridResults`
-
-Extends `ROMResults` with:
-
-| Attribute | Description |
-|---|---|
-| `.inflow_hydrograph` | Combined 1D inflow injected into 2D domain |
-| `.flood_map` | `FloodMap` with peak depth raster |
-| `.compare_1d_2d()` | Comparison metrics between 1D outlet and 2D outlet hydrographs |
-
----
-
-## `pywmp.flood` — HAND Terrain Analysis & Flood Mapping
-
-### `HANDRaster`
-
-```python
-HANDRaster(dem_path, stream_threshold=500)
-```
-
-| Parameter | Description |
-|---|---|
-| `dem_path` | Path to a conditioned DEM (GeoTIFF) |
-| `stream_threshold` | Flow accumulation cells needed to define a stream (default 500) |
-
-**Methods:**
-
-| Method | Description |
-|---|---|
-| `.compute()` | Fill sinks → D8 flow direction → flow accumulation → HAND |
-| `.hand` | HAND raster array (height above nearest drainage) |
-| `.streams` | Binary stream network raster |
-| `.snap_to_stream(x, y)` | Snap a coordinate to the nearest stream cell |
-
-### `WatershedDelineator`
-
-```python
-WatershedDelineator(dem_path, stream_threshold=500)
-```
-
-**Methods:**
-
-| Method | Description |
-|---|---|
-| `.delineate()` | Run full delineation; returns reach network |
-| `.reach_properties` | DataFrame: `[reach_id, length_ft, slope, area_mi2, ...]` |
-| `.rating_curves(n=0.035)` | Per-reach Manning's normal-depth rating curves |
-| `.catchment_polygons` | GeoDataFrame of delineated catchment polygons |
-
-### `FloodMapper`
-
-```python
-FloodMapper(hand_raster, delineator)
-```
-
-**Method:**
-
-```python
-flood_map = FloodMapper.map(sim_results, method="hand_uniform")
-```
-
-| `method` | Description |
-|---|---|
-| `"hand_uniform"` | HAND-uniform (one depth per reach from rating curve) — fastest |
-| `"bathtub"` | Simple bathtub (all cells ≤ WSE flooded) |
-| `"connected_bathtub"` | BFS-connected bathtub (flood must be contiguous from seed) |
-| `"hand_spatial"` | Spatially varying HAND depth — highest accuracy |
-
-### `FloodMap`
-
-| Attribute | Description |
-|---|---|
-| `.depth` | Depth raster array (ft or m) |
-| `.stats.flooded_area_acres` | Total inundated area |
-| `.stats.max_depth_ft` | Maximum water depth |
-| `.stats.volume_acre_ft` | Total flood volume |
-| `.plot()` | Matplotlib depth map |
-| `.to_cog(path)` | Export as Cloud Optimized GeoTIFF |
-
----
-
-## `pywmp.cascade` — Cascade 2001 Detention Routing
-
-### `CascadeSimulation`
-
-```python
-CascadeSimulation(basins, links, rainfall, dt_min=5)
-```
-
-Runs the Cascade 2001 iterative stage-routing algorithm over a network of detention basins and hydraulic structures.
-
-### `parse_cascade_dat(path)`
-
-Parse an official Cascade 2001 `.dat` project file and return a configured `CascadeSimulation`.
-
-```python
-from pywmp.cascade import parse_cascade_dat
-
-sim = parse_cascade_dat("project.dat")
-results = sim.run()
-results.to_csv("output/")
-```
-
-### Hydraulic structures
-
-| Class | Models |
-|---|---|
-| `CascadeGravityStructure` | Weir + bleeder pipe + principal spillway composite |
-| `CascadeGatedSpillway` | Gate-controlled spillway with 4 flow regimes |
-| `CascadePumpStation` | On/off pump with hysteresis levels |
-| `CascadeDropInlet` | Drop-inlet riser + barrel pipe |
-| `CascadeSeawall` | Coastal seawall overtopping (new in v0.2.0) |
-
-### Runoff methods
-
-| Class | Method |
-|---|---|
-| `SBUHRunoff` | Santa Barbara Urban Hydrograph (time-step Green-Ampt) |
-| `GDCUHRunoff` | General Dimensionless Curvilinear Unit Hydrograph |
-
----
-
-## `pywmp.api` — REST API Server
-
-### Start the server
+Optional REST API server for remote simulation control.
 
 ```bash
 pip install "pywmp[api]"
-uvicorn pywmp.api.app:app --host 0.0.0.0 --port 8000 --reload
+python -m pywmp.api.app
 ```
 
-### Endpoints
-
-| Method | Path | Description |
-|---|---|---|
-| `POST` | `/simulate/hms` | Submit an HMS simulation job |
-| `POST` | `/simulate/cascade` | Submit a Cascade 2001 job |
-| `GET` | `/results/{run_id}` | Retrieve results (status + hydrographs) |
-| `GET` | `/runs` | List all in-memory runs |
-| `POST` | `/upload/dat` | Upload a `.dat` file to the server |
-| `GET` | `/health` | Server health check |
-| `WS` | `/ws/{run_id}` | WebSocket progress stream |
-
-See the [REST API Tutorial](../tutorials/rest_api.md) for full request/response schemas and a working Python client.
+See [REST API Tutorial](../tutorials/rest_api.md) for endpoint examples.
 
 ---
 
-## `pywmp.time_series` — Universal Data Carrier
+## References
 
-### `TimeSeries`
+Full citations for all methods referenced in this page. See also the
+[master bibliography](../references.md).
 
-```python
-TimeSeries(times, values, dt=None, label="", units="")
-```
+Bates, P. D., & De Roo, A. P. J. (2000). *Journal of Hydrology*, *236*(1–2), 54–77.
+  [DOI ↗](https://doi.org/10.1016/S0022-1694(00)00278-X)
 
-| Parameter | Description |
-|---|---|
-| `times` | 1-D array of time values (hours) |
-| `values` | 1-D array of data values |
-| `dt` | Uniform timestep (hours); inferred if None |
-| `label` | Human-readable label |
-| `units` | Unit string (e.g. `"cfs"`, `"in/hr"`, `"m"`) |
+Bates, P. D., Horritt, M. S., & Fewtrell, T. J. (2010). *Journal of Hydrology*,
+  *387*(1–2), 33–45.
+  [DOI ↗](https://doi.org/10.1016/j.jhydrol.2010.03.027)
 
-**Arithmetic:** `+`, `-`, `*`, `/`, `**` all work element-wise with broadcasting.
 
-**Methods:**
+Clark, C. O. (1945). *Transactions ASCE*, *110*(1), 1419–1446.
+  [DOI ↗](https://doi.org/10.1061/TACEAT.0005791)
 
-| Method | Description |
-|---|---|
-| `.interpolate(t)` | Linear interpolation at arbitrary time(s) |
-| `.resample(new_dt)` | Change timestep (linear interpolation) |
-| `.to_dict()` | JSON-serializable representation |
-| `TimeSeries.from_dict(d)` | Reconstruct from dict |
 
----
+Cunge, J. A. (1969). *Journal of Hydraulic Research*, *7*(2), 205–230.
+  [DOI ↗](https://doi.org/10.1080/00221686909500264)
 
-## `pywmp.units` — Unit System
+Driver, N. E., & Tasker, G. D. (1990). USGS Water-Supply Paper 2363.
+  [PDF ↗](https://pubs.usgs.gov/wsp/2363/report.pdf)
 
-```python
-from pywmp.units import UnitSystem, USC, SI
+Federal Emergency Management Agency. (2023). *National Flood Hazard Layer (NFHL)*.
+  [FEMA MSC ↗](https://msc.fema.gov)
 
-# USC — US customary (ft, in, mi, cfs, acres, ...)
-# SI  — metric (m, mm, km, m³/s, ha, ...)
-```
+Green, W. H., & Ampt, G. A. (1911). *Journal of Agricultural Science*, *4*(1), 1–24.
+  [DOI ↗](https://doi.org/10.1017/S0021859600001441)
 
-Pass `units=USC` or `units=SI` to any class that accepts it. Most classes default to USC.
+Gupta, H. V., Kling, H., Yilmaz, K. K., & Martinez, G. F. (2009). *Journal of
+  Hydrology*, *377*(1–2), 80–91.
+  [DOI ↗](https://doi.org/10.1016/j.jhydrol.2009.08.003)
+
+Harten, A., Lax, P. D., & van Leer, B. (1983). *SIAM Review*, *25*(1), 35–61.
+  [DOI ↗](https://doi.org/10.1137/1025002)
+
+Kling, H., Fuchs, M., & Paulin, M. (2012). *Journal of Hydrology*, *424–425*, 264–277.
+  [DOI ↗](https://doi.org/10.1016/j.jhydrol.2012.01.011)
+
+
+Meyer-Peter, E., & Müller, R. (1948). *Proceedings 2nd IAHSR Meeting*, pp. 39–64.
+  [TU Delft ↗](https://repository.tudelft.nl/record/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7)
+
+Mockus, V. (1957). *Use of storm and watershed characteristics in synthetic hydrograph
+  analysis and application*. American Geophysical Union.
+  [USDA NAL ↗](https://handle.nal.usda.gov/10113/IND43966827)
+
+Nash, J. E., & Sutcliffe, J. V. (1970). *Journal of Hydrology*, *10*(3), 282–290.
+  [DOI ↗](https://doi.org/10.1016/0022-1694(70)90255-6)
+
+Natural Resources Conservation Service. (2004). *National Engineering Handbook,
+  Part 630: Hydrology*. USDA.
+  [USDA NAL ↗](https://handle.nal.usda.gov/10113/32494)
+
+Puls, L. G. (1928). *Flood regulation of the Tennessee River*. USACE.
+  [HathiTrust ↗](https://catalog.hathitrust.org/Record/001697457)
+
+Renard, K. G., et al. (1997). *RUSLE* (Agriculture Handbook 703). USDA.
+  [ARS ↗](https://www.ars.usda.gov/research/publications/publication/?seqNo115=16945)
+
+Schaefer, J. T. (1990). *Weather and Forecasting*, *5*(4), 570–575.
+  [DOI ↗](https://doi.org/10.1175/1520-0434(1990)005<0570:TCSIAA>2.0.CO;2)
+
+Snyder, F. F. (1938). *Transactions AGU*, *19*(1), 447–454.
+  [DOI ↗](https://doi.org/10.1029/TR019i001p00447)
+
+Storn, R., & Price, K. (1997). *Journal of Global Optimization*, *11*(4), 341–359.
+  [DOI ↗](https://doi.org/10.1023/A:1008202821328)
+
+U.S. Environmental Protection Agency. (1983). *Results of the NURP* (USEPA 400/3-83-16).
+  [EPA ↗](https://www.epa.gov/npdes/urban-runoff-national-stormwater-program)
+
+Wing, O. E. J., et al. (2017). *Water Resources Research*, *53*(9), 7968–7986.
+  [DOI ↗](https://doi.org/10.1002/2017WR020917)
+
+Wischmeier, W. H., & Smith, D. D. (1978). *Agriculture Handbook 537*. USDA.
+  [ARS ↗](https://www.ars.usda.gov/research/publications/publication/?seqNo115=90921)
+
+Wong, M., & Parker, G. (2006). *Journal of Hydraulic Engineering*, *132*(11), 1159–1168.
+  [DOI ↗](https://doi.org/10.1061/(ASCE)0733-9429(2006)132:11(1159))
