@@ -3,6 +3,8 @@ name: Deploy docs
 on:
   push:
     branches: [main]
+  repository_dispatch:
+    types: [code-updated]   # fired by mandalanil/pywmp on code changes
   workflow_dispatch:
 
 permissions:
@@ -24,8 +26,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
+      - name: Install docs dependencies
         run: pip install -r requirements.txt
+
+      - name: Install pywmp (needed for mkdocstrings)
+        run: pip install git+https://github.com/mandalanil/pywmp.git
 
       - name: Build site
         run: mkdocs build --site-dir site

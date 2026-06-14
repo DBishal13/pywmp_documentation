@@ -66,6 +66,15 @@ extra_css:
   - css/overrides.css
 plugins:
   - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.]
+          options:
+            show_source: false
+            show_root_heading: true
+            heading_level: 3
+            docstring_style: google
 markdown_extensions:
   - admonition
   - attr_list
