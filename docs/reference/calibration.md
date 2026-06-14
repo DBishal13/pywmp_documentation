@@ -53,7 +53,7 @@ engine = CalibrationEngine(
     params    = params,
     objective = "nse",
 )
-results = engine.run("differential_evolution", maxiter=100)
+results = engine.run_differential_evolution(maxiter=100)
 print(results.summary())
 ```
 
@@ -99,6 +99,31 @@ The `ParameterSet` is passed to `CalibrationEngine` and controls which values ar
 
 ---
 
+## `ParameterBound`
+
+```python
+@dataclass
+class ParameterBound(name, lo, hi, initial=None, log_scale=False)
+```
+
+Defines search bounds for a single calibration parameter.
+
+| Field | Description |
+|-------|-------------|
+| `name` | Parameter name string (must match `model_fn` kwarg) |
+| `lo`, `hi` | Lower and upper bounds |
+| `initial` | Starting point; if `None`, midpoint of [lo, hi] |
+| `log_scale` | If `True`, search on log₁₀ space (useful for orders-of-magnitude parameters such as Ks) |
+
+```python
+from pywmp.calibration import ParameterBound
+
+# Example: hydraulic conductivity spans orders of magnitude — use log scale
+ParameterBound("Ks", lo=1e-6, hi=1e-2, initial=1e-4, log_scale=True)
+```
+
+---
+
 ## `CalibrationEngine`
 
 ```python
@@ -136,11 +161,24 @@ def my_obj(simulated, observed):
 engine = CalibrationEngine(model_fn, observed, params, objective=my_obj)
 ```
 
+### `.run_differential_evolution(**kwargs)`
+
+Global search using differential evolution (Storn & Price, 1997). Recommended as
+the default for any problem with more than 3 parameters or a multi-modal response
+surface.
+
+```python
+results = engine.run_differential_evolution(maxiter=200, popsize=15)
+```
+
 ### `.run(algorithm, **kwargs)`
+
+Generic entry-point supporting multiple algorithms:
 
 | Algorithm | Best for | Speed | `kwargs` |
 |---|---|---|---|
 | `"differential_evolution"` | Any problem; most robust (default) | Slow | `maxiter`, `popsize`, `tol` |
+| `"sce_ua"` | Classic hydrology calibration; 3–15 parameters | Medium | `maxiter`, `n_complexes` |
 | `"nelder_mead"` | Smooth 2–4 param surfaces | Fast | `maxiter`, `xatol`, `fatol` |
 | `"dual_annealing"` | Multi-modal, many parameters | Medium | `maxiter`, `initial_temp` |
 | `"lhs"` | Space-filling sensitivity survey | Very fast | `n_samples` |
@@ -148,7 +186,17 @@ engine = CalibrationEngine(model_fn, observed, params, objective=my_obj)
 
 ```python
 results = engine.run("differential_evolution", maxiter=200, popsize=15)
-results = engine.run("lhs", n_samples=500)   # fast parameter space survey
+results = engine.run("sce_ua", maxiter=500, n_complexes=5)   # Duan et al. (1992)
+results = engine.run("lhs", n_samples=500)                   # fast parameter space survey
+```
+
+### `.run_parallel(n_workers=4, **kwargs)`
+
+Parallel variant of differential evolution that distributes model evaluations across
+multiple CPU workers. Useful when each model evaluation is expensive (>1 s).
+
+```python
+results = engine.run_parallel(n_workers=8, maxiter=200, popsize=15)
 ```
 
 ---
@@ -203,7 +251,7 @@ focused_params = ParameterSet([
     ("R",    1.0,  3.0, survey.optimal_params["R"]),
 ])
 engine2 = CalibrationEngine(run_model, observed, focused_params, objective="nse")
-final = engine2.run("differential_evolution", maxiter=200)
+final = engine2.run_differential_evolution(maxiter=200)
 print(final.summary())
 ```
 
