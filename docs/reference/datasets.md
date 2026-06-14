@@ -1,65 +1,122 @@
 # Dataset Reference
 
-`pywmp.datasets` provides automated downloaders for all spatial inputs required by a watershed model.
+`pywmp.datasets` automates download and caching of eight open-access spatial datasets
+required for watershed modelling. All downloads are performed over HTTPS from public
+agency APIs; no API keys are required.
 
 ## DatasetManager
-
-The `DatasetManager` controls the download order, caching, and summary of downloaded files.
-
-### Basic usage
 
 ```python
 from pywmp.datasets import DatasetManager
 
 dm = DatasetManager(
-    aoi=(-81.700, 27.850, -81.500, 27.950),
-    output_dir="data/my_watershed",
+    aoi=(-81.70, 27.85, -81.50, 27.95),   # (minx, miny, maxx, maxy) in WGS-84
+    output_dir="data/watershed/",
+    cache=True,                            # default True
 )
-
-dm.download_dem(resolution_m=10)
-dm.download_watershed(huc_level=12)
-dm.download_nhd()
-dm.download_nlcd(year=2021)
-dm.download_soils()
-dm.download_cn()
-dm.download_atlas14(lat=27.9, lon=-81.6)
-dm.download_floodzone()
-print(dm.summary())
 ```
 
-## Datasets supported
+**AOI formats accepted**: `(minx, miny, maxx, maxy)` tuple, `shapely.Geometry`,
+`geopandas.GeoDataFrame`, or `geopandas.GeoSeries`. All are normalised to WGS-84.
 
-- `download_dem()` — USGS 3DEP DEM data at selectable resolution
-- `download_watershed()` — USGS Watershed Boundary Dataset (WBD)
-- `download_nhd()` — NHD flowlines and catchment polygons
-- `download_nlcd()` — NLCD land cover raster
-- `download_soils()` — USDA SSURGO soil and HSG raster data
-- `download_cn()` — derive a curve number raster from NLCD + SSURGO
-- `download_atlas14()` — NOAA Atlas 14 IDF curves for a point location
-- `download_floodzone()` — FEMA NFHL flood zone polygons
+## Individual download methods
 
-## Workflow notes
+### `download_dem(resolution_m=10)`
 
-- Download the DEM first. Many other dataset downloaders use the DEM footprint or AOI geometry.
-- Download NLCD and soils before calling `download_cn()`.
-- `download_all()` runs all supported downloaders in a sensible sequence.
+Downloads a USGS 3DEP elevation raster for the AOI via the TNM REST API.
 
-## Output files
+| Parameter | Default | Notes |
+|-----------|---------|-------|
+| `resolution_m` | 10 | 1 m (LiDAR), 10 m, or 30 m available depending on coverage |
 
-The dataset manager writes files into `output_dir`. Typical outputs include:
+Output: `{output_dir}/dem.tif`
 
-- `dem.tif`
-- `watershed.gpkg`
-- `nhd_flowlines.gpkg`
-- `nhd_catchments.gpkg`
-- `nlcd.tif`
-- `soils.tif`
-- `cn.tif`
-- `atlas14_idf.json`
-- `floodzone.gpkg`
+Use 1 m resolution for site-level RUSLE/LS factor calculations and asset elevation extraction.
+Use 10 m or 30 m for watershed-scale simulations to reduce grid size.
+
+### `download_watershed(huc_level=12)`
+
+Downloads HUC watershed boundary polygons from the USGS WBD service.
+
+Output: `{output_dir}/watershed.gpkg`
+
+### `download_nhd()`
+
+Downloads NHDPlus HR flowlines and catchment polygons via ArcGIS feature service
+with automatic paging for large AOIs.
+
+Outputs: `{output_dir}/nhd_flowlines.gpkg`, `{output_dir}/nhd_catchments.gpkg`
+
+### `download_nlcd(year=2021)`
+
+Downloads the NLCD land cover raster via MRLC WCS. For large AOIs, the downloader
+automatically tiles the request into a 2x2 grid and merges the results with rasterio.
+Two coverage IDs are attempted in sequence to account for MRLC server changes.
+
+| Parameter | Default | Valid years |
+|-----------|---------|------------|
+| `year` | 2021 | 2001, 2004, 2006, 2008, 2011, 2013, 2016, 2019, 2021 |
+
+Output: `{output_dir}/nlcd.tif`
+
+### `download_soils()`
+
+Downloads SSURGO soil data and derives a Hydrologic Soil Group (HSG) raster from
+the USDA Soil Data Access REST service.
+
+Output: `{output_dir}/soils.tif`
+
+### `download_cn()`
+
+Derives a Curve Number raster by cross-referencing NLCD land-cover classes with
+SSURGO HSG assignments using the NRCS TR-55 lookup table.
+
+**Requires**: NLCD and soils datasets downloaded first.
+
+Output: `{output_dir}/cn.tif`
+
+### `download_atlas14(lat, lon)`
+
+Retrieves NOAA Atlas 14 IDF values from the HDSC REST API for the watershed centroid.
+Returns depth-frequency pairs for durations of 5 min to 60 days and return periods
+of 1 to 1000 years.
+
+Output: `{output_dir}/atlas14_idf.json`
+
+### `download_floodzone()`
+
+Downloads FEMA National Flood Hazard Layer (NFHL) flood zone polygons. AE, AO, VE,
+and X zones are included. Paged queries handle large AOIs.
+
+Output: `{output_dir}/floodzone.gpkg`
+
+## Convenience functions
+
+```python
+from pywmp.datasets import download_for_aoi
+
+# Runs all eight downloaders in sequence
+download_for_aoi(
+    aoi=(-81.70, 27.85, -81.50, 27.95),
+    output_dir="data/watershed/",
+    lat=27.9, lon=-81.6,
+)
+```
+
+## PROJ environment
+
+On Windows, `DatasetManager` calls `ensure_proj_env()` at import time to locate
+`proj.db` and set `PROJ_LIB` automatically. If PROJ cannot be located, a
+`RuntimeError` is raised with diagnostic information. Install `pyproj` via pip or
+conda-forge to resolve this.
 
 ## Troubleshooting downloads
 
-- If a dataset is not available for the AOI, try a nearby location or a larger AOI.
-- If download requests fail, check internet access and firewall settings.
-- For large AOIs, use coarser DEM resolution and download data incrementally.
+- **AOI outside coverage** — Some 3DEP 1 m tiles are not available outside the
+  continental US. Fall back to `resolution_m=10`.
+- **NLCD WCS timeout** — The MRLC server occasionally times out for large AOIs.
+  The downloader retries with 2x2 tiling automatically.
+- **NHD empty response** — Verify the AOI intersects US territory. Use `huc_level=8`
+  for larger polygons if `huc_level=12` returns no features.
+- **Atlas 14 rate limit** — The HDSC API enforces a rate limit. A 30-second wait
+  between calls is sufficient in batch scripts.

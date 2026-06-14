@@ -1,72 +1,116 @@
 # Architecture
 
-PyWMP is built as a modular Python package with clear separation between modeling, data, and interface layers. The architecture is designed to support reproducible workflows, extensible backend selection, and portable geospatial data processing.
+PyWMP v0.2.0 is organised into three broad layers — physics, data, and interfaces —
+each implemented as a separate Python sub-package. The design prioritises module
+independence (each sub-package can be imported alone), a shared set of primitive
+types (TimeSeries, UnitSystem, ROMGrid), and graduated optional dependencies so
+that a researcher with only NumPy can still run 1D simulations.
 
-## Core layers
+## Module map
 
-### 1. Simulation and workflow
-
-- `pywmp.workflow` — high-level workflow builders for design storms, basin models, and automated model assembly
-- `pywmp.simulation` — the engine that executes basin models and collects results
-- `pywmp.time_series` — a unified time series data format for model inputs and outputs
-
-### 2. Hydrologic modules
-
-- `pywmp.meteorology` — precipitation sources, hyetographs, and NOAA Atlas 14 IDF curves
-- `pywmp.losses` — infiltration and runoff generation methods
-- `pywmp.transform` — unit hydrograph methods for storm runoff timing
-- `pywmp.baseflow` — groundwater and recession flow models
-- `pywmp.routing` — channel routing schemes and reach hydraulics
-- `pywmp.reservoir` — level-pool storage and outlet structure models
-- `pywmp.gridded` — spatially distributed methods, such as ModClark and gridded curve number
-
-### 3. 2D modeling and hybrid coupling
-
-- `pywmp.rom` — 2D rain-on-mesh solver for shallow-water simulation
-- `pywmp.hybrid` — one-way 1D to 2D coupling and excess precipitation distribution
-- `pywmp.flood` — flood mapping, HAND analysis, and inundation tools
-
-### 4. Datasets and external integration
-
-- `pywmp.datasets` — automated downloaders for DEM, watershed boundaries, hydrography, land cover, soils, rainfall, and flood zones
-- `pywmp.api` — optional REST API and WebSocket server for remote simulation control
-- `pywmp.cascade` — Cascade 2001 project parser and detention routing compatibility
+```
+pywmp/
+├── units.py               UnitSystem (USC / SI), convert(), unit_label()
+├── time_series.py         TimeSeries — universal in/out for all modules
+├── compute.py             available_backends(), recommended_backend()
+├── schema.py              Pydantic v2 I/O schemas  [api extra]
+│
+├── meteorology/           DesignStorm, IDFCurve, SCS/balanced hyetographs,
+│                          NOAA Atlas 14 (offline + live HDSC API)
+├── losses/                InitialConstant, SCS-CN, Green-Ampt, SMA
+├── transform/             SCS UH, Clark UH, Snyder UH, User UH
+├── baseflow/              Recession, Constant Monthly, Linear Reservoir
+├── routing/               Muskingum, Muskingum-Cunge, Modified Puls, Lag
+├── reservoir/             Level-Pool (weir_flow, orifice_flow)
+├── gridded/               ModClark, GriddedCN
+├── network/               SubbasinElement, ReachElement, JunctionElement,
+│                          ReservoirElement, DiversionElement, ROMElement
+├── simulation/            BasinModel engine, SimResults
+├── workflow/              DesignStormSimulation, build_basin_model,
+│                          build_subbasin_masks, parameter-estimation helpers
+│
+├── rom/                   ROMGrid, ManningField, boundary conditions,
+│                          UniformPrecipitation, GriddedPrecipitation,
+│                          DeficitConstantInfiltration, GriddedGreenAmpt,
+│                          GriddedSCS, FiniteVolumeSolver, ROMSimulation,
+│                          ROMResults
+├── hybrid/                HybridSimulation, HybridExcessPrecipSimulation,
+│                          SubbasinMaskSpec, HybridResults
+├── flood/                 read_tif / write_tif, HANDRaster,
+│                          WatershedDelineator, FloodMapper,
+│                          connected_bathtub, compute_stats
+│
+├── sediment/              SedimentParameters, RUSLEErosion,
+│                          SuspendedSedimentTransport, BedloadTransport,
+│                          KronePartheniades, MorphodynamicsModel,
+│                          UpwindAdvection, LS-factor tools, SedimentResults
+├── wq/                    WQConstituent, TSSModel, TPModel, WQTransport,
+│                          WQResults  (EMC_TP_BY_NLCD lookup table)
+├── coastal/               SeawallGeometry, SeawallSimulation2D,
+│                          SeawallSLRSweep, CoastalFloodMap, SweepResults
+│
+├── calibration/           ParameterBound, ParameterSet, CalibrationEngine,
+│                          CalibrationResults, ObjectiveFunction
+├── validation/            HydroMetrics, KGEComponents, ModelVsObserved,
+│                          GaugeStation, SpatialFloodValidation,
+│                          download_streamflow / download_stage / download_ssc,
+│                          nse / kge / rmse / pbias / peak_flow_error
+│
+├── datasets/              DatasetManager, individual downloaders:
+│                          dem, watershed, nhd, landuse, soils, rainfall,
+│                          floodzone  — PROJ auto-detection, tiling,
+│                          fetch_with_retry, split_bbox_tiles
+│
+├── cascade/               parse_cascade_dat, CascadeSimulation,
+│                          structure types, CascadeResults, DSS I/O
+└── api/                   FastAPI app, HTTP endpoints, WebSocket stream
+```
 
 ## Design principles
 
-### Unified data model
+### Primitive types as shared interfaces
 
-PyWMP relies on common types such as `TimeSeries`, `UnitSystem`, and `SimResults` to ensure that components can interoperate cleanly across modules.
+`TimeSeries`, `UnitSystem`, `ROMGrid`, and `SedimentParameters` cross module
+boundaries. All physics modules accept and return these primitives, making it
+straightforward to wire, say, a 2D ROM result directly into the sediment
+transport solver or a calibration engine.
 
-### Extensible backend selection
+### Graduated optional dependencies
 
-- CPU acceleration through `numba`
-- GPU acceleration through CUDA when available
-- Optional WhiteboxTools support for large DEM workflows
+The core package (`pip install pywmp`) requires only NumPy, SciPy, pandas,
+matplotlib, and networkx. Geospatial I/O (rasterio, geopandas, fiona, pyproj)
+is an optional extra (`[spatial]`). Dataset downloaders, GPU acceleration, and
+the REST API each require their own extras.
 
-### Modular optional dependencies
+### Backend selection
 
-The package separates optional features to reduce install burden:
+| Backend | Requirement | Typical use |
+|---------|------------|-------------|
+| `numpy` | always available | development, small grids |
+| `numba` | `[fast]` extra | production CPU runs (10–30x speedup) |
+| `cuda` | CUDA toolkit + `[fast]` | GPU runs on NVIDIA hardware |
 
-- `spatial` for GIS I/O
-- `datasets` for automated downloads
-- `fast` for `numba` acceleration
-- `api` for REST integration
-- `dss` for HEC-DSS I/O
+`recommended_backend(n_cells)` selects the fastest available option for the
+given grid size.
 
-## Typical workflow
+### PROJ auto-detection
 
-1. **Prepare data** using `pywmp.datasets` or external sources
-2. **Build a model** using `pywmp.workflow` and selected hydrologic methods
-3. **Run simulation** with `pywmp.simulation` or `pywmp.rom`
-4. **Inspect results** using `SimResults` and export options
-5. **Optionally couple** 1D and 2D domains with `pywmp.hybrid`
+`pywmp.datasets._utils.ensure_proj_env()` scans a ranked list of candidate
+paths (environment variables, conda prefix, system GDAL, ArcGIS Pro) for
+`proj.db` and sets `PROJ_LIB` automatically. This resolves the most common
+Windows install failure without requiring manual environment configuration.
 
-## Deployment and integration
+## Typical end-to-end workflow
 
-PyWMP can be used as:
-
-- a Python library in notebooks and scripts
-- a reproducible workflow engine for batch simulations
-- a remote service via the optional REST API
-- a research platform for hybrid model comparison
+1. **Prepare data** — `DatasetManager.download_all()` retrieves DEM,
+   watershed boundaries, NHD, NLCD, soils, Atlas 14 IDF curves, and FEMA
+   flood zones.
+2. **Build the domain** — `ROMGrid.from_tif()` for 2D or
+   `DesignStormSimulation` for 1D.
+3. **Run simulation** — `ROMSimulation.run()` or `BasinModel.run()`.
+4. **Couple domains** — `HybridSimulation` or `HybridExcessPrecipSimulation`.
+5. **Add sediment or WQ** — attach `SuspendedSedimentTransport` or `TSSModel`
+   to `ROMSimulation` via the `sediment=` keyword argument.
+6. **Validate** — `ModelVsObserved` against USGS gauges;
+   `SpatialFloodValidation` against FEMA NFHL or SAR flood maps.
+7. **Calibrate** — `CalibrationEngine` with NSE, KGE, or a custom objective.

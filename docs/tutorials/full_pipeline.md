@@ -58,24 +58,56 @@ print(f"100-year 24-hour depth: {depth_100yr:.2f} in")
 
 ---
 
-## Step 2 — Build the 1D hydrologic model
-
-We use `DesignStormSimulation`, which is a fluent API around `BasinModel` for single-storm events.
+## Step 2 — Watershed delineation
 
 ```python
-from pywmp.workflow.design_storm import DesignStormSimulation
+from pywmp.flood.watershed import WatershedDelineator
 
+wd = WatershedDelineator("data/hillsborough/dem.tif")
+wd.fill_sinks()               # Priority-flood algorithm
+wd.compute_d8_flow()          # D8 flow direction
+wd.compute_flow_accumulation()
+wd.delineate(outlet_coords=(-82.013, 28.044), area_threshold_ac=200)
+subbasins = wd.save("outputs/subbasins.gpkg")
+```
+
+---
+
+## Step 3 — Build the 1D hydrologic model
+
+We use `build_basin_model()` to automatically assemble a basin model from the
+delineated subbasin polygons and raster inputs, then use `DesignStormSimulation`
+for the storm event.
+
+```python
+from pywmp.workflow.delineation_builder import build_basin_model
+from pywmp.workflow.design_storm import DesignStormSimulation
+from pywmp.losses import SCSCurveLoss
+from pywmp.transform import ClarkUH        # Clark (1945)
+from pywmp.routing import MuskingumCungeRouting   # Cunge (1969)
+from pywmp.simulation.engine import BasinModel
+
+model = build_basin_model("outputs/subbasins.gpkg", nlcd="data/hillsborough/nlcd.tif",
+                           soils="data/hillsborough/hsg.tif")
+# Override with Clark UH transform (Clark, 1945) and Muskingum-Cunge routing (Cunge, 1969)
+for sb in model.subbasins:
+    sb.loss = SCSCurveLoss.from_landuse_and_soils(sb.nlcd_stats, sb.hsg_stats)
+    sb.transform = ClarkUH(tc_hr=sb.tc_kirpich(), R=0.6)
+
+for reach in model.reaches:
+    reach.routing = MuskingumCungeRouting.from_geometry(reach)
+```
+
+Alternatively, build subbasins manually:
+
+```python
 sim = DesignStormSimulation(
     storm_type="SCS_II",      # SCS Type II distribution — correct for central Florida
     total_depth_in=depth_100yr,
     duration_hr=24,
     dt_hr=0.1,                # 6-minute timestep — standard for design events
 )
-```
 
-**Add subbasins.** Each subbasin needs a loss method and a transform method.
-
-```python
 # Upper subbasin: mixed residential, B/C soils → composite CN = 78
 sim.add_subbasin(
     name="Upper",
@@ -109,11 +141,7 @@ sim.add_subbasin(
         "lag_hr": 1.1,    # Estimated as 0.6 × Tc; Tc from hydraulic geometry
     },
 )
-```
 
-**Connect subbasins through a reach:**
-
-```python
 sim.add_reach(
     upstream="Upper",
     downstream="Lower",
@@ -124,11 +152,7 @@ sim.add_reach(
         "steps": 3,     # Sub-reaches for numerical stability
     },
 )
-```
 
-**Run the 1D simulation:**
-
-```python
 results_1d = sim.run()
 print(results_1d.summary())
 ```
@@ -143,7 +167,7 @@ Lower (routed)    721.6              93.1               12.0
 
 ---
 
-## Step 3 — Prepare the 2D grid
+## Step 4 — Prepare the 2D grid
 
 Load the downloaded DEM and resample to a workable resolution:
 
@@ -169,9 +193,9 @@ Estimated memory: ~3.2 MB
 
 ---
 
-## Step 4 — Run a hybrid simulation
+## Step 5 — Run a hybrid simulation
 
-`HybridSimulation` injects the 1D outlet hydrograph from Step 2 as a boundary inflow into the 2D domain:
+`HybridSimulation` injects the 1D outlet hydrograph from Step 3 as a boundary inflow into the 2D domain:
 
 ```python
 from pywmp.hybrid.coupler import HybridSimulation, OutletBCSpec
@@ -196,7 +220,7 @@ hybrid_results = hybrid.run()
 
 ---
 
-## Step 5 — Analyze results
+## Step 6 — Analyze results
 
 ### Outlet hydrograph
 
@@ -287,3 +311,69 @@ hybrid_results.to_csv("output/")
 - [Hybrid Coupling Tutorial](hybrid_coupling.md) — deep dive on coupling modes and parameters
 - [REST API Tutorial](rest_api.md) — run these simulations remotely via HTTP
 - [Module Reference](../reference/modules.md) — full API for all classes used here
+
+---
+
+## References
+
+Bates, P. D., & De Roo, A. P. J. (2000). A simple raster-based model for flood
+  inundation simulation. *Journal of Hydrology*, *236*(1–2), 54–77.
+  [DOI ↗](https://doi.org/10.1016/S0022-1694(00)00278-X)
+
+Bates, P. D., Horritt, M. S., & Fewtrell, T. J. (2010). A simple inertial
+  formulation of the shallow water equations for efficient two-dimensional flood
+  inundation modelling. *Journal of Hydrology*, *387*(1–2), 33–45.
+  [DOI ↗](https://doi.org/10.1016/j.jhydrol.2010.03.027)
+
+Clark, C. O. (1945). Storage and the unit hydrograph. *Transactions of the American
+  Society of Civil Engineers*, *110*(1), 1419–1446.
+  [DOI ↗](https://doi.org/10.1061/TACEAT.0005791)
+
+Cunge, J. A. (1969). On the subject of a flood propagation computation method
+  (Muskingum method). *Journal of Hydraulic Research*, *7*(2), 205–230.
+  [DOI ↗](https://doi.org/10.1080/00221686909500264)
+
+Federal Emergency Management Agency. (2023). *National Flood Hazard Layer (NFHL)*.
+  [FEMA MSC ↗](https://msc.fema.gov)
+
+Harten, A., Lax, P. D., & van Leer, B. (1983). On upstream differencing and
+  Godunov-type schemes for hyperbolic conservation laws. *SIAM Review*, *25*(1),
+  35–61.
+  [DOI ↗](https://doi.org/10.1137/1025002)
+
+Homer, C., Dewitz, J., Jin, S., Xian, G., Costello, C., Danielson, P., Gass, L.,
+  Funk, M., Wickham, J., Stehman, S., Auch, R., & Riitters, K. (2020). Conterminous
+  United States land cover change patterns 2001–2016 from the 2016 National Land
+  Cover Database. *ISPRS Journal of Photogrammetry and Remote Sensing*, *162*,
+  184–199.
+  [DOI ↗](https://doi.org/10.1016/j.isprsjprs.2020.02.019)
+
+Moore, I. D., & Burch, G. J. (1986). Physical basis of the length-slope factor in
+  the Universal Soil Loss Equation. *Soil Science Society of America Journal*,
+  *50*(5), 1294–1298.
+  [DOI ↗](https://doi.org/10.2136/sssaj1986.03615995005000050042x)
+
+Natural Resources Conservation Service. (2004). *National Engineering Handbook,
+  Part 630: Hydrology*. U.S. Department of Agriculture.
+  [USDA NAL ↗](https://handle.nal.usda.gov/10113/32494)
+
+Perica, S., Pavlovic, S., St. Laurent, M., Trypaluk, C., Unruh, D., Martin, D., &
+  Wilhite, O. (2013). *NOAA Atlas 14: Precipitation-frequency atlas of the United
+  States, Volume 9: Southeastern States, Version 3* (NOAA Atlas 14, Vol. 9). NOAA.
+  [DOI ↗](https://doi.org/10.25923/xnb4-5613)
+
+Schaefer, J. T. (1990). The critical success index as an indicator of warning skill.
+  *Weather and Forecasting*, *5*(4), 570–575.
+  [DOI ↗](https://doi.org/10.1175/1520-0434(1990)005<0570:TCSIAA>2.0.CO;2)
+
+Soil Survey Staff. (2023). *Web Soil Survey*. USDA Natural Resources Conservation
+  Service.
+  [Web Soil Survey ↗](https://websoilsurvey.nrcs.usda.gov)
+
+U.S. Geological Survey. (2024). *3D Elevation Program (3DEP)*.
+  [USGS ↗](https://www.usgs.gov/3dep)
+
+Wing, O. E. J., Bates, P. D., Sampson, C. C., Smith, A. M., Johnson, K. A., &
+  Erickson, T. A. (2017). Validation of a 30 m resolution flood hazard model of
+  the conterminous United States. *Water Resources Research*, *53*(9), 7968–7986.
+  [DOI ↗](https://doi.org/10.1002/2017WR020917)
