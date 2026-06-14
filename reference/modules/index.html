@@ -1,0 +1,1974 @@
+﻿
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="PyWMP is an open-source Python based watershed modelling and planning tool for 1D, 2D, and hybrid simulations.">
+      
+      
+        <meta name="author" content="PyWMP Contributors">
+      
+      
+        <link rel="canonical" href="https://dbishal13.github.io/pywmp_documentation/reference/modules/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../datasets/">
+      
+      
+      <link rel="icon" href="../../images/PyWMP_Logo_Design_SVG.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Module Reference - PyWMP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/overrides.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PyWMP" class="md-header__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyWMP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Module Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        
+  
+<form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_1"
+    data-md-color-media=""
+    data-md-color-scheme="default"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to dark mode"
+    checked
+  >
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_2"
+    data-md-color-media=""
+    data-md-color-scheme="slate"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to light mode"
+    
+  >
+  
+  <a class="header-github" href="https://github.com/mandalanil/pywmp" target="_blank" rel="noopener" aria-label="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+    </svg>
+  </a>
+  <div class="version-dropdown" id="vd">
+    <button class="version-chip" type="button">v0.2.0</button>
+    <div class="version-panel">
+      <div class="vp-title">What's new in v0.2.0</div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Calibration engine</strong><p>Differential evolution, Nelder-Mead, dual annealing, LHS, grid search. NSE / KGE / PBIAS / RMSE objectives. <a href="reference/calibration/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Validation framework</strong><p>Gauge skill scores + spatial flood metrics — CSI, hit rate, FAR, F1. <a href="reference/validation/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Coastal modeling</strong><p>Seawall routing, TC intensity estimator, SLR scenario sweep. <a href="reference/coastal/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Sediment transport</strong><p>Bedload (MPM), cohesive sediment, morphodynamic bed, Stokes settling. <a href="reference/sediment/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Water quality</strong><p>TSS and TP transport coupled to 1D flow. EMC loading. <a href="reference/wq/">Docs →</a></p></div></div>
+    </div>
+  </div>
+  <div class="nepal-toggle">
+    <label class="nepal-toggle__icon nepal-toggle__sun" title="Light mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M12 2L13.16 7.65L17 3.34L15.18 8.82L20.66 7L16.35 10.84L22 12L16.35 13.16L20.66 17L15.18 15.18L17 20.66L13.16 16.35L12 22L10.84 16.35L7 20.66L8.82 15.18L3.34 17L7.65 13.16L2 12L7.65 10.84L3.34 7L8.82 8.82L7 3.34L10.84 7.65Z"/>
+      </svg>
+    </label>
+    <div class="nepal-toggle__track" role="switch" tabindex="0" aria-checked="false" aria-label="Toggle light and dark mode">
+      <span class="nepal-toggle__thumb"></span>
+    </div>
+    <label class="nepal-toggle__icon nepal-toggle__moon" title="Dark mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </label>
+  </div>
+</form>
+  <script>
+  (function () {
+    if (window.__nepalToggleInit) return;
+    window.__nepalToggleInit = true;
+
+    function removeNavTitle() {
+      var t = document.querySelector('.md-nav--primary > label.md-nav__title');
+      if (t) t.remove();
+      var s = document.querySelector('.md-nav--primary .md-nav__source');
+      if (s) s.remove();
+    }
+    if (window.document$) {
+      window.document$.subscribe(removeNavTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', removeNavTitle);
+    }
+
+    function activate(n) {
+      var el = document.getElementById('__palette_' + n);
+      if (!el || el.checked) return;
+      el.click();
+      var scheme = el.getAttribute('data-md-color-scheme');
+      if (scheme) document.body.setAttribute('data-md-color-scheme', scheme);
+      var track = document.querySelector('.nepal-toggle__track');
+      if (track) track.setAttribute('aria-checked', n === 2 ? 'true' : 'false');
+    }
+
+    function toggle() {
+      var p1 = document.getElementById('__palette_1');
+      activate(p1 && p1.checked ? 2 : 1);
+    }
+
+    document.addEventListener('click', function (e) {
+      var vd = document.getElementById('vd');
+      if (e.target.closest('.version-chip')) {
+        if (vd) vd.classList.toggle('open');
+      } else if (vd && vd.classList.contains('open') && !e.target.closest('#vd')) {
+        vd.classList.remove('open');
+      }
+      if (e.target.closest('.nepal-toggle__sun')) {
+        activate(1);
+      } else if (e.target.closest('.nepal-toggle__moon')) {
+        activate(2);
+      } else if (e.target.closest('.nepal-toggle__track')) {
+        toggle();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.nepal-toggle__track')) {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    function bindTitle() {
+      var title = document.querySelector('.md-header__title');
+      if (title && !title.dataset.pywmpBound) {
+        title.dataset.pywmpBound = '1';
+        title.addEventListener('click', function () {
+          var logo = document.querySelector('.md-header__button.md-logo');
+          window.location.href = logo ? logo.href : '/';
+        });
+      }
+    }
+
+    if (window.document$) {
+      window.document$.subscribe(bindTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', bindTitle);
+    }
+  })();
+  </script>
+  
+
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+  
+    <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+
+          <!-- Compact brand strip -->
+          <div class="sb-brand">
+            <a href="../../index.html" class="sb-brand__link">
+              <div class="sb-brand__mark">
+                <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP">
+              </div>
+              <div class="sb-brand__text">
+                <span class="sb-brand__name">PyWMP</span>
+                <span class="sb-brand__sub">Watershed Modelling & Planning</span>
+              </div>
+              <span class="sb-brand__ver">v0.2.0</span>
+            </a>
+            <p class="sb-brand__copy">© PyWMP · CWR3 · FAU</p>
+          </div>
+
+          
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PyWMP" class="md-nav__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    PyWMP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/full_pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Full Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/dataset_download/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Download
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/hybrid_coupling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hybrid Coupling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/sediment_wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment and Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/calibration_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration and Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/visualization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualization with GeoLibre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/rest_api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    REST API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Module Reference
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Module Reference
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpunits-and-pywmptime_series" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.units and pywmp.time_series
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpmeteorology" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.meteorology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmplosses" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.losses
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmptransform" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.transform
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmprouting" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.routing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpworkflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmprom" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.rom
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pywmp.rom">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#romgrid" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROMGrid
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#romsimulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROMSimulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundary-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boundary conditions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infiltration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infiltration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmphybrid" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.hybrid
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpsediment" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.sediment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpwq" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.wq
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpcoastal" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.coastal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpcalibration" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.calibration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpvalidation" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpdatasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.datasets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpflood" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.flood
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpcascade" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.cascade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pywmpapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      pywmp.api
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flood/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flood Mapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cascade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cascade Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calibration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calibrate_ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coastal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coastal Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sediment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment Transport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../baseflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Baseflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gridded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gridded Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Network Elements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reservoir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reservoir Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workflow Builder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+        </div>
+      </div>
+    </div>
+  
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="module-reference">Module Reference<a class="headerlink" href="#module-reference" title="Permanent link">&para;</a></h1>
+<p>Complete API summary for all PyWMP v0.2.0 modules. For conceptual background see
+<a href="../../concepts/">Concepts</a>; for end-to-end examples see the <a href="../../tutorials/full_pipeline/">Tutorials</a>.</p>
+<hr />
+<h2 id="pywmpunits-and-pywmptime_series"><code>pywmp.units</code> and <code>pywmp.time_series</code><a class="headerlink" href="#pywmpunits-and-pywmptime_series" title="Permanent link">&para;</a></h2>
+<p>Every PyWMP module accepts and returns these two primitives.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.units</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnitSystem</span><span class="p">,</span> <span class="n">USC</span><span class="p">,</span> <span class="n">SI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.time_series</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeries</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="p">(</span><span class="n">times</span><span class="o">=</span><span class="n">t_array</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">v_array</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;USC&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong><code>UnitSystem</code></strong>: <code>USC</code> (US Customary, ft-cfs-in) or <code>SI</code> (metres-m3/s-mm).</p>
+<p><strong><code>TimeSeries</code></strong>: <code>times</code> (hr), <code>values</code> (units depend on context), <code>units</code> string.</p>
+<hr />
+<h2 id="pywmpmeteorology"><code>pywmp.meteorology</code><a class="headerlink" href="#pywmpmeteorology" title="Permanent link">&para;</a></h2>
+<p>Precipitation sources and storm definitions.</p>
+<table>
+<thead>
+<tr>
+<th>Class / function</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DesignStorm</code></td>
+<td>Wrapper around a hyetograph array</td>
+</tr>
+<tr>
+<td><code>IDFCurve</code></td>
+<td>IDF data with <code>depth(duration, return_period)</code></td>
+</tr>
+<tr>
+<td><code>scs_type_hyetograph(storm_type, duration_hr, dt_hr, total_in, units)</code></td>
+<td>SCS Type I / IA / II / III</td>
+</tr>
+<tr>
+<td><code>balanced_storm_hyetograph(depth, dt)</code></td>
+<td>NOAA balanced-storm distribution</td>
+</tr>
+<tr>
+<td><code>read_netcdf_precipitation(path)</code></td>
+<td>Gridded NetCDF precipitation</td>
+</tr>
+<tr>
+<td><code>read_mrms_grib2(path)</code></td>
+<td>MRMS GRIB2 precipitation</td>
+</tr>
+</tbody>
+</table>
+<p>IDF/Atlas 14 functions live in <code>pywmp.meteorology.noaa_atlas14</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.meteorology.noaa_atlas14</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_idf_offline</span><span class="p">,</span> <span class="n">fetch_idf_online</span>
+
+<span class="n">idf</span> <span class="o">=</span> <span class="n">get_idf_offline</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="s2">&quot;SE&quot;</span><span class="p">)</span>             <span class="c1"># bundled Southeast US Atlas 14 data</span>
+<span class="n">idf</span> <span class="o">=</span> <span class="n">fetch_idf_online</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mf">26.08</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">80.33</span><span class="p">)</span>  <span class="c1"># live NOAA HDSC API call</span>
+<span class="n">depth_100yr</span> <span class="o">=</span> <span class="n">idf</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">duration_hr</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">return_period_yr</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="pywmplosses"><code>pywmp.losses</code><a class="headerlink" href="#pywmplosses" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Method</th>
+<th>Key parameters</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InitialConstantLoss</code></td>
+<td><code>compute(precip_ts)</code></td>
+<td><code>ia</code> (in), <code>fc</code> (in/hr)</td>
+<td>USACE, 2023</td>
+</tr>
+<tr>
+<td><code>SCSCurveLoss</code></td>
+<td><code>compute(precip_ts)</code></td>
+<td><code>CN</code>, <code>amc</code> (I/II/III)</td>
+<td>NRCS, 2004; USDA SCS, 1986</td>
+</tr>
+<tr>
+<td><code>GreenAmptLoss</code></td>
+<td><code>compute(precip_ts)</code></td>
+<td><code>Ks</code>, <code>psi</code>, <code>theta_i</code>, <code>eta</code></td>
+<td>Green &amp; Ampt, 1911</td>
+</tr>
+<tr>
+<td><code>SMALoss</code></td>
+<td><code>compute(precip_ts, pe_ts)</code></td>
+<td>six storage-zone parameters</td>
+<td>Bennett, 1998</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="pywmptransform"><code>pywmp.transform</code><a class="headerlink" href="#pywmptransform" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Key parameters</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SCSUnitHydrograph</code></td>
+<td><code>lag_hr</code>, <code>area_mi2</code></td>
+<td>NRCS, 2004; Mockus, 1957</td>
+</tr>
+<tr>
+<td><code>ClarkUH</code></td>
+<td><code>Tc</code> (hr), <code>R</code> (hr), time-area curve</td>
+<td>Clark, 1945</td>
+</tr>
+<tr>
+<td><code>SnyderUH</code></td>
+<td><code>Cp</code>, <code>Ct</code>, <code>tp</code></td>
+<td>Snyder, 1938</td>
+</tr>
+<tr>
+<td><code>UserUH</code></td>
+<td>tabular UH array</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="pywmprouting"><code>pywmp.routing</code><a class="headerlink" href="#pywmprouting" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Key parameters</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MuskingumRouting</code></td>
+<td><code>K_hr</code>, <code>x</code>, <code>steps</code></td>
+<td>McCarthy, 1938</td>
+</tr>
+<tr>
+<td><code>MuskingumCungeRouting</code></td>
+<td>channel geometry, Manning's n</td>
+<td>Cunge, 1969</td>
+</tr>
+<tr>
+<td><code>ModifiedPulsRouting</code></td>
+<td>storage-outflow relationship</td>
+<td>Puls, 1928</td>
+</tr>
+<tr>
+<td><code>LagRouting</code></td>
+<td><code>lag_hr</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="pywmpworkflow"><code>pywmp.workflow</code><a class="headerlink" href="#pywmpworkflow" title="Permanent link">&para;</a></h2>
+<p>High-level model builders.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.workflow.design_storm</span><span class="w"> </span><span class="kn">import</span> <span class="n">DesignStormSimulation</span>
+
+<span class="n">sim</span> <span class="o">=</span> <span class="n">DesignStormSimulation</span><span class="p">(</span>
+    <span class="n">storm_type</span><span class="o">=</span><span class="s2">&quot;SCS_II&quot;</span><span class="p">,</span>
+    <span class="n">total_depth_in</span><span class="o">=</span><span class="mf">13.7</span><span class="p">,</span>
+    <span class="n">duration_hr</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span>
+    <span class="n">dt_hr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">add_subbasin</span><span class="p">(</span><span class="s2">&quot;Sub1&quot;</span><span class="p">,</span> <span class="n">area_mi2</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
+                 <span class="n">loss_method</span><span class="o">=</span><span class="s2">&quot;SCS_CN&quot;</span><span class="p">,</span> <span class="n">loss_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;CN&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">},</span>
+                 <span class="n">transform_method</span><span class="o">=</span><span class="s2">&quot;SCS&quot;</span><span class="p">,</span> <span class="n">transform_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lag_hr&quot;</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">})</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">add_reach</span><span class="p">(</span><span class="s2">&quot;Sub1&quot;</span><span class="p">,</span> <span class="s2">&quot;Outlet&quot;</span><span class="p">,</span>
+              <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Muskingum&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;K_hr&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div>
+<p>Helper functions: <code>build_basin_model()</code>, <code>build_subbasin_masks()</code>,
+<code>estimate_scs_lag()</code>, <code>estimate_muskingum_k_x()</code>.</p>
+<hr />
+<h2 id="pywmprom"><code>pywmp.rom</code><a class="headerlink" href="#pywmprom" title="Permanent link">&para;</a></h2>
+<p>2D rain-on-mesh finite-volume solver.</p>
+<h3 id="romgrid">ROMGrid<a class="headerlink" href="#romgrid" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.rom.mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">ROMGrid</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">ROMGrid</span><span class="o">.</span><span class="n">from_tif</span><span class="p">(</span><span class="s2">&quot;dem.tif&quot;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s2">&quot;USC&quot;</span><span class="p">)</span>
+<span class="c1"># grid.shape -&gt; (nrows, ncols)</span>
+<span class="c1"># grid.dx_ft, grid.dy_ft  (cell size)</span>
+</code></pre></div>
+<h3 id="romsimulation">ROMSimulation<a class="headerlink" href="#romsimulation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.rom.simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ROMSimulation</span>
+
+<span class="n">sim</span> <span class="o">=</span> <span class="n">ROMSimulation</span><span class="p">(</span>
+    <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+    <span class="n">precipitation</span><span class="o">=</span><span class="n">precip</span><span class="p">,</span>       <span class="c1"># UniformPrecipitation or GriddedPrecipitation</span>
+    <span class="n">infiltration</span><span class="o">=</span><span class="n">infilt</span><span class="p">,</span>        <span class="c1"># DeficitConstantInfiltration, GriddedGreenAmpt, GriddedSCS, or None</span>
+    <span class="n">manning</span><span class="o">=</span><span class="n">manning</span><span class="p">,</span>            <span class="c1"># ManningField</span>
+    <span class="n">boundary_conditions</span><span class="o">=</span><span class="p">[</span><span class="n">bc</span><span class="p">],</span>   <span class="c1"># list of boundary condition objects</span>
+    <span class="n">duration_hr</span><span class="o">=</span><span class="mf">24.0</span><span class="p">,</span>
+    <span class="n">output_interval_hr</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>             <span class="c1"># &quot;numpy&quot;, &quot;numba&quot;, &quot;cuda&quot;</span>
+    <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>                <span class="c1"># optional FiniteVolumeSolver with custom h_dry / cfl / max_dt_sec</span>
+    <span class="n">sediment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>              <span class="c1"># attach SuspendedSedimentTransport here</span>
+    <span class="n">units</span><span class="o">=</span><span class="s2">&quot;USC&quot;</span><span class="p">,</span>
+    <span class="c1"># Solver uses first-order HLL (Harten et al., 1983) finite-volume scheme;</span>
+    <span class="c1"># wetting/drying follows Bates &amp; De Roo (2000); CFL stability (Courant et al., 1928)</span>
+<span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">save_max_depth_tif</span><span class="p">(</span><span class="s2">&quot;depth.tif&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="boundary-conditions">Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NormalDepthOutlet(edge)</code></td>
+<td>Free outfall at domain edge ("north"/"south"/"east"/"west")</td>
+</tr>
+<tr>
+<td><code>FixedStageBC(edge, stage_ts)</code></td>
+<td>Time-varying water surface elevation at domain edge</td>
+</tr>
+<tr>
+<td><code>InflowBC(cell_row, cell_col, q_ts)</code></td>
+<td>Point inflow (1D hydrograph coupling)</td>
+</tr>
+<tr>
+<td><code>InternalInflowBC(mask, q_ts)</code></td>
+<td>Distributed inflow over a cell mask</td>
+</tr>
+</tbody>
+</table>
+<h3 id="infiltration">Infiltration<a class="headerlink" href="#infiltration" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Key parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DeficitConstantInfiltration(initial_loss, fc, units, grid_shape)</code></td>
+<td>SCS-equivalent</td>
+</tr>
+<tr>
+<td><code>GriddedGreenAmptInfiltration(Ks, psi, theta_i, eta)</code></td>
+<td>spatially distributed</td>
+</tr>
+<tr>
+<td><code>GriddedSCSInfiltration(cn_array)</code></td>
+<td>CN from raster</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="pywmphybrid"><code>pywmp.hybrid</code><a class="headerlink" href="#pywmphybrid" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.hybrid.coupler</span><span class="w"> </span><span class="kn">import</span> <span class="n">HybridSimulation</span><span class="p">,</span> <span class="n">HybridExcessPrecipSimulation</span>
+
+<span class="c1"># Outlet-to-inflow mode</span>
+<span class="n">hybrid</span> <span class="o">=</span> <span class="n">HybridSimulation</span><span class="p">(</span>
+    <span class="n">upstream_model</span><span class="o">=</span><span class="n">sim_1d</span><span class="p">,</span>
+    <span class="n">rom_grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+    <span class="n">boundary_spec</span><span class="o">=</span><span class="s2">&quot;outlet&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">h_results</span> <span class="o">=</span> <span class="n">hybrid</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="c1"># Excess-precipitation mode</span>
+<span class="n">excess</span> <span class="o">=</span> <span class="n">HybridExcessPrecipSimulation</span><span class="p">(</span>
+    <span class="n">upstream_model</span><span class="o">=</span><span class="n">sim_1d</span><span class="p">,</span>
+    <span class="n">rom_grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+    <span class="n">mask_spec</span><span class="o">=</span><span class="n">subbasin_masks</span><span class="p">,</span>   <span class="c1"># SubbasinMaskSpec</span>
+<span class="p">)</span>
+<span class="n">e_results</span> <span class="o">=</span> <span class="n">excess</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<h2 id="pywmpsediment"><code>pywmp.sediment</code><a class="headerlink" href="#pywmpsediment" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.sediment</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SedimentParameters</span><span class="p">,</span> <span class="n">RUSLEErosion</span><span class="p">,</span>
+    <span class="n">SuspendedSedimentTransport</span><span class="p">,</span> <span class="n">BedloadTransport</span><span class="p">,</span> <span class="n">SedimentResults</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.sediment.ls_factor</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_ls_from_tif</span>
+
+<span class="c1"># Build parameter grid</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">SedimentParameters</span><span class="p">(</span>
+    <span class="n">K</span><span class="o">=</span><span class="mf">0.28</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>   <span class="c1"># RUSLE K (Wischmeier &amp; Smith, 1978; Renard et al., 1997)</span>
+    <span class="n">C</span><span class="o">=</span><span class="mf">0.15</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>   <span class="c1"># cover-management factor (Renard et al., 1997)</span>
+    <span class="n">D50_mm</span><span class="o">=</span><span class="mf">0.25</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>  <span class="c1"># median grain size</span>
+    <span class="n">P</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>                          <span class="c1"># support-practice factor</span>
+<span class="p">)</span>
+
+<span class="c1"># Derive LS from DEM slope arrays (returned by rom grid or computed separately)</span>
+<span class="n">Sx</span><span class="p">,</span> <span class="n">Sy</span> <span class="o">=</span> <span class="o">...</span>   <span class="c1"># slope arrays from DEM, same shape as grid</span>
+<span class="n">erosion</span> <span class="o">=</span> <span class="n">RUSLEErosion</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Sx</span><span class="p">,</span> <span class="n">Sy</span><span class="p">)</span>
+
+<span class="n">sst</span> <span class="o">=</span> <span class="n">SuspendedSedimentTransport</span><span class="p">(</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+    <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+    <span class="n">erosion</span><span class="o">=</span><span class="n">erosion</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Attach to ROMSimulation</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">ROMSimulation</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">sediment</span><span class="o">=</span><span class="n">sst</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="n">sed_results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">sediment</span>    <span class="c1"># SedimentResults</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sed_results</span><span class="o">.</span><span class="n">total_erosion_tons</span><span class="p">,</span> <span class="n">sed_results</span><span class="o">.</span><span class="n">total_deposition_tons</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>LS factor helpers</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.sediment.ls_factor</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_ls_from_tif</span><span class="p">,</span> <span class="n">compute_ls_single_cell</span>
+<span class="n">ls</span> <span class="o">=</span> <span class="n">compute_ls_from_tif</span><span class="p">(</span><span class="s2">&quot;dem.tif&quot;</span><span class="p">)</span>   <span class="c1"># returns LS raster array</span>
+</code></pre></div>
+<p><strong>Bedload (gravel channels)</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">bl</span> <span class="o">=</span> <span class="n">BedloadTransport</span><span class="p">(</span>
+    <span class="n">params</span><span class="p">,</span> <span class="n">Sx</span><span class="p">,</span> <span class="n">Sy</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">grid</span><span class="o">.</span><span class="n">dx_ft</span><span class="p">,</span>
+    <span class="n">theta_cr</span><span class="o">=</span><span class="mf">0.0495</span><span class="p">,</span>      <span class="c1"># Wong &amp; Parker (2006) corrected Shields criterion</span>
+    <span class="n">use_wong_parker</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># corrects MPM (1948) coefficient from 8.0 to 3.97</span>
+<span class="p">)</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">SuspendedSedimentTransport</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">erosion</span><span class="o">=</span><span class="n">erosion</span><span class="p">,</span> <span class="n">bedload</span><span class="o">=</span><span class="n">bl</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="pywmpwq"><code>pywmp.wq</code><a class="headerlink" href="#pywmpwq" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.wq</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSSModel</span><span class="p">,</span> <span class="n">TPModel</span><span class="p">,</span> <span class="n">WQTransport</span><span class="p">,</span> <span class="n">EMC_TP_BY_NLCD</span>
+
+<span class="n">tss</span> <span class="o">=</span> <span class="n">TSSModel</span><span class="p">(</span>
+    <span class="n">shape</span><span class="o">=</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="n">dx</span><span class="o">=</span><span class="n">grid</span><span class="o">.</span><span class="n">dx_ft</span><span class="p">,</span>
+    <span class="n">D</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>              <span class="c1"># diffusion coefficient (ft2/s)</span>
+    <span class="n">init_conc_mg_L</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">tp</span> <span class="o">=</span> <span class="n">TPModel</span><span class="p">(</span>
+    <span class="n">shape</span><span class="o">=</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="n">dx</span><span class="o">=</span><span class="n">grid</span><span class="o">.</span><span class="n">dx_ft</span><span class="p">,</span>
+    <span class="n">emc_tp_mg_L</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>    <span class="c1"># EMC approach: USEPA (1983); Driver &amp; Tasker (1990)</span>
+    <span class="n">k_settle</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>      <span class="c1"># settling rate (m/s)</span>
+<span class="p">)</span>
+
+<span class="c1"># Step both models at each ROM time step using depth/velocity arrays</span>
+<span class="n">tss</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">tp</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+<span class="c1"># Retrieve load at outlet</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tss</span><span class="o">.</span><span class="n">outlet_load_kg</span><span class="p">,</span> <span class="n">tp</span><span class="o">.</span><span class="n">outlet_load_kg</span><span class="p">)</span>
+</code></pre></div>
+<p><code>EMC_TP_BY_NLCD</code> is a dict mapping NLCD integer class to TP event mean concentration (mg/L).</p>
+<hr />
+<h2 id="pywmpcoastal"><code>pywmp.coastal</code><a class="headerlink" href="#pywmpcoastal" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.coastal</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeawallSLRSweep</span><span class="p">,</span> <span class="n">SeawallGeometry</span>
+
+<span class="c1"># SeawallGeometry is typically built from a DEM and seawall mask via a helper</span>
+<span class="c1"># (see the coastal simulation module for the from_dem constructor)</span>
+<span class="n">sweep</span> <span class="o">=</span> <span class="n">SeawallSLRSweep</span><span class="p">(</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="n">geom</span><span class="p">,</span>
+    <span class="n">slr_levels_ft</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span>
+    <span class="n">rain_ts</span><span class="o">=</span><span class="n">rain_ts</span><span class="p">,</span>             <span class="c1"># optional TimeSeries for compound event</span>
+    <span class="n">normal_tide_ft</span><span class="o">=</span><span class="mf">0.52</span><span class="p">,</span>         <span class="c1"># MHHW baseline</span>
+    <span class="n">ocean_edge</span><span class="o">=</span><span class="s2">&quot;south&quot;</span><span class="p">,</span>
+    <span class="n">duration_hr</span><span class="o">=</span><span class="mf">24.0</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">sweep_results</span> <span class="o">=</span> <span class="n">sweep</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sweep_results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>   <span class="c1"># peak stage, flooded area, overtopping per SLR level</span>
+</code></pre></div>
+<hr />
+<h2 id="pywmpcalibration"><code>pywmp.calibration</code><a class="headerlink" href="#pywmpcalibration" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.calibration</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalibrationEngine</span><span class="p">,</span> <span class="n">ParameterSet</span><span class="p">,</span> <span class="n">ParameterBound</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_model</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="c1"># build and run your model; return simulated array</span>
+    <span class="o">...</span>
+
+<span class="n">ps</span> <span class="o">=</span> <span class="n">ParameterSet</span><span class="p">([</span>
+    <span class="n">ParameterBound</span><span class="p">(</span><span class="s2">&quot;CN&quot;</span><span class="p">,</span>    <span class="n">lo</span><span class="o">=</span><span class="mf">60.0</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="mf">98.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">80.0</span><span class="p">),</span>
+    <span class="n">ParameterBound</span><span class="p">(</span><span class="s2">&quot;lag_hr&quot;</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span>  <span class="n">initial</span><span class="o">=</span><span class="mf">1.2</span><span class="p">),</span>
+<span class="p">])</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">CalibrationEngine</span><span class="p">(</span>
+    <span class="n">model_fn</span><span class="o">=</span><span class="n">run_model</span><span class="p">,</span>
+    <span class="n">observed</span><span class="o">=</span><span class="n">obs_array</span><span class="p">,</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">ps</span><span class="p">,</span>
+    <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;kge&quot;</span><span class="p">,</span>       <span class="c1"># &quot;nse&quot;, &quot;kge&quot;, &quot;rmse&quot;, &quot;volume_error&quot;, or Callable</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Run differential evolution global search (Storn &amp; Price, 1997)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">run_differential_evolution</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">popsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="c1"># results.best_params   -&gt; dict of parameter name -&gt; value</span>
+<span class="c1"># results.best_objective -&gt; float (NSE/KGE; Nash &amp; Sutcliffe, 1970 / Gupta et al., 2009)</span>
+<span class="c1"># results.history       -&gt; list of CalibrationRecord</span>
+</code></pre></div>
+<hr />
+<h2 id="pywmpvalidation"><code>pywmp.validation</code><a class="headerlink" href="#pywmpvalidation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.validation</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">HydroMetrics</span><span class="p">,</span> <span class="n">ModelVsObserved</span><span class="p">,</span> <span class="n">GaugeStation</span><span class="p">,</span>
+    <span class="n">SpatialFloodValidation</span><span class="p">,</span>
+    <span class="n">download_streamflow</span><span class="p">,</span> <span class="n">download_stage</span><span class="p">,</span>
+    <span class="n">nse</span><span class="p">,</span> <span class="n">kge</span><span class="p">,</span> <span class="n">rmse</span><span class="p">,</span> <span class="n">pbias</span><span class="p">,</span> <span class="n">peak_flow_error</span>
+<span class="p">)</span>
+
+<span class="c1"># Scalar metrics from arrays</span>
+<span class="c1"># NSE: Nash &amp; Sutcliffe (1970); KGE: Gupta et al. (2009); Kling et al. (2012)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">HydroMetrics</span><span class="p">(</span><span class="n">obs</span><span class="o">=</span><span class="n">obs_array</span><span class="p">,</span> <span class="n">sim</span><span class="o">=</span><span class="n">sim_array</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">nse</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">kge</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">kge</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">kge</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">rmse</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">pbias</span><span class="p">)</span>
+
+<span class="c1"># USGS NWIS gauge comparison</span>
+<span class="n">gauge</span> <span class="o">=</span> <span class="n">GaugeStation</span><span class="p">(</span><span class="s2">&quot;02298202&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Peace River at Arcadia&quot;</span><span class="p">,</span>
+                     <span class="n">lat</span><span class="o">=</span><span class="mf">27.21</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">81.87</span><span class="p">,</span> <span class="n">da_mi2</span><span class="o">=</span><span class="mf">1367.0</span><span class="p">)</span>
+<span class="n">obs_df</span> <span class="o">=</span> <span class="n">download_streamflow</span><span class="p">(</span><span class="s2">&quot;02298202&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2020-09-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2020-09-30&quot;</span><span class="p">)</span>
+<span class="n">comparison</span> <span class="o">=</span> <span class="n">ModelVsObserved</span><span class="p">(</span><span class="n">obs_df</span><span class="p">[</span><span class="s2">&quot;q_cfs&quot;</span><span class="p">],</span> <span class="n">sim_series</span><span class="p">,</span> <span class="n">gauge</span><span class="o">=</span><span class="n">gauge</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">comparison</span><span class="o">.</span><span class="n">metrics</span><span class="p">())</span>
+
+<span class="c1"># Spatial flood extent comparison (vs FEMA NFHL or SAR)</span>
+<span class="n">sv</span> <span class="o">=</span> <span class="n">SpatialFloodValidation</span><span class="p">(</span>
+    <span class="n">sim_depth</span><span class="o">=</span><span class="n">depth_array</span><span class="p">,</span>     <span class="c1"># float array, ft</span>
+    <span class="n">ref_mask</span><span class="o">=</span><span class="n">fema_ae_mask</span><span class="p">,</span>     <span class="c1"># bool array (True = flooded in reference; FEMA, 2023)</span>
+    <span class="n">valid_mask</span><span class="o">=</span><span class="n">domain_mask</span><span class="p">,</span>    <span class="c1"># bool array (True = valid domain cells)</span>
+    <span class="n">depth_threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># CSI: Schaefer (1990); HR/FAR: Wing et al. (2017); performance: Bates et al. (2010)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sv</span><span class="o">.</span><span class="n">csi</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">hit_rate</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">far</span><span class="p">,</span> <span class="n">sv</span><span class="o">.</span><span class="n">f1</span><span class="p">)</span>
+</code></pre></div>
+<p>Standalone functions: <code>nse(obs, sim)</code>, <code>kge(obs, sim) -&gt; KGEComponents</code>,
+<code>rmse(obs, sim)</code>, <code>pbias(obs, sim)</code>, <code>peak_flow_error(obs, sim)</code>,
+<code>peak_timing_error(obs, sim)</code>.</p>
+<hr />
+<h2 id="pywmpdatasets"><code>pywmp.datasets</code><a class="headerlink" href="#pywmpdatasets" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatasetManager</span>
+
+<span class="n">dm</span> <span class="o">=</span> <span class="n">DatasetManager</span><span class="p">(</span>
+    <span class="n">aoi</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">81.70</span><span class="p">,</span> <span class="mf">27.85</span><span class="p">,</span> <span class="o">-</span><span class="mf">81.50</span><span class="p">,</span> <span class="mf">27.95</span><span class="p">),</span>   <span class="c1"># (minx, miny, maxx, maxy) WGS-84</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;data/watershed/&quot;</span><span class="p">,</span>
+    <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>                            <span class="c1"># skip re-download if file exists</span>
+<span class="p">)</span>
+
+<span class="n">dm</span><span class="o">.</span><span class="n">download_dem</span><span class="p">(</span><span class="n">resolution_m</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">download_watershed</span><span class="p">(</span><span class="n">huc_level</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">download_nhd</span><span class="p">()</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">download_nlcd</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2021</span><span class="p">)</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">download_soils</span><span class="p">()</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">download_cn</span><span class="p">()</span>                          <span class="c1"># requires NLCD and soils</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">download_atlas14</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mf">27.9</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">81.6</span><span class="p">)</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">download_floodzone</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div>
+<p>Standalone helper: <code>download_for_aoi(aoi, output_dir, lat, lon)</code> runs all
+eight downloaders in sequence.</p>
+<hr />
+<h2 id="pywmpflood"><code>pywmp.flood</code><a class="headerlink" href="#pywmpflood" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.flood.dem_io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_tif</span><span class="p">,</span> <span class="n">write_tif</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.flood.watershed</span><span class="w"> </span><span class="kn">import</span> <span class="n">WatershedDelineator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.flood.hand</span><span class="w"> </span><span class="kn">import</span> <span class="n">HANDRaster</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.flood.inundation</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_stats</span>
+
+<span class="c1"># DEM I/O</span>
+<span class="n">dem</span><span class="p">,</span> <span class="n">cell_size_ft</span><span class="p">,</span> <span class="n">nodata</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">crs</span> <span class="o">=</span> <span class="n">read_tif</span><span class="p">(</span><span class="s2">&quot;dem.tif&quot;</span><span class="p">)</span>
+
+<span class="c1"># HAND raster</span>
+<span class="n">hand</span> <span class="o">=</span> <span class="n">HANDRaster</span><span class="o">.</span><span class="n">from_tif</span><span class="p">(</span><span class="s2">&quot;dem.tif&quot;</span><span class="p">)</span>
+<span class="n">hand</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>  <span class="c1"># fills sinks, D8 flow, flow accumulation, HAND</span>
+
+<span class="c1"># Inundation statistics</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">compute_stats</span><span class="p">(</span><span class="n">depth_array</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=</span><span class="n">cell_size_ft</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">flooded_area_acres</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">mean_depth_ft</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">max_depth_ft</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="pywmpcascade"><code>pywmp.cascade</code><a class="headerlink" href="#pywmpcascade" title="Permanent link">&para;</a></h2>
+<p>SFWMD Cascade 2001 project parser and detention routing engine.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.cascade</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_cascade_dat</span><span class="p">,</span> <span class="n">CascadeSimulation</span>
+
+<span class="c1"># Parse an official .dat project file</span>
+<span class="n">project</span> <span class="o">=</span> <span class="n">parse_cascade_dat</span><span class="p">(</span><span class="s2">&quot;my_project.dat&quot;</span><span class="p">)</span>
+
+<span class="c1"># Run the simulation</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">CascadeSimulation</span><span class="p">(</span><span class="n">project</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s2">&quot;cascade_results.json&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Structure types: <code>CascadeGravityStructure</code>, <code>CascadeGatedSpillway</code>,
+<code>CascadePumpStation</code>, <code>CascadeDropInlet</code>.</p>
+<hr />
+<h2 id="pywmpapi"><code>pywmp.api</code><a class="headerlink" href="#pywmpapi" title="Permanent link">&para;</a></h2>
+<p>Optional REST API server for remote simulation control.</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pywmp[api]&quot;</span>
+python<span class="w"> </span>-m<span class="w"> </span>pywmp.api.app
+</code></pre></div>
+<p>See <a href="../../tutorials/rest_api/">REST API Tutorial</a> for endpoint examples.</p>
+<hr />
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>Full citations for all methods referenced in this page. See also the
+<a href="../../references/">master bibliography</a>.</p>
+<p>Bates, P. D., &amp; De Roo, A. P. J. (2000). <em>Journal of Hydrology</em>, <em>236</em>(1–2), 54–77.
+  <a href="https://doi.org/10.1016/S0022-1694(00)00278-X">DOI ↗</a></p>
+<p>Bates, P. D., Horritt, M. S., &amp; Fewtrell, T. J. (2010). <em>Journal of Hydrology</em>,
+  <em>387</em>(1–2), 33–45.
+  <a href="https://doi.org/10.1016/j.jhydrol.2010.03.027">DOI ↗</a></p>
+<p>Clark, C. O. (1945). <em>Transactions ASCE</em>, <em>110</em>(1), 1419–1446.
+  <a href="https://doi.org/10.1061/TACEAT.0005791">DOI ↗</a></p>
+<p>Cunge, J. A. (1969). <em>Journal of Hydraulic Research</em>, <em>7</em>(2), 205–230.
+  <a href="https://doi.org/10.1080/00221686909500264">DOI ↗</a></p>
+<p>Driver, N. E., &amp; Tasker, G. D. (1990). USGS Water-Supply Paper 2363.
+  <a href="https://pubs.usgs.gov/wsp/2363/report.pdf">PDF ↗</a></p>
+<p>Federal Emergency Management Agency. (2023). <em>National Flood Hazard Layer (NFHL)</em>.
+  <a href="https://msc.fema.gov">FEMA MSC ↗</a></p>
+<p>Green, W. H., &amp; Ampt, G. A. (1911). <em>Journal of Agricultural Science</em>, <em>4</em>(1), 1–24.
+  <a href="https://doi.org/10.1017/S0021859600001441">DOI ↗</a></p>
+<p>Gupta, H. V., Kling, H., Yilmaz, K. K., &amp; Martinez, G. F. (2009). <em>Journal of
+  Hydrology</em>, <em>377</em>(1–2), 80–91.
+  <a href="https://doi.org/10.1016/j.jhydrol.2009.08.003">DOI ↗</a></p>
+<p>Harten, A., Lax, P. D., &amp; van Leer, B. (1983). <em>SIAM Review</em>, <em>25</em>(1), 35–61.
+  <a href="https://doi.org/10.1137/1025002">DOI ↗</a></p>
+<p>Kling, H., Fuchs, M., &amp; Paulin, M. (2012). <em>Journal of Hydrology</em>, <em>424–425</em>, 264–277.
+  <a href="https://doi.org/10.1016/j.jhydrol.2012.01.011">DOI ↗</a></p>
+<p>Meyer-Peter, E., &amp; Müller, R. (1948). <em>Proceedings 2nd IAHSR Meeting</em>, pp. 39–64.
+  <a href="https://repository.tudelft.nl/record/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7">TU Delft ↗</a></p>
+<p>Mockus, V. (1957). <em>Use of storm and watershed characteristics in synthetic hydrograph
+  analysis and application</em>. American Geophysical Union.
+  <a href="https://handle.nal.usda.gov/10113/IND43966827">USDA NAL ↗</a></p>
+<p>Nash, J. E., &amp; Sutcliffe, J. V. (1970). <em>Journal of Hydrology</em>, <em>10</em>(3), 282–290.
+  <a href="https://doi.org/10.1016/0022-1694(70)90255-6">DOI ↗</a></p>
+<p>Natural Resources Conservation Service. (2004). <em>National Engineering Handbook,
+  Part 630: Hydrology</em>. USDA.
+  <a href="https://handle.nal.usda.gov/10113/32494">USDA NAL ↗</a></p>
+<p>Puls, L. G. (1928). <em>Flood regulation of the Tennessee River</em>. USACE.
+  <a href="https://catalog.hathitrust.org/Record/001697457">HathiTrust ↗</a></p>
+<p>Renard, K. G., et al. (1997). <em>RUSLE</em> (Agriculture Handbook 703). USDA.
+  <a href="https://www.ars.usda.gov/research/publications/publication/?seqNo115=16945">ARS ↗</a></p>
+<p>Schaefer, J. T. (1990). <em>Weather and Forecasting</em>, <em>5</em>(4), 570–575.
+  <a href="https://doi.org/10.1175/1520-0434(1990)005&lt;0570:TCSIAA&gt;2.0.CO;2">DOI ↗</a></p>
+<p>Snyder, F. F. (1938). <em>Transactions AGU</em>, <em>19</em>(1), 447–454.
+  <a href="https://doi.org/10.1029/TR019i001p00447">DOI ↗</a></p>
+<p>Storn, R., &amp; Price, K. (1997). <em>Journal of Global Optimization</em>, <em>11</em>(4), 341–359.
+  <a href="https://doi.org/10.1023/A:1008202821328">DOI ↗</a></p>
+<p>U.S. Environmental Protection Agency. (1983). <em>Results of the NURP</em> (USEPA 400/3-83-16).
+  <a href="https://www.epa.gov/npdes/urban-runoff-national-stormwater-program">EPA ↗</a></p>
+<p>Wing, O. E. J., et al. (2017). <em>Water Resources Research</em>, <em>53</em>(9), 7968–7986.
+  <a href="https://doi.org/10.1002/2017WR020917">DOI ↗</a></p>
+<p>Wischmeier, W. H., &amp; Smith, D. D. (1978). <em>Agriculture Handbook 537</em>. USDA.
+  <a href="https://www.ars.usda.gov/research/publications/publication/?seqNo115=90921">ARS ↗</a></p>
+<p>Wong, M., &amp; Parker, G. (2006). <em>Journal of Hydraulic Engineering</em>, <em>132</em>(11), 1159–1168.
+  <a href="https://doi.org/10.1061/(ASCE)0733-9429(2006)132:11(1159)">DOI ↗</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        ﻿<footer class="cwr-footer">
+  <div class="cwr-footer__inner md-grid">
+
+    <div class="cwr-footer__brand">
+      <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP" class="cwr-footer__logo">
+      <div class="cwr-footer__brand-text">
+        <span class="cwr-footer__name">PyWMP</span>
+        <span class="cwr-footer__tagline">Python based watershed modelling and planning tool</span>
+      </div>
+    </div>
+
+    <nav class="cwr-footer__links" aria-label="Footer navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../installation.html">Install</a>
+      <a href="../../quickstart.html">Quick Start</a>
+      <a href="../index.html">API Reference</a>
+      <a href="https://github.com/DBishal13/pywmp_documentation" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+
+    <div class="cwr-footer__copy">
+      <span>© 2026 PyWMP · CWR3 · FAU</span>
+      <span class="cwr-footer__ver">v0.2.0 · Dual licensed</span>
+    </div>
+
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

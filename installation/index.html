@@ -1,0 +1,1545 @@
+﻿
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="PyWMP is an open-source Python based watershed modelling and planning tool for 1D, 2D, and hybrid simulations.">
+      
+      
+        <meta name="author" content="PyWMP Contributors">
+      
+      
+        <link rel="canonical" href="https://dbishal13.github.io/pywmp_documentation/installation/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../quickstart/">
+      
+      
+      <link rel="icon" href="../images/PyWMP_Logo_Design_SVG.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Installation - PyWMP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/overrides.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PyWMP" class="md-header__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyWMP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Installation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        
+  
+<form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_1"
+    data-md-color-media=""
+    data-md-color-scheme="default"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to dark mode"
+    checked
+  >
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_2"
+    data-md-color-media=""
+    data-md-color-scheme="slate"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to light mode"
+    
+  >
+  
+  <a class="header-github" href="https://github.com/mandalanil/pywmp" target="_blank" rel="noopener" aria-label="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+    </svg>
+  </a>
+  <div class="version-dropdown" id="vd">
+    <button class="version-chip" type="button">v0.2.0</button>
+    <div class="version-panel">
+      <div class="vp-title">What's new in v0.2.0</div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Calibration engine</strong><p>Differential evolution, Nelder-Mead, dual annealing, LHS, grid search. NSE / KGE / PBIAS / RMSE objectives. <a href="reference/calibration/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Validation framework</strong><p>Gauge skill scores + spatial flood metrics — CSI, hit rate, FAR, F1. <a href="reference/validation/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Coastal modeling</strong><p>Seawall routing, TC intensity estimator, SLR scenario sweep. <a href="reference/coastal/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Sediment transport</strong><p>Bedload (MPM), cohesive sediment, morphodynamic bed, Stokes settling. <a href="reference/sediment/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Water quality</strong><p>TSS and TP transport coupled to 1D flow. EMC loading. <a href="reference/wq/">Docs →</a></p></div></div>
+    </div>
+  </div>
+  <div class="nepal-toggle">
+    <label class="nepal-toggle__icon nepal-toggle__sun" title="Light mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M12 2L13.16 7.65L17 3.34L15.18 8.82L20.66 7L16.35 10.84L22 12L16.35 13.16L20.66 17L15.18 15.18L17 20.66L13.16 16.35L12 22L10.84 16.35L7 20.66L8.82 15.18L3.34 17L7.65 13.16L2 12L7.65 10.84L3.34 7L8.82 8.82L7 3.34L10.84 7.65Z"/>
+      </svg>
+    </label>
+    <div class="nepal-toggle__track" role="switch" tabindex="0" aria-checked="false" aria-label="Toggle light and dark mode">
+      <span class="nepal-toggle__thumb"></span>
+    </div>
+    <label class="nepal-toggle__icon nepal-toggle__moon" title="Dark mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </label>
+  </div>
+</form>
+  <script>
+  (function () {
+    if (window.__nepalToggleInit) return;
+    window.__nepalToggleInit = true;
+
+    function removeNavTitle() {
+      var t = document.querySelector('.md-nav--primary > label.md-nav__title');
+      if (t) t.remove();
+      var s = document.querySelector('.md-nav--primary .md-nav__source');
+      if (s) s.remove();
+    }
+    if (window.document$) {
+      window.document$.subscribe(removeNavTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', removeNavTitle);
+    }
+
+    function activate(n) {
+      var el = document.getElementById('__palette_' + n);
+      if (!el || el.checked) return;
+      el.click();
+      var scheme = el.getAttribute('data-md-color-scheme');
+      if (scheme) document.body.setAttribute('data-md-color-scheme', scheme);
+      var track = document.querySelector('.nepal-toggle__track');
+      if (track) track.setAttribute('aria-checked', n === 2 ? 'true' : 'false');
+    }
+
+    function toggle() {
+      var p1 = document.getElementById('__palette_1');
+      activate(p1 && p1.checked ? 2 : 1);
+    }
+
+    document.addEventListener('click', function (e) {
+      var vd = document.getElementById('vd');
+      if (e.target.closest('.version-chip')) {
+        if (vd) vd.classList.toggle('open');
+      } else if (vd && vd.classList.contains('open') && !e.target.closest('#vd')) {
+        vd.classList.remove('open');
+      }
+      if (e.target.closest('.nepal-toggle__sun')) {
+        activate(1);
+      } else if (e.target.closest('.nepal-toggle__moon')) {
+        activate(2);
+      } else if (e.target.closest('.nepal-toggle__track')) {
+        toggle();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.nepal-toggle__track')) {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    function bindTitle() {
+      var title = document.querySelector('.md-header__title');
+      if (title && !title.dataset.pywmpBound) {
+        title.dataset.pywmpBound = '1';
+        title.addEventListener('click', function () {
+          var logo = document.querySelector('.md-header__button.md-logo');
+          window.location.href = logo ? logo.href : '/';
+        });
+      }
+    }
+
+    if (window.document$) {
+      window.document$.subscribe(bindTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', bindTitle);
+    }
+  })();
+  </script>
+  
+
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+  
+    <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+
+          <!-- Compact brand strip -->
+          <div class="sb-brand">
+            <a href="../index.html" class="sb-brand__link">
+              <div class="sb-brand__mark">
+                <img src="../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP">
+              </div>
+              <div class="sb-brand__text">
+                <span class="sb-brand__name">PyWMP</span>
+                <span class="sb-brand__sub">Watershed Modelling & Planning</span>
+              </div>
+              <span class="sb-brand__ver">v0.2.0</span>
+            </a>
+            <p class="sb-brand__copy">© PyWMP · CWR3 · FAU</p>
+          </div>
+
+          
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PyWMP" class="md-nav__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    PyWMP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supported-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported environments
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-the-core-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install the core package
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-extras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional extras
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-install-bundles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended install bundles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended install bundles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimal-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal install
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geospatial-modeling-and-dataset-download" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geospatial modeling and dataset download
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full install
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation strategy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-upgrade-packaging-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Upgrade packaging tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-the-selected-extras" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Install the selected extras
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-verify-the-package-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Verify the package install
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-install-docs-dependencies-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Install docs dependencies (optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended environment setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended environment setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOS / Linux
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-installation-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common installation issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common installation issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#importerror-cannot-import-name-rasterio" class="md-nav__link">
+    <span class="md-ellipsis">
+      ImportError: cannot import name 'rasterio'
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projdb-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      proj.db not found
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-or-wheel-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build or wheel errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify the environment
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/full_pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Full Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/dataset_download/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Download
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/hybrid_coupling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hybrid Coupling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/sediment_wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment and Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/calibration_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration and Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/visualization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualization with GeoLibre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/rest_api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    REST API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Module Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/datasets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/flood/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flood Mapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cascade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cascade Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/calibration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/calibrate_ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/coastal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coastal Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/sediment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment Transport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/baseflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Baseflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/gridded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gridded Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Network Elements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/reservoir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reservoir Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/workflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workflow Builder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+        </div>
+      </div>
+    </div>
+  
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
+<p>This page explains how to install PyWMP for core use, geospatial workflows, and optional extensions. The package is organized with modular extras so you can install only the capabilities you need.</p>
+<h2 id="supported-environments">Supported environments<a class="headerlink" href="#supported-environments" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Python 3.10 or later</li>
+<li>Windows, macOS, and Linux</li>
+<li><code>pip</code> package manager (virtualenv or conda environments recommended)</li>
+</ul>
+<blockquote>
+<p>For geospatial workflows, use a clean Python environment and avoid mixing package managers. On Windows, Miniconda or the official Python installer are the most reliable starting points.</p>
+</blockquote>
+<h2 id="install-the-core-package">Install the core package<a class="headerlink" href="#install-the-core-package" title="Permanent link">&para;</a></h2>
+<p>The core package includes the simulation engine, workflow API, and basic hydrologic methods.</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>pywmp
+</code></pre></div>
+<h2 id="optional-extras">Optional extras<a class="headerlink" href="#optional-extras" title="Permanent link">&para;</a></h2>
+<p>Use optional dependency groups to install only the features you require.</p>
+<table>
+<thead>
+<tr>
+<th>Extra</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spatial</code></td>
+<td>GIS raster/vector I/O with <code>rasterio</code>, <code>geopandas</code>, <code>fiona</code>, <code>pyproj</code></td>
+</tr>
+<tr>
+<td><code>datasets</code></td>
+<td>Automated watershed dataset downloads and HyRiver integration</td>
+</tr>
+<tr>
+<td><code>fast</code></td>
+<td><code>numba</code> acceleration for CPU performance</td>
+</tr>
+<tr>
+<td><code>ultra</code></td>
+<td><code>whitebox</code> support for large DEM preprocessing</td>
+</tr>
+<tr>
+<td><code>noaa</code></td>
+<td>NOAA Atlas 14 IDF retrieval</td>
+</tr>
+<tr>
+<td><code>dss</code></td>
+<td>HEC-DSS binary time-series I/O</td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td>FastAPI / WebSocket server</td>
+</tr>
+<tr>
+<td><code>docs</code></td>
+<td>MkDocs site building and local preview</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommended-install-bundles">Recommended install bundles<a class="headerlink" href="#recommended-install-bundles" title="Permanent link">&para;</a></h2>
+<h3 id="minimal-install">Minimal install<a class="headerlink" href="#minimal-install" title="Permanent link">&para;</a></h3>
+<p>For basic hydrologic modeling without GIS I/O:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>pywmp
+</code></pre></div>
+<h3 id="geospatial-modeling-and-dataset-download">Geospatial modeling and dataset download<a class="headerlink" href="#geospatial-modeling-and-dataset-download" title="Permanent link">&para;</a></h3>
+<p>For end-to-end watershed setup and spatial workflows:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pywmp[datasets]&quot;</span>
+</code></pre></div>
+<h3 id="full-install">Full install<a class="headerlink" href="#full-install" title="Permanent link">&para;</a></h3>
+<p>For the complete PyWMP experience, including datasets, API support, and documentation:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pywmp[all]&quot;</span>
+</code></pre></div>
+<h2 id="installation-strategy">Installation strategy<a class="headerlink" href="#installation-strategy" title="Permanent link">&para;</a></h2>
+<h3 id="1-upgrade-packaging-tools">1. Upgrade packaging tools<a class="headerlink" href="#1-upgrade-packaging-tools" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span>setuptools<span class="w"> </span>wheel
+</code></pre></div>
+<h3 id="2-install-the-selected-extras">2. Install the selected extras<a class="headerlink" href="#2-install-the-selected-extras" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pywmp[datasets]&quot;</span>
+</code></pre></div>
+<h3 id="3-verify-the-package-install">3. Verify the package install<a class="headerlink" href="#3-verify-the-package-install" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import pywmp; print(pywmp.__version__)&quot;</span>
+</code></pre></div>
+<h3 id="4-install-docs-dependencies-optional">4. Install docs dependencies (optional)<a class="headerlink" href="#4-install-docs-dependencies-optional" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pywmp[docs]&quot;</span>
+</code></pre></div>
+<h2 id="recommended-environment-setup">Recommended environment setup<a class="headerlink" href="#recommended-environment-setup" title="Permanent link">&para;</a></h2>
+<h3 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use a fresh virtual environment.</li>
+<li>Prefer Miniconda or the official Python installer.</li>
+<li>Avoid mixing <code>conda</code> and <code>pip</code> installs for core geospatial packages.</li>
+<li>If <code>proj.db</code> is not found, set <code>PROJ_LIB</code> to the directory containing that file:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">setx</span> <span class="n">PROJ_LIB</span> <span class="s2">&quot;C:\path\to\proj\share\proj&quot;</span>
+</code></pre></div>
+<h3 id="macos-linux">macOS / Linux<a class="headerlink" href="#macos-linux" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use <code>python -m venv</code> or <code>conda create</code>.</li>
+<li>If geospatial wheel installation fails, use the <code>conda-forge</code> channel:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>rasterio<span class="w"> </span>geopandas<span class="w"> </span>fiona<span class="w"> </span>pyproj
+</code></pre></div>
+<h2 id="common-installation-issues">Common installation issues<a class="headerlink" href="#common-installation-issues" title="Permanent link">&para;</a></h2>
+<h3 id="importerror-cannot-import-name-rasterio"><code>ImportError: cannot import name 'rasterio'</code><a class="headerlink" href="#importerror-cannot-import-name-rasterio" title="Permanent link">&para;</a></h3>
+<p>Install the spatial extra:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pywmp[spatial]&quot;</span>
+</code></pre></div>
+<h3 id="projdb-not-found"><code>proj.db</code> not found<a class="headerlink" href="#projdb-not-found" title="Permanent link">&para;</a></h3>
+<p>Check the PyProj data directory:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import pyproj; print(pyproj.datadir.get_data_dir())&quot;</span>
+</code></pre></div>
+<p>If needed, set <code>PROJ_LIB</code> to the folder containing <code>proj.db</code>.</p>
+<h3 id="build-or-wheel-errors">Build or wheel errors<a class="headerlink" href="#build-or-wheel-errors" title="Permanent link">&para;</a></h3>
+<p>Update packaging tools and retry:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span>setuptools<span class="w"> </span>wheel
+</code></pre></div>
+<h2 id="verify-the-environment">Verify the environment<a class="headerlink" href="#verify-the-environment" title="Permanent link">&para;</a></h2>
+<p>Run this command to confirm the package and key geospatial dependencies are installed:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import pywmp, rasterio, geopandas, pyproj, fiona; print(&#39;OK&#39;)&quot;</span>
+</code></pre></div>
+<p>If the command returns <code>OK</code>, your environment is ready for PyWMP spatial workflows.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        ﻿<footer class="cwr-footer">
+  <div class="cwr-footer__inner md-grid">
+
+    <div class="cwr-footer__brand">
+      <img src="../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP" class="cwr-footer__logo">
+      <div class="cwr-footer__brand-text">
+        <span class="cwr-footer__name">PyWMP</span>
+        <span class="cwr-footer__tagline">Python based watershed modelling and planning tool</span>
+      </div>
+    </div>
+
+    <nav class="cwr-footer__links" aria-label="Footer navigation">
+      <a href="../index.html">Home</a>
+      <a href="../installation.html">Install</a>
+      <a href="../quickstart.html">Quick Start</a>
+      <a href="../reference/index.html">API Reference</a>
+      <a href="https://github.com/DBishal13/pywmp_documentation" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+
+    <div class="cwr-footer__copy">
+      <span>© 2026 PyWMP · CWR3 · FAU</span>
+      <span class="cwr-footer__ver">v0.2.0 · Dual licensed</span>
+    </div>
+
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand", "navigation.instant", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

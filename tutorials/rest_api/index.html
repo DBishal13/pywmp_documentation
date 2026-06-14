@@ -1,0 +1,1795 @@
+﻿
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="PyWMP is an open-source Python based watershed modelling and planning tool for 1D, 2D, and hybrid simulations.">
+      
+      
+        <meta name="author" content="PyWMP Contributors">
+      
+      
+        <link rel="canonical" href="https://dbishal13.github.io/pywmp_documentation/tutorials/rest_api/">
+      
+      
+        <link rel="prev" href="../visualization/">
+      
+      
+        <link rel="next" href="../../reference/">
+      
+      
+      <link rel="icon" href="../../images/PyWMP_Logo_Design_SVG.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>REST API - PyWMP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/overrides.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rest-api-tutorial" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PyWMP" class="md-header__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyWMP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              REST API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        
+  
+<form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_1"
+    data-md-color-media=""
+    data-md-color-scheme="default"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to dark mode"
+    checked
+  >
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_2"
+    data-md-color-media=""
+    data-md-color-scheme="slate"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to light mode"
+    
+  >
+  
+  <a class="header-github" href="https://github.com/mandalanil/pywmp" target="_blank" rel="noopener" aria-label="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+    </svg>
+  </a>
+  <div class="version-dropdown" id="vd">
+    <button class="version-chip" type="button">v0.2.0</button>
+    <div class="version-panel">
+      <div class="vp-title">What's new in v0.2.0</div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Calibration engine</strong><p>Differential evolution, Nelder-Mead, dual annealing, LHS, grid search. NSE / KGE / PBIAS / RMSE objectives. <a href="reference/calibration/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Validation framework</strong><p>Gauge skill scores + spatial flood metrics — CSI, hit rate, FAR, F1. <a href="reference/validation/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Coastal modeling</strong><p>Seawall routing, TC intensity estimator, SLR scenario sweep. <a href="reference/coastal/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Sediment transport</strong><p>Bedload (MPM), cohesive sediment, morphodynamic bed, Stokes settling. <a href="reference/sediment/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Water quality</strong><p>TSS and TP transport coupled to 1D flow. EMC loading. <a href="reference/wq/">Docs →</a></p></div></div>
+    </div>
+  </div>
+  <div class="nepal-toggle">
+    <label class="nepal-toggle__icon nepal-toggle__sun" title="Light mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M12 2L13.16 7.65L17 3.34L15.18 8.82L20.66 7L16.35 10.84L22 12L16.35 13.16L20.66 17L15.18 15.18L17 20.66L13.16 16.35L12 22L10.84 16.35L7 20.66L8.82 15.18L3.34 17L7.65 13.16L2 12L7.65 10.84L3.34 7L8.82 8.82L7 3.34L10.84 7.65Z"/>
+      </svg>
+    </label>
+    <div class="nepal-toggle__track" role="switch" tabindex="0" aria-checked="false" aria-label="Toggle light and dark mode">
+      <span class="nepal-toggle__thumb"></span>
+    </div>
+    <label class="nepal-toggle__icon nepal-toggle__moon" title="Dark mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </label>
+  </div>
+</form>
+  <script>
+  (function () {
+    if (window.__nepalToggleInit) return;
+    window.__nepalToggleInit = true;
+
+    function removeNavTitle() {
+      var t = document.querySelector('.md-nav--primary > label.md-nav__title');
+      if (t) t.remove();
+      var s = document.querySelector('.md-nav--primary .md-nav__source');
+      if (s) s.remove();
+    }
+    if (window.document$) {
+      window.document$.subscribe(removeNavTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', removeNavTitle);
+    }
+
+    function activate(n) {
+      var el = document.getElementById('__palette_' + n);
+      if (!el || el.checked) return;
+      el.click();
+      var scheme = el.getAttribute('data-md-color-scheme');
+      if (scheme) document.body.setAttribute('data-md-color-scheme', scheme);
+      var track = document.querySelector('.nepal-toggle__track');
+      if (track) track.setAttribute('aria-checked', n === 2 ? 'true' : 'false');
+    }
+
+    function toggle() {
+      var p1 = document.getElementById('__palette_1');
+      activate(p1 && p1.checked ? 2 : 1);
+    }
+
+    document.addEventListener('click', function (e) {
+      var vd = document.getElementById('vd');
+      if (e.target.closest('.version-chip')) {
+        if (vd) vd.classList.toggle('open');
+      } else if (vd && vd.classList.contains('open') && !e.target.closest('#vd')) {
+        vd.classList.remove('open');
+      }
+      if (e.target.closest('.nepal-toggle__sun')) {
+        activate(1);
+      } else if (e.target.closest('.nepal-toggle__moon')) {
+        activate(2);
+      } else if (e.target.closest('.nepal-toggle__track')) {
+        toggle();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.nepal-toggle__track')) {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    function bindTitle() {
+      var title = document.querySelector('.md-header__title');
+      if (title && !title.dataset.pywmpBound) {
+        title.dataset.pywmpBound = '1';
+        title.addEventListener('click', function () {
+          var logo = document.querySelector('.md-header__button.md-logo');
+          window.location.href = logo ? logo.href : '/';
+        });
+      }
+    }
+
+    if (window.document$) {
+      window.document$.subscribe(bindTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', bindTitle);
+    }
+  })();
+  </script>
+  
+
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+  
+    <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+
+          <!-- Compact brand strip -->
+          <div class="sb-brand">
+            <a href="../../index.html" class="sb-brand__link">
+              <div class="sb-brand__mark">
+                <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP">
+              </div>
+              <div class="sb-brand__text">
+                <span class="sb-brand__name">PyWMP</span>
+                <span class="sb-brand__sub">Watershed Modelling & Planning</span>
+              </div>
+              <span class="sb-brand__ver">v0.2.0</span>
+            </a>
+            <p class="sb-brand__copy">© PyWMP · CWR3 · FAU</p>
+          </div>
+
+          
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PyWMP" class="md-nav__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    PyWMP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../full_pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Full Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dataset_download/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Download
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hybrid_coupling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hybrid Coupling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sediment_wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment and Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calibration_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration and Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualization with GeoLibre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    REST API
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    REST API
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#starting-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starting the server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoints
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-simulatehms-submit-an-hms-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /simulate/hms — Submit an HMS simulation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="POST /simulate/hms — Submit an HMS simulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Field reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-simulatecascade-submit-a-cascade-2001-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /simulate/cascade — Submit a Cascade 2001 simulation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-resultsrun_id-poll-for-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /results/{run_id} — Poll for results
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-runs-list-all-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /runs — List all runs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-uploaddat-upload-a-cascade-dat-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /upload/dat — Upload a Cascade .dat file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ws-wsrun_id-real-time-progress-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      WS /ws/{run_id} — Real-time progress stream
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-client-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python client example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-client-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Async client example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error handling
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Module Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/datasets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/flood/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flood Mapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/cascade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cascade Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/calibration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/calibrate_ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/coastal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coastal Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/sediment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment Transport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/baseflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Baseflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gridded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gridded Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Network Elements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/reservoir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reservoir Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/workflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workflow Builder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+        </div>
+      </div>
+    </div>
+  
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="rest-api-tutorial">REST API Tutorial<a class="headerlink" href="#rest-api-tutorial" title="Permanent link">&para;</a></h1>
+<p>PyWMP includes an optional FastAPI server that lets you submit simulations remotely, stream progress in real time, and retrieve results — all over HTTP and WebSocket. This enables integration into web applications, cloud workflows, and CI pipelines.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pywmp[api]&quot;</span>
+</code></pre></div>
+<h2 id="starting-the-server">Starting the server<a class="headerlink" href="#starting-the-server" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>uvicorn<span class="w"> </span>pywmp.api.app:app<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
+</code></pre></div>
+<p>For development with auto-reload:</p>
+<div class="highlight"><pre><span></span><code>uvicorn<span class="w"> </span>pywmp.api.app:app<span class="w"> </span>--reload
+</code></pre></div>
+<p>With Docker:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up
+</code></pre></div>
+<p>The server is available at <code>http://localhost:8000</code>. Interactive API docs are at <code>http://localhost:8000/docs</code>.</p>
+<hr />
+<h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/health</code></td>
+<td>Server health check</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/simulate/hms</code></td>
+<td>Submit an HMS simulation</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/simulate/cascade</code></td>
+<td>Submit a Cascade 2001 simulation</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/results/{run_id}</code></td>
+<td>Poll for results</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/runs</code></td>
+<td>List all in-memory runs</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/upload/dat</code></td>
+<td>Upload a <code>.dat</code> file</td>
+</tr>
+<tr>
+<td><code>WS</code></td>
+<td><code>/ws/{run_id}</code></td>
+<td>Stream progress events</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="post-simulatehms-submit-an-hms-simulation">POST <code>/simulate/hms</code> — Submit an HMS simulation<a class="headerlink" href="#post-simulatehms-submit-an-hms-simulation" title="Permanent link">&para;</a></h2>
+<p>Accepts a JSON body describing the basin model and returns a <code>run_id</code> immediately. The simulation runs in a background thread.</p>
+<h3 id="request-body">Request body<a class="headerlink" href="#request-body" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;basin_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hillsborough&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;USC&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;subbasins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Upper&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;area_mi2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;loss_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;scs&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;loss_params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;curve_number&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;initial_abstraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;amc&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;transform_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clark&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;transform_params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;time_of_concentration_hr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;storage_coefficient_hr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.4</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lower&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;area_mi2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;loss_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;scs&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;loss_params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;curve_number&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">68</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;transform_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;scs&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;transform_params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;lag_hr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.1</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;reaches&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;R1&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;routing_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;muskingum&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;routing_params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;K_hr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;junctions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nt">&quot;connections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;upstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Upper&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;downstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;R1&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;upstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;R1&quot;</span><span class="p">,</span><span class="w">     </span><span class="nt">&quot;downstream&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lower&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;rainfall&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Upper&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;times&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">6.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">12.0</span><span class="p">,</span><span class="w"> </span><span class="mf">18.0</span><span class="p">,</span><span class="w"> </span><span class="mf">24.0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">  </span><span class="mf">0.9</span><span class="p">,</span><span class="w">  </span><span class="mf">1.2</span><span class="p">,</span><span class="w">  </span><span class="mf">0.6</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;dt&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;in/hr&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;Lower&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;times&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">6.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">12.0</span><span class="p">,</span><span class="w"> </span><span class="mf">18.0</span><span class="p">,</span><span class="w"> </span><span class="mf">24.0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">  </span><span class="mf">0.9</span><span class="p">,</span><span class="w">  </span><span class="mf">1.2</span><span class="p">,</span><span class="w">  </span><span class="mf">0.6</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;dt&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;in/hr&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="field-reference">Field reference<a class="headerlink" href="#field-reference" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>basin_name</code></td>
+<td><code>string</code></td>
+<td>Label for the simulation</td>
+</tr>
+<tr>
+<td><code>units</code></td>
+<td><code>"USC"</code> | <code>"SI"</code></td>
+<td>Unit system (default <code>"USC"</code>)</td>
+</tr>
+<tr>
+<td><code>subbasins</code></td>
+<td><code>array</code></td>
+<td>List of subbasin specs (see below)</td>
+</tr>
+<tr>
+<td><code>reaches</code></td>
+<td><code>array</code></td>
+<td>List of reach specs</td>
+</tr>
+<tr>
+<td><code>junctions</code></td>
+<td><code>array</code></td>
+<td>List of junction names <code>[{"name": "J1"}, ...]</code></td>
+</tr>
+<tr>
+<td><code>connections</code></td>
+<td><code>array</code></td>
+<td>Upstream/downstream pairs</td>
+</tr>
+<tr>
+<td><code>rainfall</code></td>
+<td><code>object</code></td>
+<td>Time-series per subbasin name</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Subbasin spec:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>loss_method</code></td>
+<td><code>string</code></td>
+<td><code>"scs"</code>, <code>"green_ampt"</code>, <code>"initial_constant"</code>, <code>"sma"</code></td>
+</tr>
+<tr>
+<td><code>transform_method</code></td>
+<td><code>string</code></td>
+<td><code>"scs"</code>, <code>"clark"</code>, <code>"snyder"</code>, <code>"user"</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3f2c1b0-4e5d-4a6f-b7c8-9d0e1f2a3b4c&quot;</span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="post-simulatecascade-submit-a-cascade-2001-simulation">POST <code>/simulate/cascade</code> — Submit a Cascade 2001 simulation<a class="headerlink" href="#post-simulatecascade-submit-a-cascade-2001-simulation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;dat_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/data/my_project.dat&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>.dat</code> file must be accessible on the server filesystem. Use <code>POST /upload/dat</code> to upload one first. Returns <code>{"run_id": "..."}</code>.</p>
+<hr />
+<h2 id="get-resultsrun_id-poll-for-results">GET <code>/results/{run_id}</code> — Poll for results<a class="headerlink" href="#get-resultsrun_id-poll-for-results" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8000/results/a3f2c1b0-4e5d-4a6f-b7c8-9d0e1f2a3b4c
+</code></pre></div>
+<p><strong>While running:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3f2...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;running&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">}</span>
+</code></pre></div></p>
+<p><strong>When complete:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3f2...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;done&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;outflows&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Upper&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;times&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;dt&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cfs&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;Lower&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;times&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;dt&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cfs&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>On error:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3f2...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ValueError: negative C0 ...&quot;</span><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h2 id="get-runs-list-all-runs">GET <code>/runs</code> — List all runs<a class="headerlink" href="#get-runs-list-all-runs" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8000/runs
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3f2...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;done&quot;</span><span class="p">,</span><span class="w">    </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1720000100</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;b9e1...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;running&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1720000142</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;c4d3...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span><span class="w">   </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1720000088</span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<hr />
+<h2 id="post-uploaddat-upload-a-cascade-dat-file">POST <code>/upload/dat</code> — Upload a Cascade <code>.dat</code> file<a class="headerlink" href="#post-uploaddat-upload-a-cascade-dat-file" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/upload/dat<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;file=@my_project.dat&quot;</span>
+</code></pre></div>
+<p>Response:
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;server_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/data/my_project.dat&quot;</span><span class="p">}</span>
+</code></pre></div></p>
+<p>Use the returned <code>server_path</code> as the <code>dat_path</code> in a <code>/simulate/cascade</code> request.</p>
+<hr />
+<h2 id="ws-wsrun_id-real-time-progress-stream">WS <code>/ws/{run_id}</code> — Real-time progress stream<a class="headerlink" href="#ws-wsrun_id-real-time-progress-stream" title="Permanent link">&para;</a></h2>
+<p>Connect to the WebSocket after submitting a run to receive live progress events.</p>
+<p><strong>Event types:</strong></p>
+<table>
+<thead>
+<tr>
+<th><code>event</code></th>
+<th>Fields</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"progress"</code></td>
+<td><code>pct</code>, <code>element</code></td>
+<td>Percentage complete + element being processed</td>
+</tr>
+<tr>
+<td><code>"done"</code></td>
+<td><code>pct=100</code></td>
+<td>Simulation finished</td>
+</tr>
+<tr>
+<td><code>"error"</code></td>
+<td><code>msg</code></td>
+<td>Error message</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example messages:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;progress&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3f2...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pct&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">15.0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;element&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Upper&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;progress&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3f2...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pct&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">52.5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;element&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;R1&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;progress&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3f2...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pct&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">87.0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;element&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lower&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;done&quot;</span><span class="p">,</span><span class="w">     </span><span class="nt">&quot;run_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a3f2...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;pct&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="python-client-example">Python client example<a class="headerlink" href="#python-client-example" title="Permanent link">&para;</a></h2>
+<p>Full submit-and-poll client with WebSocket progress tracking:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">websockets</span>
+
+<span class="n">BASE</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:8000&quot;</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;basin_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Demo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;USC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;subbasins&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;area_mi2&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
+            <span class="s2">&quot;loss_method&quot;</span><span class="p">:</span> <span class="s2">&quot;scs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;loss_params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;curve_number&quot;</span><span class="p">:</span> <span class="mi">75</span><span class="p">},</span>
+            <span class="s2">&quot;transform_method&quot;</span><span class="p">:</span> <span class="s2">&quot;scs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;transform_params&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;lag_hr&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;reaches&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;junctions&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;connections&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;rainfall&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;times&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">,</span> <span class="mf">24.0</span><span class="p">],</span>
+            <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="s2">&quot;dt&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+            <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="s2">&quot;in/hr&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="c1"># Submit</span>
+<span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">/simulate/hms&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="n">run_id</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;run_id&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Submitted: </span><span class="si">{</span><span class="n">run_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Stream progress via WebSocket</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stream_progress</span><span class="p">(</span><span class="n">run_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ws://localhost:8000/ws/</span><span class="si">{</span><span class="n">run_id</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="n">raw</span> <span class="ow">in</span> <span class="n">ws</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;event&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;progress&quot;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">msg</span><span class="p">[</span><span class="s1">&#39;pct&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">5.1f</span><span class="si">}</span><span class="s2">%  </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;element&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;done&quot;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Done!&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Error: </span><span class="si">{</span><span class="n">msg</span><span class="p">[</span><span class="s1">&#39;msg&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">stream_progress</span><span class="p">(</span><span class="n">run_id</span><span class="p">))</span>
+
+<span class="c1"># Retrieve results</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">/results/</span><span class="si">{</span><span class="n">run_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">ts</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;outflows&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">peak</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: peak = </span><span class="si">{</span><span class="n">peak</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> cfs&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="async-client-example">Async client example<a class="headerlink" href="#async-client-example" title="Permanent link">&para;</a></h2>
+<p>For production integrations, use <code>httpx</code> with an async HTTP client:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">websockets</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_simulation</span><span class="p">(</span><span class="n">payload</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/simulate/hms&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">run_id</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;run_id&quot;</span><span class="p">]</span>
+
+        <span class="c1"># wait for completion via WebSocket</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ws://localhost:8000/ws/</span><span class="si">{</span><span class="n">run_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
+            <span class="k">async</span> <span class="k">for</span> <span class="n">raw</span> <span class="ow">in</span> <span class="n">ws</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">msg</span><span class="p">[</span><span class="s2">&quot;event&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">):</span>
+                    <span class="k">break</span>
+
+        <span class="n">r2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;/results/</span><span class="si">{</span><span class="n">run_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">r2</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">run_simulation</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
+</code></pre></div>
+<hr />
+<h2 id="docker-deployment">Docker deployment<a class="headerlink" href="#docker-deployment" title="Permanent link">&para;</a></h2>
+<p>A <code>Dockerfile</code> and <code>docker-compose.yml</code> are included in the repo root.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Start the API server in a container</span>
+docker<span class="w"> </span>compose<span class="w"> </span>up
+
+<span class="c1"># The API is available at http://localhost:8000</span>
+<span class="c1"># Mount a local data directory for .dat files and GIS outputs:</span>
+<span class="c1">#   volumes:</span>
+<span class="c1">#     - ./data:/data</span>
+</code></pre></div>
+<p>The container sets <code>PYWMP_DATA_DIR=/data</code> so uploaded <code>.dat</code> files and GIS outputs are persisted to the mounted volume.</p>
+<p><strong>Production deployment notes:</strong>
+- Add a reverse proxy (nginx, Caddy) in front of uvicorn for TLS and rate limiting.
+- Scale workers with <code>--workers N</code> for multi-process concurrency: <code>uvicorn pywmp.api.app:app --workers 4</code>.
+- The in-memory run store is per-process — use a Redis backend for multi-worker setups.</p>
+<hr />
+<h2 id="error-handling">Error handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>HTTP status</th>
+<th>Cause</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>422</td>
+<td>Invalid request body (Pydantic validation)</td>
+<td>Check field names and types against the schema above</td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>run_id</code> not found</td>
+<td>Verify the run_id; runs are in-memory and lost on server restart</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Simulation error</td>
+<td>Check <code>/results/{run_id}</code> for the <code>error</code> field</td>
+</tr>
+</tbody>
+</table>
+<p>Timeout note: <code>/simulate/hms</code> returns immediately with a <code>run_id</code>. Long simulations should use the WebSocket stream rather than polling <code>/results/{run_id}</code> on a tight loop.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        ﻿<footer class="cwr-footer">
+  <div class="cwr-footer__inner md-grid">
+
+    <div class="cwr-footer__brand">
+      <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP" class="cwr-footer__logo">
+      <div class="cwr-footer__brand-text">
+        <span class="cwr-footer__name">PyWMP</span>
+        <span class="cwr-footer__tagline">Python based watershed modelling and planning tool</span>
+      </div>
+    </div>
+
+    <nav class="cwr-footer__links" aria-label="Footer navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../installation.html">Install</a>
+      <a href="../../quickstart.html">Quick Start</a>
+      <a href="../../reference/index.html">API Reference</a>
+      <a href="https://github.com/DBishal13/pywmp_documentation" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+
+    <div class="cwr-footer__copy">
+      <span>© 2026 PyWMP · CWR3 · FAU</span>
+      <span class="cwr-footer__ver">v0.2.0 · Dual licensed</span>
+    </div>
+
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

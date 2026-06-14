@@ -1,0 +1,1793 @@
+﻿
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="PyWMP is an open-source Python based watershed modelling and planning tool for 1D, 2D, and hybrid simulations.">
+      
+      
+        <meta name="author" content="PyWMP Contributors">
+      
+      
+        <link rel="canonical" href="https://dbishal13.github.io/pywmp_documentation/reference/calibration/">
+      
+      
+        <link rel="prev" href="../cascade/">
+      
+      
+        <link rel="next" href="../calibrate_ai/">
+      
+      
+      <link rel="icon" href="../../images/PyWMP_Logo_Design_SVG.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Calibration - PyWMP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/overrides.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#calibration-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PyWMP" class="md-header__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyWMP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Calibration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        
+  
+<form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_1"
+    data-md-color-media=""
+    data-md-color-scheme="default"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to dark mode"
+    checked
+  >
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_2"
+    data-md-color-media=""
+    data-md-color-scheme="slate"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to light mode"
+    
+  >
+  
+  <a class="header-github" href="https://github.com/mandalanil/pywmp" target="_blank" rel="noopener" aria-label="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+    </svg>
+  </a>
+  <div class="version-dropdown" id="vd">
+    <button class="version-chip" type="button">v0.2.0</button>
+    <div class="version-panel">
+      <div class="vp-title">What's new in v0.2.0</div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Calibration engine</strong><p>Differential evolution, Nelder-Mead, dual annealing, LHS, grid search. NSE / KGE / PBIAS / RMSE objectives. <a href="reference/calibration/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Validation framework</strong><p>Gauge skill scores + spatial flood metrics — CSI, hit rate, FAR, F1. <a href="reference/validation/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Coastal modeling</strong><p>Seawall routing, TC intensity estimator, SLR scenario sweep. <a href="reference/coastal/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Sediment transport</strong><p>Bedload (MPM), cohesive sediment, morphodynamic bed, Stokes settling. <a href="reference/sediment/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Water quality</strong><p>TSS and TP transport coupled to 1D flow. EMC loading. <a href="reference/wq/">Docs →</a></p></div></div>
+    </div>
+  </div>
+  <div class="nepal-toggle">
+    <label class="nepal-toggle__icon nepal-toggle__sun" title="Light mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M12 2L13.16 7.65L17 3.34L15.18 8.82L20.66 7L16.35 10.84L22 12L16.35 13.16L20.66 17L15.18 15.18L17 20.66L13.16 16.35L12 22L10.84 16.35L7 20.66L8.82 15.18L3.34 17L7.65 13.16L2 12L7.65 10.84L3.34 7L8.82 8.82L7 3.34L10.84 7.65Z"/>
+      </svg>
+    </label>
+    <div class="nepal-toggle__track" role="switch" tabindex="0" aria-checked="false" aria-label="Toggle light and dark mode">
+      <span class="nepal-toggle__thumb"></span>
+    </div>
+    <label class="nepal-toggle__icon nepal-toggle__moon" title="Dark mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </label>
+  </div>
+</form>
+  <script>
+  (function () {
+    if (window.__nepalToggleInit) return;
+    window.__nepalToggleInit = true;
+
+    function removeNavTitle() {
+      var t = document.querySelector('.md-nav--primary > label.md-nav__title');
+      if (t) t.remove();
+      var s = document.querySelector('.md-nav--primary .md-nav__source');
+      if (s) s.remove();
+    }
+    if (window.document$) {
+      window.document$.subscribe(removeNavTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', removeNavTitle);
+    }
+
+    function activate(n) {
+      var el = document.getElementById('__palette_' + n);
+      if (!el || el.checked) return;
+      el.click();
+      var scheme = el.getAttribute('data-md-color-scheme');
+      if (scheme) document.body.setAttribute('data-md-color-scheme', scheme);
+      var track = document.querySelector('.nepal-toggle__track');
+      if (track) track.setAttribute('aria-checked', n === 2 ? 'true' : 'false');
+    }
+
+    function toggle() {
+      var p1 = document.getElementById('__palette_1');
+      activate(p1 && p1.checked ? 2 : 1);
+    }
+
+    document.addEventListener('click', function (e) {
+      var vd = document.getElementById('vd');
+      if (e.target.closest('.version-chip')) {
+        if (vd) vd.classList.toggle('open');
+      } else if (vd && vd.classList.contains('open') && !e.target.closest('#vd')) {
+        vd.classList.remove('open');
+      }
+      if (e.target.closest('.nepal-toggle__sun')) {
+        activate(1);
+      } else if (e.target.closest('.nepal-toggle__moon')) {
+        activate(2);
+      } else if (e.target.closest('.nepal-toggle__track')) {
+        toggle();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.nepal-toggle__track')) {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    function bindTitle() {
+      var title = document.querySelector('.md-header__title');
+      if (title && !title.dataset.pywmpBound) {
+        title.dataset.pywmpBound = '1';
+        title.addEventListener('click', function () {
+          var logo = document.querySelector('.md-header__button.md-logo');
+          window.location.href = logo ? logo.href : '/';
+        });
+      }
+    }
+
+    if (window.document$) {
+      window.document$.subscribe(bindTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', bindTitle);
+    }
+  })();
+  </script>
+  
+
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+  
+    <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+
+          <!-- Compact brand strip -->
+          <div class="sb-brand">
+            <a href="../../index.html" class="sb-brand__link">
+              <div class="sb-brand__mark">
+                <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP">
+              </div>
+              <div class="sb-brand__text">
+                <span class="sb-brand__name">PyWMP</span>
+                <span class="sb-brand__sub">Watershed Modelling & Planning</span>
+              </div>
+              <span class="sb-brand__ver">v0.2.0</span>
+            </a>
+            <p class="sb-brand__copy">© PyWMP · CWR3 · FAU</p>
+          </div>
+
+          
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PyWMP" class="md-nav__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    PyWMP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/full_pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Full Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/dataset_download/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Download
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/hybrid_coupling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hybrid Coupling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/sediment_wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment and Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/calibration_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration and Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/visualization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualization with GeoLibre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/rest_api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    REST API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Module Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flood/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flood Mapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cascade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cascade Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Calibration
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Calibration
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameterset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterSet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameterbound" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterBound
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calibrationengine" class="md-nav__link">
+    <span class="md-ellipsis">
+      CalibrationEngine
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CalibrationEngine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run_differential_evolutionkwargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      .run_differential_evolution(**kwargs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runalgorithm-kwargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      .run(algorithm, **kwargs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run_paralleln_workers4-kwargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      .run_parallel(n_workers=4, **kwargs)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calibrationresults" class="md-nav__link">
+    <span class="md-ellipsis">
+      CalibrationResults
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CalibrationResults">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensitivity-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensitivity analysis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-after-calibration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation after calibration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips-for-good-calibration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tips for good calibration
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calibrate_ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coastal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coastal Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sediment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment Transport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../baseflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Baseflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gridded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gridded Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Network Elements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reservoir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reservoir Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workflow Builder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+        </div>
+      </div>
+    </div>
+  
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="calibration-reference">Calibration Reference<a class="headerlink" href="#calibration-reference" title="Permanent link">&para;</a></h1>
+<p><code>pywmp.calibration</code> provides a universal parameter calibration framework that works with any PyWMP simulation module. You wrap your simulation as a Python callable, declare parameter bounds, choose an objective function and algorithm, and the engine finds the optimal parameter set.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>pywmp<span class="w">   </span><span class="c1"># no extra needed — calibration uses scipy</span>
+</code></pre></div>
+<hr />
+<h2 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.calibration</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalibrationEngine</span><span class="p">,</span> <span class="n">ParameterSet</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.workflow.design_storm</span><span class="w"> </span><span class="kn">import</span> <span class="n">DesignStormSimulation</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># --- Define your model function ---</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_model</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">DesignStormSimulation</span><span class="p">(</span>
+        <span class="n">storm_type</span><span class="o">=</span><span class="s2">&quot;SCS_II&quot;</span><span class="p">,</span>
+        <span class="n">total_depth_in</span><span class="o">=</span><span class="mf">8.5</span><span class="p">,</span>
+        <span class="n">duration_hr</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span>
+        <span class="n">dt_hr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">add_subbasin</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span>
+        <span class="n">area_mi2</span><span class="o">=</span><span class="mf">3.2</span><span class="p">,</span>
+        <span class="n">loss_method</span><span class="o">=</span><span class="s2">&quot;SCS_CN&quot;</span><span class="p">,</span>
+        <span class="n">loss_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;CN&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;cn&quot;</span><span class="p">],</span> <span class="s2">&quot;ia_ratio&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;amc&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+        <span class="n">transform_method</span><span class="o">=</span><span class="s2">&quot;Clark&quot;</span><span class="p">,</span>
+        <span class="n">transform_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Tc&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;tc&quot;</span><span class="p">],</span> <span class="s2">&quot;R&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">]},</span>
+    <span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">results</span><span class="o">.</span><span class="n">outflows</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>   <span class="c1"># numpy array</span>
+
+<span class="c1"># --- Declare parameters: (name, lo, hi, initial) ---</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">ParameterSet</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;cn&quot;</span><span class="p">,</span>  <span class="mf">55.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">75.0</span><span class="p">),</span>   <span class="c1"># SCS Curve Number</span>
+    <span class="p">(</span><span class="s2">&quot;tc&quot;</span><span class="p">,</span>   <span class="mf">0.5</span><span class="p">,</span>  <span class="mf">4.0</span><span class="p">,</span>  <span class="mf">2.0</span><span class="p">),</span>   <span class="c1"># Time of concentration (hr)</span>
+    <span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span>    <span class="mf">0.5</span><span class="p">,</span>  <span class="mf">4.0</span><span class="p">,</span>  <span class="mf">1.5</span><span class="p">),</span>   <span class="c1"># Clark storage coefficient (hr)</span>
+<span class="p">])</span>
+
+<span class="c1"># --- Observed hydrograph (from gauge) ---</span>
+<span class="n">observed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;data/observed_q.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- Run calibration ---</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">CalibrationEngine</span><span class="p">(</span>
+    <span class="n">model_fn</span>  <span class="o">=</span> <span class="n">run_model</span><span class="p">,</span>
+    <span class="n">observed</span>  <span class="o">=</span> <span class="n">observed</span><span class="p">,</span>
+    <span class="n">params</span>    <span class="o">=</span> <span class="n">params</span><span class="p">,</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="s2">&quot;nse&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">run_differential_evolution</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div>
+<p>Expected output:
+<div class="highlight"><pre><span></span><code>========================================================
+  PyWMP Calibration Results
+========================================================
+  Algorithm     : differential_evolution
+  Objective     : nse (maximize)
+  Evaluations   : 1847
+  Converged     : True
+  Optimal NSE   : 0.923
+  --------------------------------------------------------
+  Parameter     : Optimal       Range
+  cn            : 81.4          [55.0 – 90.0]
+  tc            :  1.7          [0.5  –  4.0]
+  R             :  2.1          [0.5  –  4.0]
+========================================================
+</code></pre></div></p>
+<hr />
+<h2 id="parameterset"><code>ParameterSet</code><a class="headerlink" href="#parameterset" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">ParameterSet</span><span class="p">(</span><span class="n">bounds</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]])</span>
+</code></pre></div>
+<p>Each entry is <code>(name, lower_bound, upper_bound, initial_value)</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.calibration</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParameterSet</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="n">ParameterSet</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;CN&quot;</span><span class="p">,</span>        <span class="mf">55.0</span><span class="p">,</span>  <span class="mf">90.0</span><span class="p">,</span> <span class="mf">75.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;manning_n&quot;</span><span class="p">,</span>  <span class="mf">0.01</span><span class="p">,</span>  <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.035</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;lag_hr&quot;</span><span class="p">,</span>     <span class="mf">0.3</span><span class="p">,</span>   <span class="mf">3.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">),</span>
+<span class="p">])</span>
+</code></pre></div>
+<p>The <code>ParameterSet</code> is passed to <code>CalibrationEngine</code> and controls which values are varied during optimization. Access results as a dict: <code>p["CN"]</code>, <code>p["manning_n"]</code>.</p>
+<hr />
+<h2 id="parameterbound"><code>ParameterBound</code><a class="headerlink" href="#parameterbound" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ParameterBound</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_scale</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p>Defines search bounds for a single calibration parameter.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Parameter name string (must match <code>model_fn</code> kwarg)</td>
+</tr>
+<tr>
+<td><code>lo</code>, <code>hi</code></td>
+<td>Lower and upper bounds</td>
+</tr>
+<tr>
+<td><code>initial</code></td>
+<td>Starting point; if <code>None</code>, midpoint of [lo, hi]</td>
+</tr>
+<tr>
+<td><code>log_scale</code></td>
+<td>If <code>True</code>, search on log₁₀ space (useful for orders-of-magnitude parameters such as Ks)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.calibration</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParameterBound</span>
+
+<span class="c1"># Example: hydraulic conductivity spans orders of magnitude — use log scale</span>
+<span class="n">ParameterBound</span><span class="p">(</span><span class="s2">&quot;Ks&quot;</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">log_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="calibrationengine"><code>CalibrationEngine</code><a class="headerlink" href="#calibrationengine" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">CalibrationEngine</span><span class="p">(</span><span class="n">model_fn</span><span class="p">,</span> <span class="n">observed</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;nse&quot;</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model_fn</code></td>
+<td><code>callable</code></td>
+<td>A function <code>f(p: dict) → np.ndarray</code> that runs the simulation and returns the simulated hydrograph</td>
+</tr>
+<tr>
+<td><code>observed</code></td>
+<td><code>np.ndarray</code></td>
+<td>Observed streamflow time series (same length as model output)</td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td><code>ParameterSet</code></td>
+<td>Parameter bounds and initial values</td>
+</tr>
+<tr>
+<td><code>objective</code></td>
+<td><code>str \| callable</code></td>
+<td>Objective function (see table below)</td>
+</tr>
+<tr>
+<td><code>dt</code></td>
+<td><code>float \| None</code></td>
+<td>Timestep for time-alignment checks (hours)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="objective-functions">Objective functions<a class="headerlink" href="#objective-functions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Full name</th>
+<th>Direction</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"nse"</code></td>
+<td>Nash-Sutcliffe Efficiency</td>
+<td>Maximize</td>
+<td>Range (−∞, 1]; ≥0.65 = satisfactory</td>
+</tr>
+<tr>
+<td><code>"kge"</code></td>
+<td>Kling-Gupta Efficiency</td>
+<td>Maximize</td>
+<td>Range (−∞, 1]; ≥0.65 = satisfactory</td>
+</tr>
+<tr>
+<td><code>"nse_log"</code></td>
+<td>Log-NSE</td>
+<td>Maximize</td>
+<td>Emphasizes low flows; useful for baseflow</td>
+</tr>
+<tr>
+<td><code>"pbias"</code></td>
+<td>−|Percent Bias|</td>
+<td>Maximize (less bias = higher)</td>
+<td>±10% = very good</td>
+</tr>
+<tr>
+<td><code>"rmse"</code></td>
+<td>Root Mean Square Error</td>
+<td>Minimize</td>
+<td>Units match observed</td>
+</tr>
+<tr>
+<td><code>"peak_flow"</code></td>
+<td>Peak flow error (%)</td>
+<td>Minimize</td>
+<td>Good for flood design</td>
+</tr>
+<tr>
+<td><code>"volume"</code></td>
+<td>Volume error (%)</td>
+<td>Minimize</td>
+<td>Good for water balance</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Custom objective:</strong>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">my_obj</span><span class="p">(</span><span class="n">simulated</span><span class="p">,</span> <span class="n">observed</span><span class="p">):</span>
+    <span class="c1"># return a scalar — engine maximizes by default</span>
+    <span class="n">peak_err</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">simulated</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">observed</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="o">/</span> <span class="n">observed</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">vol_err</span>  <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">simulated</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">observed</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">/</span> <span class="n">observed</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="mf">0.7</span> <span class="o">*</span> <span class="n">peak_err</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">vol_err</span><span class="p">)</span>   <span class="c1"># negative = minimize</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">CalibrationEngine</span><span class="p">(</span><span class="n">model_fn</span><span class="p">,</span> <span class="n">observed</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="n">my_obj</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="run_differential_evolutionkwargs"><code>.run_differential_evolution(**kwargs)</code><a class="headerlink" href="#run_differential_evolutionkwargs" title="Permanent link">&para;</a></h3>
+<p>Global search using differential evolution (Storn &amp; Price, 1997). Recommended as
+the default for any problem with more than 3 parameters or a multi-modal response
+surface.</p>
+<div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">run_differential_evolution</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">popsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="runalgorithm-kwargs"><code>.run(algorithm, **kwargs)</code><a class="headerlink" href="#runalgorithm-kwargs" title="Permanent link">&para;</a></h3>
+<p>Generic entry-point supporting multiple algorithms:</p>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Best for</th>
+<th>Speed</th>
+<th><code>kwargs</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"differential_evolution"</code></td>
+<td>Any problem; most robust (default)</td>
+<td>Slow</td>
+<td><code>maxiter</code>, <code>popsize</code>, <code>tol</code></td>
+</tr>
+<tr>
+<td><code>"sce_ua"</code></td>
+<td>Classic hydrology calibration; 3–15 parameters</td>
+<td>Medium</td>
+<td><code>maxiter</code>, <code>n_complexes</code></td>
+</tr>
+<tr>
+<td><code>"nelder_mead"</code></td>
+<td>Smooth 2–4 param surfaces</td>
+<td>Fast</td>
+<td><code>maxiter</code>, <code>xatol</code>, <code>fatol</code></td>
+</tr>
+<tr>
+<td><code>"dual_annealing"</code></td>
+<td>Multi-modal, many parameters</td>
+<td>Medium</td>
+<td><code>maxiter</code>, <code>initial_temp</code></td>
+</tr>
+<tr>
+<td><code>"lhs"</code></td>
+<td>Space-filling sensitivity survey</td>
+<td>Very fast</td>
+<td><code>n_samples</code></td>
+</tr>
+<tr>
+<td><code>"grid"</code></td>
+<td>Exhaustive sweep (≤3 params only)</td>
+<td>Variable</td>
+<td><code>n_steps</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;differential_evolution&quot;</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">popsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;sce_ua&quot;</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">n_complexes</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>   <span class="c1"># Duan et al. (1992)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;lhs&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>                   <span class="c1"># fast parameter space survey</span>
+</code></pre></div>
+<h3 id="run_paralleln_workers4-kwargs"><code>.run_parallel(n_workers=4, **kwargs)</code><a class="headerlink" href="#run_paralleln_workers4-kwargs" title="Permanent link">&para;</a></h3>
+<p>Parallel variant of differential evolution that distributes model evaluations across
+multiple CPU workers. Useful when each model evaluation is expensive (&gt;1 s).</p>
+<div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">run_parallel</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">popsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="calibrationresults"><code>CalibrationResults</code><a class="headerlink" href="#calibrationresults" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.optimal_params</code></td>
+<td><code>dict[str, float]</code> — best parameter values found</td>
+</tr>
+<tr>
+<td><code>.optimal_value</code></td>
+<td>Objective function value at the optimum</td>
+</tr>
+<tr>
+<td><code>.n_evaluations</code></td>
+<td>Total number of model function calls</td>
+</tr>
+<tr>
+<td><code>.algorithm</code></td>
+<td>Algorithm used</td>
+</tr>
+<tr>
+<td><code>.converged</code></td>
+<td>Whether the algorithm reported convergence</td>
+</tr>
+<tr>
+<td><code>.history</code></td>
+<td>List of <code>CalibrationRecord</code> (one per evaluation)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.summary()</code></td>
+<td>Print parameter table + objective value</td>
+</tr>
+<tr>
+<td><code>.plot_convergence(path)</code></td>
+<td>Objective value vs. evaluation number</td>
+</tr>
+<tr>
+<td><code>.plot_dotty_plots(path)</code></td>
+<td>Parameter sensitivity scatter plots</td>
+</tr>
+<tr>
+<td><code>.to_csv(path)</code></td>
+<td>Save full evaluation history to CSV</td>
+</tr>
+<tr>
+<td><code>.to_json(path)</code></td>
+<td>Save results to JSON</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># After calibration: extract and apply optimal parameters</span>
+<span class="n">best</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">optimal_params</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best CN=</span><span class="si">{</span><span class="n">best</span><span class="p">[</span><span class="s1">&#39;cn&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, Tc=</span><span class="si">{</span><span class="n">best</span><span class="p">[</span><span class="s1">&#39;tc&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> hr, R=</span><span class="si">{</span><span class="n">best</span><span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> hr&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NSE = </span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">optimal_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">results</span><span class="o">.</span><span class="n">plot_convergence</span><span class="p">(</span><span class="s2">&quot;output/convergence.png&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">plot_dotty_plots</span><span class="p">(</span><span class="s2">&quot;output/dotty_plots.png&quot;</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output/calibration_history.csv&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="sensitivity-analysis">Sensitivity analysis<a class="headerlink" href="#sensitivity-analysis" title="Permanent link">&para;</a></h2>
+<p>Use Latin Hypercube Sampling (<code>"lhs"</code>) for a fast parameter sensitivity survey before running a full optimization:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Step 1: LHS survey (fast — just samples the space)</span>
+<span class="n">survey</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;lhs&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">survey</span><span class="o">.</span><span class="n">plot_dotty_plots</span><span class="p">(</span><span class="s2">&quot;output/sensitivity_survey.png&quot;</span><span class="p">)</span>
+
+<span class="c1"># Step 2: Focused optimization using survey results to set tighter bounds</span>
+<span class="n">focused_params</span> <span class="o">=</span> <span class="n">ParameterSet</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;cn&quot;</span><span class="p">,</span>  <span class="mf">70.0</span><span class="p">,</span> <span class="mf">88.0</span><span class="p">,</span> <span class="n">survey</span><span class="o">.</span><span class="n">optimal_params</span><span class="p">[</span><span class="s2">&quot;cn&quot;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s2">&quot;tc&quot;</span><span class="p">,</span>   <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">3.0</span><span class="p">,</span> <span class="n">survey</span><span class="o">.</span><span class="n">optimal_params</span><span class="p">[</span><span class="s2">&quot;tc&quot;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span>    <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">3.0</span><span class="p">,</span> <span class="n">survey</span><span class="o">.</span><span class="n">optimal_params</span><span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">]),</span>
+<span class="p">])</span>
+<span class="n">engine2</span> <span class="o">=</span> <span class="n">CalibrationEngine</span><span class="p">(</span><span class="n">run_model</span><span class="p">,</span> <span class="n">observed</span><span class="p">,</span> <span class="n">focused_params</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;nse&quot;</span><span class="p">)</span>
+<span class="n">final</span> <span class="o">=</span> <span class="n">engine2</span><span class="o">.</span><span class="n">run_differential_evolution</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">final</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div>
+<hr />
+<h2 id="validation-after-calibration">Validation after calibration<a class="headerlink" href="#validation-after-calibration" title="Permanent link">&para;</a></h2>
+<p>After calibration, always validate on a separate storm event:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelVsObserved</span>
+
+<span class="c1"># Re-run model with optimal parameters on a validation event</span>
+<span class="n">best</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">optimal_params</span>
+<span class="n">val_sim</span> <span class="o">=</span> <span class="n">run_model_on_validation_event</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
+
+<span class="n">validator</span> <span class="o">=</span> <span class="n">ModelVsObserved</span><span class="p">(</span>
+    <span class="n">simulated</span><span class="o">=</span><span class="n">val_sim</span><span class="p">,</span>
+    <span class="n">observed</span><span class="o">=</span><span class="n">validation_observed</span><span class="p">,</span>
+    <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Calibration validation — Feb 2024 storm&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">validator</span><span class="o">.</span><span class="n">metrics</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="n">validator</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;output/validation_plot.png&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>See <a href="../validation/">Validation Reference</a> for full details.</p>
+<hr />
+<h2 id="tips-for-good-calibration">Tips for good calibration<a class="headerlink" href="#tips-for-good-calibration" title="Permanent link">&para;</a></h2>
+<p><strong>Parameter identifiability:</strong> The more parameters you calibrate simultaneously, the harder it is to find a unique solution. Start with 2–3 most sensitive parameters (usually CN/Ks, Tc or lag, and routing K).</p>
+<p><strong>Objective function selection:</strong> NSE emphasizes high flows (peaks); log-NSE emphasizes low flows (recession). For flood design, use <code>"nse"</code> or <code>"peak_flow"</code>. For water balance, use <code>"pbias"</code> or <code>"volume"</code>.</p>
+<p><strong>Avoid over-fitting:</strong> A high NSE on the calibration storm but poor performance on the validation storm means over-fitting. Use at least 2 calibration storms and validate on 1–2 independent events.</p>
+<p><strong>Performance ratings (Moriasi et al. 2007):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Rating</th>
+<th>NSE</th>
+<th>|PBIAS|</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Very good</td>
+<td>≥ 0.75</td>
+<td>&lt; 10%</td>
+</tr>
+<tr>
+<td>Good</td>
+<td>0.65–0.75</td>
+<td>10–15%</td>
+</tr>
+<tr>
+<td>Satisfactory</td>
+<td>0.50–0.65</td>
+<td>15–25%</td>
+</tr>
+<tr>
+<td>Unsatisfactory</td>
+<td>&lt; 0.50</td>
+<td>&gt; 25%</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        ﻿<footer class="cwr-footer">
+  <div class="cwr-footer__inner md-grid">
+
+    <div class="cwr-footer__brand">
+      <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP" class="cwr-footer__logo">
+      <div class="cwr-footer__brand-text">
+        <span class="cwr-footer__name">PyWMP</span>
+        <span class="cwr-footer__tagline">Python based watershed modelling and planning tool</span>
+      </div>
+    </div>
+
+    <nav class="cwr-footer__links" aria-label="Footer navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../installation.html">Install</a>
+      <a href="../../quickstart.html">Quick Start</a>
+      <a href="../index.html">API Reference</a>
+      <a href="https://github.com/DBishal13/pywmp_documentation" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+
+    <div class="cwr-footer__copy">
+      <span>© 2026 PyWMP · CWR3 · FAU</span>
+      <span class="cwr-footer__ver">v0.2.0 · Dual licensed</span>
+    </div>
+
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

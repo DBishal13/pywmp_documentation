@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 330">
+  <defs>
+    <linearGradient id="g-terrain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c3a18"/>
+      <stop offset="100%" stop-color="#0d1a0c"/>
+    </linearGradient>
+    <radialGradient id="g-highland" cx="45%" cy="38%" r="58%">
+      <stop offset="0%" stop-color="#2a5226" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#0d1a0c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="g-flood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1565c0" stop-opacity="0.52"/>
+      <stop offset="100%" stop-color="#0d47a1" stop-opacity="0.74"/>
+    </linearGradient>
+    <linearGradient id="g-hgraph" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dc143c" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#dc143c" stop-opacity="0.03"/>
+    </linearGradient>
+    <clipPath id="c-map">
+      <rect x="0" y="35" width="520" height="295"/>
+    </clipPath>
+  </defs>
+
+  <!-- Panel background -->
+  <rect width="520" height="330" rx="8" fill="#0d1525"/>
+
+  <!-- Title bar -->
+  <rect width="520" height="35" rx="8" fill="#1a2035"/>
+  <rect y="27" width="520" height="8" fill="#1a2035"/>
+  <circle cx="14" cy="17" r="4.5" fill="#ff5f57"/>
+  <circle cx="27" cy="17" r="4.5" fill="#febc2e"/>
+  <circle cx="40" cy="17" r="4.5" fill="#28c840"/>
+  <text x="55" y="22" font-family="Roboto Mono,monospace" font-size="9.5" fill="rgba(255,255,255,0.28)">watershed_analysis.pywmp</text>
+  <text x="512" y="22" font-family="Roboto Mono,monospace" font-size="8" fill="rgba(255,255,255,0.18)" text-anchor="end">28.044°N  82.013°W</text>
+
+  <g clip-path="url(#c-map)">
+
+    <!-- Terrain -->
+    <rect x="0" y="35" width="520" height="295" fill="url(#g-terrain)"/>
+    <rect x="0" y="35" width="520" height="295" fill="url(#g-highland)"/>
+
+    <!-- Watershed fill -->
+    <path d="M260,50 C295,48 358,52 412,74 S464,122 460,174 S436,230 390,260 S322,284 257,288 S186,282 141,257 S83,212 73,162 S77,110 116,78 S186,52 260,50Z"
+          fill="#162c14" opacity="0.88"/>
+
+    <!-- Contour lines -->
+    <path d="M131,92 C156,78 196,68 264,67 S362,72 416,102 S448,147 441,182 S418,222 383,246 S321,274 266,276"
+          stroke="#294d26" stroke-width="0.85" fill="none" opacity="0.75"/>
+    <path d="M90,156 C93,134 104,112 131,92" stroke="#294d26" stroke-width="0.85" fill="none" opacity="0.75"/>
+    <path d="M152,116 C176,102 210,91 267,89 S349,93 398,120 S428,160 421,192 S401,230 369,250 S311,270 266,274"
+          stroke="#294d26" stroke-width="0.85" fill="none" opacity="0.65"/>
+    <path d="M98,180 C104,157 116,136 152,116" stroke="#294d26" stroke-width="0.85" fill="none" opacity="0.65"/>
+    <path d="M176,140 C196,127 220,117 269,115 S334,120 376,142 S400,176 394,204 S373,234 345,252 S294,268 266,272"
+          stroke="#315a2e" stroke-width="0.85" fill="none" opacity="0.55"/>
+    <path d="M110,204 C120,180 138,159 176,140" stroke="#315a2e" stroke-width="0.85" fill="none" opacity="0.55"/>
+    <path d="M202,164 C217,153 234,144 272,142 S318,147 352,168 S374,198 366,222 S346,244 319,256"
+          stroke="#315a2e" stroke-width="0.85" fill="none" opacity="0.45"/>
+    <path d="M128,222 C138,202 158,182 202,164" stroke="#315a2e" stroke-width="0.85" fill="none" opacity="0.45"/>
+
+    <!-- Flood extent -->
+    <path d="M187,270 C201,250 221,236 242,230 S268,224 286,232 S314,247 324,267 S304,289 272,293 S231,295 201,289 S184,278 187,270Z"
+          fill="url(#g-flood)"/>
+    <path d="M212,268 C222,254 236,246 254,242 S274,240 286,250 S303,262 304,274 S286,286 264,288 S229,287 213,280Z"
+          fill="#1976d2" opacity="0.22"/>
+
+    <!-- Sub-tributary -->
+    <path d="M364,62 C360,82 357,112 355,146"
+          stroke="#4fc3f7" stroke-width="1.2" fill="none" opacity="0.9"/>
+    <!-- Right tributary -->
+    <path d="M446,110 C418,118 384,132 356,150 S312,167 284,176 L244,194"
+          stroke="#4fc3f7" stroke-width="1.6" fill="none" opacity="0.9"/>
+    <!-- Left tributary -->
+    <path d="M91,122 C116,128 154,138 174,156 S208,172 230,184 L244,194"
+          stroke="#4fc3f7" stroke-width="1.6" fill="none" opacity="0.9"/>
+    <!-- Main channel -->
+    <path d="M267,60 C258,84 251,112 251,138 S246,170 244,196 S234,227 229,259 S225,275 223,288"
+          stroke="#29b6f6" stroke-width="2.5" fill="none"/>
+    <!-- Confluence dot -->
+    <circle cx="244" cy="194" r="3.2" fill="#4fc3f7"/>
+
+    <!-- Watershed boundary -->
+    <path d="M260,50 C295,48 358,52 412,74 S464,122 460,174 S436,230 390,260 S322,284 257,288 S186,282 141,257 S83,212 73,162 S77,110 116,78 S186,52 260,50Z"
+          stroke="rgba(255,255,255,0.42)" stroke-width="1.5" fill="none" stroke-dasharray="6,3"/>
+
+    <!-- North arrow -->
+    <g transform="translate(24,60)">
+      <circle r="11.5" fill="rgba(0,0,0,0.48)" stroke="rgba(255,255,255,0.17)" stroke-width="0.8"/>
+      <polygon points="0,-8 3,2 0,0 -3,2" fill="rgba(255,255,255,0.92)"/>
+      <polygon points="0,8 3,-2 0,0 -3,-2" fill="rgba(255,255,255,0.28)"/>
+      <text y="-14" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.65)" font-weight="700">N</text>
+    </g>
+
+    <!-- Scale bar -->
+    <g transform="translate(22,95)">
+      <rect width="48" height="4" fill="rgba(255,255,255,0.75)"/>
+      <rect x="24" width="24" height="4" fill="rgba(255,255,255,0.25)"/>
+      <text x="0" y="13" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,0.48)">0</text>
+      <text x="44" y="13" font-family="Inter,sans-serif" font-size="7" fill="rgba(255,255,255,0.48)">2 km</text>
+    </g>
+
+    <!-- Basin labels -->
+    <text x="153" y="114" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.42)" font-style="italic" transform="rotate(-15,153,114)">Upper Basin</text>
+    <text x="336" y="104" font-family="Inter,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.42)" font-style="italic" transform="rotate(-6,336,104)">East Branch</text>
+    <text x="196" y="238" font-family="Inter,sans-serif" font-size="9" fill="rgba(160,210,255,0.65)" font-weight="600">Flood plain</text>
+
+    <!-- Metric chips -->
+    <rect x="362" y="48" width="94" height="19" rx="3" fill="rgba(180,10,44,0.82)"/>
+    <text x="366" y="61" font-family="Roboto Mono,monospace" font-size="9" fill="white" font-weight="600">Peak: 842 cfs</text>
+    <rect x="362" y="72" width="94" height="19" rx="3" fill="rgba(10,36,72,0.85)" stroke="rgba(80,140,210,0.28)" stroke-width="0.8"/>
+    <text x="366" y="85" font-family="Roboto Mono,monospace" font-size="9" fill="rgba(155,205,255,0.92)" font-weight="600">Vol: 95.4 ac-ft</text>
+    <rect x="362" y="96" width="94" height="19" rx="3" fill="rgba(10,50,110,0.8)" stroke="rgba(80,140,210,0.28)" stroke-width="0.8"/>
+    <text x="366" y="109" font-family="Roboto Mono,monospace" font-size="9" fill="rgba(155,205,255,0.92)" font-weight="600">Area: 2.4 km²</text>
+    <rect x="362" y="120" width="94" height="19" rx="3" fill="rgba(0,72,45,0.78)" stroke="rgba(70,190,120,0.28)" stroke-width="0.8"/>
+    <text x="366" y="133" font-family="Roboto Mono,monospace" font-size="9" fill="rgba(120,230,165,0.92)" font-weight="600">NSE:  0.91</text>
+
+    <!-- Hydrograph inset -->
+    <rect x="380" y="247" width="136" height="80" rx="4" fill="rgba(7,12,26,0.92)" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+    <text x="389" y="260" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.35)">Runoff Hydrograph · 24-hr SCS-II</text>
+    <!-- Axes -->
+    <line x1="394" y1="262" x2="394" y2="318" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+    <line x1="394" y1="318" x2="511" y2="318" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+    <!-- Gridlines -->
+    <line x1="394" y1="280" x2="511" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="0.7"/>
+    <line x1="394" y1="299" x2="511" y2="299" stroke="rgba(255,255,255,0.06)" stroke-width="0.7"/>
+    <!-- Labels -->
+    <text x="389" y="322" font-family="Roboto Mono,monospace" font-size="6.5" fill="rgba(255,255,255,0.26)">0</text>
+    <text x="508" y="322" font-family="Roboto Mono,monospace" font-size="6.5" fill="rgba(255,255,255,0.26)" text-anchor="end">24h</text>
+    <!-- Area fill -->
+    <polygon points="394,318 404,317 414,314 424,307 434,291 444,267 454,263 464,270 474,280 486,294 498,305 511,311 511,318"
+             fill="url(#g-hgraph)"/>
+    <!-- Hydrograph curve -->
+    <polyline points="394,318 404,317 414,314 424,307 434,291 444,267 454,263 464,270 474,280 486,294 498,305 511,311"
+              stroke="#dc143c" stroke-width="1.85" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- Peak marker -->
+    <line x1="454" y1="263" x2="454" y2="318" stroke="rgba(255,255,255,0.16)" stroke-width="0.7" stroke-dasharray="2,2"/>
+    <circle cx="454" cy="263" r="2.5" fill="#dc143c" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+    <text x="457" y="269" font-family="Roboto Mono,monospace" font-size="6" fill="rgba(255,255,255,0.52)">Tp:11h</text>
+
+    <!-- Dataset badges bar -->
+    <rect x="4" y="305" width="370" height="20" rx="3" fill="rgba(0,0,0,0.44)"/>
+    <text x="9" y="318" font-family="Roboto Mono,monospace" font-size="7.5" fill="rgba(255,255,255,0.2)">data:</text>
+    <rect x="42" y="308" width="32" height="13" rx="2" fill="rgba(76,175,80,0.2)" stroke="rgba(76,175,80,0.42)" stroke-width="0.7"/>
+    <text x="58" y="318" font-family="Roboto Mono,monospace" font-size="7" fill="#81c784" text-anchor="middle">DEM</text>
+    <rect x="78" y="308" width="32" height="13" rx="2" fill="rgba(33,150,243,0.2)" stroke="rgba(33,150,243,0.42)" stroke-width="0.7"/>
+    <text x="94" y="318" font-family="Roboto Mono,monospace" font-size="7" fill="#64b5f6" text-anchor="middle">NHD</text>
+    <rect x="114" y="308" width="37" height="13" rx="2" fill="rgba(156,39,176,0.2)" stroke="rgba(156,39,176,0.42)" stroke-width="0.7"/>
+    <text x="132" y="318" font-family="Roboto Mono,monospace" font-size="7" fill="#ce93d8" text-anchor="middle">NLCD</text>
+    <rect x="155" y="308" width="46" height="13" rx="2" fill="rgba(255,152,0,0.2)" stroke="rgba(255,152,0,0.42)" stroke-width="0.7"/>
+    <text x="178" y="318" font-family="Roboto Mono,monospace" font-size="7" fill="#ffb74d" text-anchor="middle">SSURGO</text>
+    <rect x="205" y="308" width="44" height="13" rx="2" fill="rgba(220,20,60,0.18)" stroke="rgba(220,20,60,0.38)" stroke-width="0.7"/>
+    <text x="227" y="318" font-family="Roboto Mono,monospace" font-size="7" fill="#f06292" text-anchor="middle">Atlas 14</text>
+    <rect x="253" y="308" width="34" height="13" rx="2" fill="rgba(0,150,136,0.2)" stroke="rgba(0,150,136,0.42)" stroke-width="0.7"/>
+    <text x="270" y="318" font-family="Roboto Mono,monospace" font-size="7" fill="#80cbc4" text-anchor="middle">FEMA</text>
+    <rect x="291" y="308" width="34" height="13" rx="2" fill="rgba(96,125,139,0.2)" stroke="rgba(96,125,139,0.42)" stroke-width="0.7"/>
+    <text x="308" y="318" font-family="Roboto Mono,monospace" font-size="7" fill="#b0bec5" text-anchor="middle">3DEP</text>
+    <rect x="329" y="308" width="40" height="13" rx="2" fill="rgba(103,58,183,0.2)" stroke="rgba(103,58,183,0.42)" stroke-width="0.7"/>
+    <text x="349" y="318" font-family="Roboto Mono,monospace" font-size="7" fill="#b39ddb" text-anchor="middle">HUC-8</text>
+
+  </g>
+</svg>

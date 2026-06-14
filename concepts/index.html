@@ -1,0 +1,1820 @@
+﻿
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="PyWMP is an open-source Python based watershed modelling and planning tool for 1D, 2D, and hybrid simulations.">
+      
+      
+        <meta name="author" content="PyWMP Contributors">
+      
+      
+        <link rel="canonical" href="https://dbishal13.github.io/pywmp_documentation/concepts/">
+      
+      
+        <link rel="prev" href="../quickstart/">
+      
+      
+        <link rel="next" href="../architecture/">
+      
+      
+      <link rel="icon" href="../images/PyWMP_Logo_Design_SVG.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Concepts - PyWMP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/overrides.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PyWMP" class="md-header__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyWMP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        
+  
+<form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_1"
+    data-md-color-media=""
+    data-md-color-scheme="default"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to dark mode"
+    checked
+  >
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_2"
+    data-md-color-media=""
+    data-md-color-scheme="slate"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to light mode"
+    
+  >
+  
+  <a class="header-github" href="https://github.com/mandalanil/pywmp" target="_blank" rel="noopener" aria-label="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+    </svg>
+  </a>
+  <div class="version-dropdown" id="vd">
+    <button class="version-chip" type="button">v0.2.0</button>
+    <div class="version-panel">
+      <div class="vp-title">What's new in v0.2.0</div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Calibration engine</strong><p>Differential evolution, Nelder-Mead, dual annealing, LHS, grid search. NSE / KGE / PBIAS / RMSE objectives. <a href="reference/calibration/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Validation framework</strong><p>Gauge skill scores + spatial flood metrics — CSI, hit rate, FAR, F1. <a href="reference/validation/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Coastal modeling</strong><p>Seawall routing, TC intensity estimator, SLR scenario sweep. <a href="reference/coastal/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Sediment transport</strong><p>Bedload (MPM), cohesive sediment, morphodynamic bed, Stokes settling. <a href="reference/sediment/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Water quality</strong><p>TSS and TP transport coupled to 1D flow. EMC loading. <a href="reference/wq/">Docs →</a></p></div></div>
+    </div>
+  </div>
+  <div class="nepal-toggle">
+    <label class="nepal-toggle__icon nepal-toggle__sun" title="Light mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M12 2L13.16 7.65L17 3.34L15.18 8.82L20.66 7L16.35 10.84L22 12L16.35 13.16L20.66 17L15.18 15.18L17 20.66L13.16 16.35L12 22L10.84 16.35L7 20.66L8.82 15.18L3.34 17L7.65 13.16L2 12L7.65 10.84L3.34 7L8.82 8.82L7 3.34L10.84 7.65Z"/>
+      </svg>
+    </label>
+    <div class="nepal-toggle__track" role="switch" tabindex="0" aria-checked="false" aria-label="Toggle light and dark mode">
+      <span class="nepal-toggle__thumb"></span>
+    </div>
+    <label class="nepal-toggle__icon nepal-toggle__moon" title="Dark mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </label>
+  </div>
+</form>
+  <script>
+  (function () {
+    if (window.__nepalToggleInit) return;
+    window.__nepalToggleInit = true;
+
+    function removeNavTitle() {
+      var t = document.querySelector('.md-nav--primary > label.md-nav__title');
+      if (t) t.remove();
+      var s = document.querySelector('.md-nav--primary .md-nav__source');
+      if (s) s.remove();
+    }
+    if (window.document$) {
+      window.document$.subscribe(removeNavTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', removeNavTitle);
+    }
+
+    function activate(n) {
+      var el = document.getElementById('__palette_' + n);
+      if (!el || el.checked) return;
+      el.click();
+      var scheme = el.getAttribute('data-md-color-scheme');
+      if (scheme) document.body.setAttribute('data-md-color-scheme', scheme);
+      var track = document.querySelector('.nepal-toggle__track');
+      if (track) track.setAttribute('aria-checked', n === 2 ? 'true' : 'false');
+    }
+
+    function toggle() {
+      var p1 = document.getElementById('__palette_1');
+      activate(p1 && p1.checked ? 2 : 1);
+    }
+
+    document.addEventListener('click', function (e) {
+      var vd = document.getElementById('vd');
+      if (e.target.closest('.version-chip')) {
+        if (vd) vd.classList.toggle('open');
+      } else if (vd && vd.classList.contains('open') && !e.target.closest('#vd')) {
+        vd.classList.remove('open');
+      }
+      if (e.target.closest('.nepal-toggle__sun')) {
+        activate(1);
+      } else if (e.target.closest('.nepal-toggle__moon')) {
+        activate(2);
+      } else if (e.target.closest('.nepal-toggle__track')) {
+        toggle();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.nepal-toggle__track')) {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    function bindTitle() {
+      var title = document.querySelector('.md-header__title');
+      if (title && !title.dataset.pywmpBound) {
+        title.dataset.pywmpBound = '1';
+        title.addEventListener('click', function () {
+          var logo = document.querySelector('.md-header__button.md-logo');
+          window.location.href = logo ? logo.href : '/';
+        });
+      }
+    }
+
+    if (window.document$) {
+      window.document$.subscribe(bindTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', bindTitle);
+    }
+  })();
+  </script>
+  
+
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+  
+    <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+
+          <!-- Compact brand strip -->
+          <div class="sb-brand">
+            <a href="../index.html" class="sb-brand__link">
+              <div class="sb-brand__mark">
+                <img src="../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP">
+              </div>
+              <div class="sb-brand__text">
+                <span class="sb-brand__name">PyWMP</span>
+                <span class="sb-brand__sub">Watershed Modelling & Planning</span>
+              </div>
+              <span class="sb-brand__ver">v0.2.0</span>
+            </a>
+            <p class="sb-brand__copy">© PyWMP · CWR3 · FAU</p>
+          </div>
+
+          
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PyWMP" class="md-nav__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    PyWMP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1d-watershed-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      1D watershed modelling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1D watershed modelling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loss-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loss methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transform-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transform methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routing methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2d-rain-on-mesh-solver" class="md-nav__link">
+    <span class="md-ellipsis">
+      2D rain-on-mesh solver
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2D rain-on-mesh solver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-solver-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key solver characteristics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hybrid-1d-2d-coupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hybrid 1D-2D coupling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sediment-transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sediment transport
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sediment transport">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rusle-based-gross-erosion" class="md-nav__link">
+    <span class="md-ellipsis">
+      RUSLE-based gross erosion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suspended-load-transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Suspended load transport
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bedload-transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bedload transport
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cohesive-sediment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cohesive sediment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#morphodynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Morphodynamics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#water-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Water quality
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coastal-flood-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coastal flood modelling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calibration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calibration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset assembly
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/full_pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Full Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/dataset_download/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Download
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/hybrid_coupling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hybrid Coupling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/sediment_wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment and Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/calibration_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration and Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/visualization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualization with GeoLibre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/rest_api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    REST API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Module Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/datasets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/flood/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flood Mapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cascade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cascade Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/calibration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/calibrate_ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/coastal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coastal Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/sediment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment Transport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/baseflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Baseflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/gridded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gridded Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Network Elements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/reservoir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reservoir Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/workflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workflow Builder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+        </div>
+      </div>
+    </div>
+  
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="concepts">Concepts<a class="headerlink" href="#concepts" title="Permanent link">&para;</a></h1>
+<p>This page explains the modelling concepts implemented in PyWMP and the rationale
+for key numerical and scientific choices in v0.2.0.</p>
+<h2 id="1d-watershed-modelling">1D watershed modelling<a class="headerlink" href="#1d-watershed-modelling" title="Permanent link">&para;</a></h2>
+<p>PyWMP implements the process chain described in the U.S. Army Corps of Engineers
+HEC-HMS Technical Reference Manual (USACE, 2023): rainfall excess → transform →
+baseflow addition → routing. Each step is an independent, composable object.</p>
+<h3 id="loss-methods">Loss methods<a class="headerlink" href="#loss-methods" title="Permanent link">&para;</a></h3>
+<p>Loss methods determine how much rainfall contributes to surface runoff.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Class</th>
+<th>Key parameters</th>
+<th>Origin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initial-and-constant</td>
+<td><code>InitialConstantLoss</code></td>
+<td>initial abstraction (in), constant rate (in/hr)</td>
+<td>USACE, 2023</td>
+</tr>
+<tr>
+<td>SCS Curve Number</td>
+<td><code>SCSCurveLoss</code></td>
+<td>CN, AMC class</td>
+<td>NRCS, 2004; USDA SCS, 1986</td>
+</tr>
+<tr>
+<td>Green-Ampt</td>
+<td><code>GreenAmptLoss</code></td>
+<td>Ks (in/hr), psi (in), theta_i, eta</td>
+<td>Green &amp; Ampt, 1911; Mein &amp; Larson, 1973</td>
+</tr>
+<tr>
+<td>Soil Moisture Accounting</td>
+<td><code>SMALoss</code></td>
+<td>multi-layer storage, PE series</td>
+<td>Bennett, 1998; USACE, 2023</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>SCS Curve Number</strong> method (USDA SCS, 1986; NRCS, 2004) derives runoff
+from a tabular CN that combines hydrologic soil group (A–D) with land use class.
+CN is adjustable for antecedent moisture condition (AMC I–III).</p>
+<p>The <strong>Green-Ampt</strong> equation (Green &amp; Ampt, 1911) models infiltration as a sharp
+wetting front advancing into a uniformly wetted soil column. Mein and Larson (1973)
+extended it to handle ponding onset under a steady rainfall rate.</p>
+<h3 id="transform-methods">Transform methods<a class="headerlink" href="#transform-methods" title="Permanent link">&para;</a></h3>
+<p>Transform methods convert excess rainfall to a hydrograph at the subbasin outlet.</p>
+<ul>
+<li><strong>SCS unit hydrograph</strong> — lag-time method described in NRCS (2004) and originally
+  formulated by Mockus (1957).</li>
+<li><strong>Clark unit hydrograph</strong> (Clark, 1945) — routes excess precipitation through a
+  time-area diagram and a linear reservoir with storage coefficient R.</li>
+<li><strong>Snyder synthetic unit hydrograph</strong> (Snyder, 1938) — regional relationships
+  between basin morphology and unit hydrograph shape via empirical Cp and Ct.</li>
+<li><strong>User-defined</strong> — tabular unit hydrograph specified directly.</li>
+</ul>
+<h3 id="routing-methods">Routing methods<a class="headerlink" href="#routing-methods" title="Permanent link">&para;</a></h3>
+<p>Channel routing propagates the hydrograph through reaches.</p>
+<ul>
+<li><strong>Muskingum</strong> (McCarthy, 1938) — storage-based linear method parameterised by
+  travel time K and weighting factor x.</li>
+<li><strong>Muskingum-Cunge</strong> (Cunge, 1969) — diffusion-wave approximation relating
+  Muskingum parameters to channel geometry and Manning's roughness; retains
+  physical interpretability.</li>
+<li><strong>Modified Puls</strong> (Puls, 1928) — level-pool reservoir routing using a
+  storage-outflow relationship; extended to channel reaches.</li>
+<li><strong>Lag</strong> — pure translation with no attenuation.</li>
+</ul>
+<hr />
+<h2 id="2d-rain-on-mesh-solver">2D rain-on-mesh solver<a class="headerlink" href="#2d-rain-on-mesh-solver" title="Permanent link">&para;</a></h2>
+<p>The 2D solver (<code>pywmp.rom</code>) integrates the depth-averaged shallow-water equations
+(Saint-Venant, 1871) on a structured rectangular grid using an explicit first-order
+HLL (Harten-Lax-van Leer) finite-volume scheme (Harten et al., 1983). The HLL
+Riemann solver is selected for robustness on wetting-drying fronts, which are
+prevalent in the flat coastal urban terrain targeted by PyWMP.</p>
+<h3 id="key-solver-characteristics">Key solver characteristics<a class="headerlink" href="#key-solver-characteristics" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Wetting and drying</strong> — a dry-depth threshold (<code>h_dry</code>, default 1e-6 ft) governs
+  cell activation. This approach follows the treatment in Bates and De Roo (2000) and
+  Toro (2001). Setting <code>h_dry</code> too large (e.g., 0.01 ft) zeroes out real shallow-flow
+  cells on flat terrain.</li>
+<li><strong>CFL stability</strong> — the adaptive time step satisfies the Courant-Friedrichs-Lewy
+  (CFL) condition (Courant et al., 1928). <code>max_dt_sec</code> provides an upper bound.</li>
+<li><strong>Infiltration</strong> — three options: deficit-constant (SCS equivalent), Green-Ampt
+  cell-by-cell (Green &amp; Ampt, 1911), and gridded SCS-CN (NRCS, 2004). Loss is applied
+  before overland flow routing begins.</li>
+<li><strong>Boundary conditions</strong> — normal-depth outlet, fixed-stage (coastal/tidal),
+  inflow hydrograph, and internal inflow for canal structures.</li>
+<li><strong>Backends</strong> — NumPy (portable), Numba JIT (CPU, 10–30× faster), CUDA (GPU).</li>
+</ul>
+<hr />
+<h2 id="hybrid-1d-2d-coupling">Hybrid 1D-2D coupling<a class="headerlink" href="#hybrid-1d-2d-coupling" title="Permanent link">&para;</a></h2>
+<p>One-way coupling routes the 1D network outflow into the 2D floodplain as a boundary
+inflow. Two modes are available:</p>
+<ul>
+<li><strong>Outlet-to-inflow</strong> (<code>HybridSimulation</code>) — the last-reach outflow hydrograph
+  from the 1D model becomes an <code>InflowBC</code> at a specified cell in the 2D grid.</li>
+<li><strong>Excess-precipitation</strong> (<code>HybridExcessPrecipSimulation</code>) — the 1D model computes
+  rainfall excess per subbasin; excess rainfall is distributed onto the 2D grid
+  through spatial subbasin masks (<code>SubbasinMaskSpec</code>).</li>
+</ul>
+<p>Coupling is one-way (1D → 2D). This is appropriate when backwater effects at the
+1D-2D interface are small relative to the inflow forcing, consistent with the
+assumptions discussed in Bates and De Roo (2000).</p>
+<hr />
+<h2 id="sediment-transport">Sediment transport<a class="headerlink" href="#sediment-transport" title="Permanent link">&para;</a></h2>
+<p>The sediment module (<code>pywmp.sediment</code>) operates on the same grid and time step as
+the 2D ROM solver and is driven by the depth and velocity fields from <code>ROMSimulation</code>.</p>
+<h3 id="rusle-based-gross-erosion">RUSLE-based gross erosion<a class="headerlink" href="#rusle-based-gross-erosion" title="Permanent link">&para;</a></h3>
+<p>Gross erosion rate is computed from the Revised Universal Soil Loss Equation
+(RUSLE; Renard et al., 1997):</p>
+<div class="highlight"><pre><span></span><code>A = R × K × LS × C × P
+</code></pre></div>
+<p>where R is the rainfall erosivity factor (from NOAA Atlas 14; Perica et al., 2013),
+K is the soil erodibility factor (Wischmeier &amp; Smith, 1978), LS is the slope-length
+factor, C is the cover-management factor, and P is the support-practice factor. The
+LS factor is derived from the local slope arrays using the method of Moore and
+Burch (1986), with an upslope contributing area option following Desmet and Govers
+(1996).</p>
+<h3 id="suspended-load-transport">Suspended load transport<a class="headerlink" href="#suspended-load-transport" title="Permanent link">&para;</a></h3>
+<p><code>SuspendedSedimentTransport</code> applies first-order upwind advection of depth-averaged
+concentration (Fischer et al., 1979) with RUSLE erosion as the source term and a
+settling sink based on the settling velocity formulation of Ferguson and Church (2004).</p>
+<h3 id="bedload-transport">Bedload transport<a class="headerlink" href="#bedload-transport" title="Permanent link">&para;</a></h3>
+<p><code>BedloadTransport</code> implements the Wong-Parker (2006) re-calibration and correction
+of the Meyer-Peter and Müller (1948) bedload formula:</p>
+<div class="highlight"><pre><span></span><code>q_b* = 3.97 (tau* - tau*_cr)^1.5
+</code></pre></div>
+<p>where tau*_cr = 0.0495 (the corrected critical Shields parameter; Shields, 1936).
+The original Meyer-Peter and Müller (1948) formula is available by setting
+<code>use_wong_parker=False</code>.</p>
+<h3 id="cohesive-sediment">Cohesive sediment<a class="headerlink" href="#cohesive-sediment" title="Permanent link">&para;</a></h3>
+<p><code>KronePartheniades</code> applies the Krone (1962) and Partheniades (1965) framework
+for deposition and re-suspension of fine-grained cohesive material. Deposition
+occurs when bed shear stress falls below the critical deposition threshold (tau_cd);
+erosion occurs above the critical erosion threshold (tau_ce).</p>
+<h3 id="morphodynamics">Morphodynamics<a class="headerlink" href="#morphodynamics" title="Permanent link">&para;</a></h3>
+<p><code>MorphodynamicsModel</code> updates the DEM bed elevation at each time step from the
+divergence of bedload flux, enabling long-term bed evolution simulations.</p>
+<hr />
+<h2 id="water-quality">Water quality<a class="headerlink" href="#water-quality" title="Permanent link">&para;</a></h2>
+<p>The water-quality module (<code>pywmp.wq</code>) solves advection-diffusion equations for
+constituent mass on the 2D grid (Fischer et al., 1979), driven by the shallow-water
+velocity field.</p>
+<ul>
+<li><strong>TSSModel</strong> — total suspended solids with settling and diffusion terms.</li>
+<li><strong>TPModel</strong> — total phosphorus with event mean concentration (EMC) loading from
+  land use (Driver &amp; Tasker, 1990; U.S. Environmental Protection Agency, 1983),
+  first-order settling, and equilibrium partitioning coefficient Kp. The built-in
+  <code>EMC_TP_BY_NLCD</code> table provides default loading rates by NLCD class (Homer et al.,
+  2020).</li>
+<li><strong>WQTransport</strong> — generic advection-diffusion for user-defined tracers.</li>
+</ul>
+<hr />
+<h2 id="coastal-flood-modelling">Coastal flood modelling<a class="headerlink" href="#coastal-flood-modelling" title="Permanent link">&para;</a></h2>
+<p>The coastal module (<code>pywmp.coastal</code>) implements a SLR-driven assessment workflow
+for seawall-protected coastal basins. Sea-level rise projections follow the NOAA
+(2017) intermediate and intermediate-high scenarios, which are the required
+scenarios under the Florida Resilient Florida Programme for assessments initiated
+before July 2024.</p>
+<ul>
+<li><strong>SeawallGeometry</strong> — encodes seawall footprint, crest elevation profile, and
+  stage-storage curve from a DEM and vector mask.</li>
+<li><strong>SeawallSLRSweep</strong> — executes a sequence of 2D ROM simulations over a list of
+  SLR levels with a raised tidal boundary. Returns <code>SweepResults</code> with peak stage,
+  flood extent, and overtopping metrics per scenario, consistent with the EurOtop
+  (van der Meer et al., 2018) overtopping framework.</li>
+<li><strong>CoastalFloodMap</strong> — vectorises the max-depth raster to a flood polygon with
+  scenario metadata.</li>
+</ul>
+<hr />
+<h2 id="calibration">Calibration<a class="headerlink" href="#calibration" title="Permanent link">&para;</a></h2>
+<p><code>pywmp.calibration</code> implements classical parameter optimisation for hydrologic models.</p>
+<ul>
+<li><strong>Nash-Sutcliffe Efficiency (NSE)</strong> (Nash &amp; Sutcliffe, 1970) — measures the ratio
+  of model residual variance to observed variance; NSE = 1 is perfect fit.</li>
+<li><strong>Kling-Gupta Efficiency (KGE)</strong> (Gupta et al., 2009; Kling et al., 2012) —
+  decomposes model performance into correlation (r), variability bias (alpha), and
+  mean bias (beta). KGE &gt;= 0.75 indicates good performance (Moriasi et al., 2007).</li>
+<li><strong>Differential evolution</strong> (Storn &amp; Price, 1997) — recommended global optimiser
+  for most calibration problems; robust to local minima.</li>
+<li><strong>SCE-UA</strong> (Duan et al., 1992) — Shuffled Complex Evolution; the classical
+  hydrology calibration algorithm.</li>
+<li><strong>Nelder-Mead</strong> (Nelder &amp; Mead, 1965) — local search; use for final refinement.</li>
+</ul>
+<hr />
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p><code>pywmp.validation</code> provides tools for comparing model output against observations.</p>
+<ul>
+<li><strong>HydroMetrics</strong> — NSE (Nash &amp; Sutcliffe, 1970), KGE with its alpha/beta/r
+  components (Gupta et al., 2009; Kling et al., 2012), RMSE, percent bias,
+  peak-flow error, and peak-timing error. Performance ratings follow the
+  guidelines of Moriasi et al. (2007).</li>
+<li><strong>ModelVsObserved</strong> — pairs a USGS NWIS time series with model output; applies
+  the rating thresholds recommended by Moriasi et al. (2007).</li>
+<li><strong>SpatialFloodValidation</strong> — compares a simulated depth raster against a binary
+  reference flood extent (FEMA NFHL or SAR) using the Critical Success Index (CSI;
+  Schaefer, 1990), hit rate, false alarm ratio (FAR), and F1 score. Validation
+  methodology follows Wing et al. (2017) and Bates et al. (2010).</li>
+</ul>
+<hr />
+<h2 id="dataset-assembly">Dataset assembly<a class="headerlink" href="#dataset-assembly" title="Permanent link">&para;</a></h2>
+<p><code>pywmp.datasets.DatasetManager</code> automates download of eight open-access datasets.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Source</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>download_dem()</code></td>
+<td>USGS 3DEP</td>
+<td>USGS, 2024</td>
+</tr>
+<tr>
+<td><code>download_watershed()</code></td>
+<td>USGS WBD</td>
+<td>USGS, 2023a</td>
+</tr>
+<tr>
+<td><code>download_nhd()</code></td>
+<td>NHDPlus HR</td>
+<td>USGS, 2023b</td>
+</tr>
+<tr>
+<td><code>download_nlcd()</code></td>
+<td>MRLC/USGS</td>
+<td>Homer et al., 2020</td>
+</tr>
+<tr>
+<td><code>download_soils()</code></td>
+<td>USDA SSURGO</td>
+<td>Soil Survey Staff, 2023</td>
+</tr>
+<tr>
+<td><code>download_cn()</code></td>
+<td>NLCD + SSURGO</td>
+<td>NRCS, 2004; USDA SCS, 1986</td>
+</tr>
+<tr>
+<td><code>download_atlas14()</code></td>
+<td>NOAA HDSC API</td>
+<td>Perica et al., 2013</td>
+</tr>
+<tr>
+<td><code>download_floodzone()</code></td>
+<td>FEMA NFHL</td>
+<td>FEMA, 2023</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>Bates, P. D., &amp; De Roo, A. P. J. (2000). A simple raster-based model for flood
+  inundation simulation. <em>Journal of Hydrology</em>, <em>236</em>(1–2), 54–77.
+  <a href="https://doi.org/10.1016/S0022-1694(00)00278-X">DOI ↗</a></p>
+<p>Bates, P. D., Horritt, M. S., &amp; Fewtrell, T. J. (2010). A simple inertial
+  formulation of the shallow water equations for efficient two-dimensional flood
+  inundation modelling. <em>Journal of Hydrology</em>, <em>387</em>(1–2), 33–45.
+  <a href="https://doi.org/10.1016/j.jhydrol.2010.03.027">DOI ↗</a></p>
+<p>Clark, C. O. (1945). Storage and the unit hydrograph. <em>Transactions of the American
+  Society of Civil Engineers</em>, <em>110</em>(1), 1419–1446.
+  <a href="https://doi.org/10.1061/TACEAT.0005791">DOI ↗</a></p>
+<p>Cunge, J. A. (1969). On the subject of a flood propagation computation method
+  (Muskingum method). <em>Journal of Hydraulic Research</em>, <em>7</em>(2), 205–230.
+  <a href="https://doi.org/10.1080/00221686909500264">DOI ↗</a></p>
+<p>Desmet, P. J. J., &amp; Govers, G. (1996). A GIS procedure for automatically
+  calculating the USLE LS factor on topographically complex landscape units.
+  <em>Journal of Soil and Water Conservation</em>, <em>51</em>(5), 427–433.
+  <a href="https://www.jswconline.org/content/51/5/427">JSWC ↗</a></p>
+<p>Driver, N. E., &amp; Tasker, G. D. (1990). <em>Techniques for estimation of storm-runoff
+  loads, volumes, and selected constituent concentrations in urban watersheds in
+  the United States</em> (Water-Supply Paper 2363). U.S. Geological Survey.
+  <a href="https://pubs.usgs.gov/wsp/2363/report.pdf">PDF ↗</a></p>
+<p>Duan, Q., Sorooshian, S., &amp; Gupta, V. K. (1992). Effective and efficient global
+  optimization for conceptual rainfall-runoff models. <em>Water Resources Research</em>,
+  <em>28</em>(4), 1015–1031.
+  <a href="https://doi.org/10.1029/91WR02985">DOI ↗</a></p>
+<p>Federal Emergency Management Agency. (2023). <em>National Flood Hazard Layer (NFHL)</em>.
+  <a href="https://msc.fema.gov">FEMA MSC ↗</a></p>
+<p>Ferguson, R. I., &amp; Church, M. (2004). A simple universal equation for grain settling
+  velocity. <em>Journal of Sedimentary Research</em>, <em>74</em>(6), 933–937.
+  <a href="https://doi.org/10.1306/051204740933">DOI ↗</a></p>
+<p>Fischer, H. B., List, E. J., Koh, R. C. Y., Imberger, J., &amp; Brooks, N. H. (1979).
+  <em>Mixing in inland and coastal waters</em>. Academic Press.
+  <a href="https://www.elsevier.com/books/mixing-in-inland-and-coastal-waters/fischer/978-0-12-258150-6">Publisher ↗</a></p>
+<p>Green, W. H., &amp; Ampt, G. A. (1911). Studies on soil physics. <em>Journal of
+  Agricultural Science</em>, <em>4</em>(1), 1–24.
+  <a href="https://doi.org/10.1017/S0021859600001441">DOI ↗</a></p>
+<p>Gupta, H. V., Kling, H., Yilmaz, K. K., &amp; Martinez, G. F. (2009). Decomposition
+  of the mean squared error and NSE performance criteria: Implications for improving
+  hydrological modelling. <em>Journal of Hydrology</em>, <em>377</em>(1–2), 80–91.
+  <a href="https://doi.org/10.1016/j.jhydrol.2009.08.003">DOI ↗</a></p>
+<p>Harten, A., Lax, P. D., &amp; van Leer, B. (1983). On upstream differencing and
+  Godunov-type schemes for hyperbolic conservation laws. <em>SIAM Review</em>, <em>25</em>(1),
+  35–61.
+  <a href="https://doi.org/10.1137/1025002">DOI ↗</a></p>
+<p>Homer, C., Dewitz, J., Jin, S., Xian, G., Costello, C., Danielson, P., Gass, L.,
+  Funk, M., Wickham, J., Stehman, S., Auch, R., &amp; Riitters, K. (2020). Conterminous
+  United States land cover change patterns 2001–2016 from the 2016 National Land
+  Cover Database. <em>ISPRS Journal of Photogrammetry and Remote Sensing</em>, <em>162</em>,
+  184–199.
+  <a href="https://doi.org/10.1016/j.isprsjprs.2020.02.019">DOI ↗</a></p>
+<p>Kling, H., Fuchs, M., &amp; Paulin, M. (2012). Runoff conditions in the upper Danube
+  basin under an ensemble of climate change scenarios. <em>Journal of Hydrology</em>,
+  <em>424–425</em>, 264–277.
+  <a href="https://doi.org/10.1016/j.jhydrol.2012.01.011">DOI ↗</a></p>
+<p>Krone, R. B. (1962). <em>Flume studies of the transport of sediment in estuarial
+  shoaling processes: Final report</em>. University of California, Berkeley.
+  <a href="https://apps.dtic.mil/sti/citations/AD0293875">DTIC ↗</a></p>
+<p>Mein, R. G., &amp; Larson, C. L. (1973). Modeling infiltration during a steady rain.
+  <em>Water Resources Research</em>, <em>9</em>(2), 384–394.
+  <a href="https://doi.org/10.1029/WR009i002p00384">DOI ↗</a></p>
+<p>Meyer-Peter, E., &amp; Müller, R. (1948). Formulas for bed-load transport. In
+  <em>Proceedings of the 2nd Meeting of the International Association for Hydraulic
+  Structures Research</em> (pp. 39–64). IAHR.
+  <a href="https://repository.tudelft.nl/record/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7">TU Delft ↗</a></p>
+<p>Mockus, V. (1957). <em>Use of storm and watershed characteristics in synthetic
+  hydrograph analysis and application</em>. American Geophysical Union.
+  <a href="https://handle.nal.usda.gov/10113/IND43966827">USDA NAL ↗</a></p>
+<p>Moore, I. D., &amp; Burch, G. J. (1986). Physical basis of the length-slope factor in
+  the Universal Soil Loss Equation. <em>Soil Science Society of America Journal</em>,
+  <em>50</em>(5), 1294–1298.
+  <a href="https://doi.org/10.2136/sssaj1986.03615995005000050042x">DOI ↗</a></p>
+<p>Moriasi, D. N., Arnold, J. G., Van Liew, M. W., Bingner, R. L., Harmel, R. D., &amp;
+  Veith, T. L. (2007). Model evaluation guidelines for systematic quantification of
+  accuracy in watershed simulations. <em>Transactions of the ASABE</em>, <em>50</em>(3), 885–900.
+  <a href="https://doi.org/10.13031/2013.23153">DOI ↗</a></p>
+<p>Nash, J. E., &amp; Sutcliffe, J. V. (1970). River flow forecasting through conceptual
+  models. Part I — A discussion of principles. <em>Journal of Hydrology</em>, <em>10</em>(3),
+  282–290.
+  <a href="https://doi.org/10.1016/0022-1694(70)90255-6">DOI ↗</a></p>
+<p>Natural Resources Conservation Service. (2004). <em>National Engineering Handbook,
+  Part 630: Hydrology</em>. U.S. Department of Agriculture.
+  <a href="https://handle.nal.usda.gov/10113/32494">USDA NAL ↗</a></p>
+<p>National Oceanic and Atmospheric Administration. (2017). <em>Global and regional sea
+  level rise scenarios for the United States</em> (NOAA Technical Report NOS CO-OPS 083).
+  NOAA.
+  <a href="https://oceanservice.noaa.gov/hazards/sealevelrise/sealevelrise-tech-report.html">NOAA ↗</a></p>
+<p>Nelder, J. A., &amp; Mead, R. (1965). A simplex method for function minimization.
+  <em>The Computer Journal</em>, <em>7</em>(4), 308–313.
+  <a href="https://doi.org/10.1093/comjnl/7.4.308">DOI ↗</a></p>
+<p>Partheniades, E. (1965). Erosion and deposition of cohesive soils. <em>Journal of the
+  Hydraulics Division</em>, <em>91</em>(1), 105–139.
+  <a href="https://doi.org/10.1061/JYCEAJ.0001197">DOI ↗</a></p>
+<p>Perica, S., Pavlovic, S., St. Laurent, M., Trypaluk, C., Unruh, D., Martin, D., &amp;
+  Wilhite, O. (2013). <em>NOAA Atlas 14: Precipitation-frequency atlas of the United
+  States, Volume 9: Southeastern States, Version 3</em> (NOAA Atlas 14, Vol. 9). NOAA.
+  <a href="https://doi.org/10.25923/xnb4-5613">DOI ↗</a></p>
+<p>Puls, L. G. (1928). <em>Flood regulation of the Tennessee River</em> (House Doc. 185, 70th
+  Congress, 1st session). U.S. Army Corps of Engineers.
+  <a href="https://catalog.hathitrust.org/Record/001697457">HathiTrust ↗</a></p>
+<p>Renard, K. G., Foster, G. R., Weesies, G. A., McCool, D. K., &amp; Yoder, D. C. (1997).
+  <em>Predicting soil erosion by water: A guide to conservation planning with the Revised
+  Universal Soil Loss Equation (RUSLE)</em> (Agriculture Handbook No. 703). U.S.
+  Department of Agriculture.
+  <a href="https://www.ars.usda.gov/research/publications/publication/?seqNo115=16945">ARS ↗</a></p>
+<p>Schaefer, J. T. (1990). The critical success index as an indicator of warning skill.
+  <em>Weather and Forecasting</em>, <em>5</em>(4), 570–575.
+  <a href="https://doi.org/10.1175/1520-0434(1990)005&lt;0570:TCSIAA&gt;2.0.CO;2">DOI ↗</a></p>
+<p>Snyder, F. F. (1938). Synthetic unit graphs. <em>Eos, Transactions, American
+  Geophysical Union</em>, <em>19</em>(1), 447–454.
+  <a href="https://doi.org/10.1029/TR019i001p00447">DOI ↗</a></p>
+<p>Soil Survey Staff. (2023). <em>Web Soil Survey</em>. USDA Natural Resources Conservation
+  Service.
+  <a href="https://websoilsurvey.nrcs.usda.gov">Web Soil Survey ↗</a></p>
+<p>Storn, R., &amp; Price, K. (1997). Differential evolution — A simple and efficient
+  heuristic for global optimization over continuous spaces. <em>Journal of Global
+  Optimization</em>, <em>11</em>(4), 341–359.
+  <a href="https://doi.org/10.1023/A:1008202821328">DOI ↗</a></p>
+<p>Toro, E. F. (2001). <em>Shock-capturing methods for free-surface shallow flows</em>.
+  Wiley.
+  <a href="https://www.wiley.com/en-us/9780471987666">Publisher ↗</a></p>
+<p>U.S. Army Corps of Engineers. (2023). <em>Hydrologic Modeling System HEC-HMS:
+  Technical reference manual</em> (Version 4.12). Hydrologic Engineering Center.
+  <a href="https://www.hec.usace.army.mil/software/hec-hms/">HEC ↗</a></p>
+<p>U.S. Environmental Protection Agency. (1983). <em>Results of the nationwide urban
+  runoff program: Final report</em> (USEPA 400/3-83-16). USEPA.
+  <a href="https://www.epa.gov/npdes/urban-runoff-national-stormwater-program">EPA ↗</a></p>
+<p>U.S. Geological Survey. (2023a). <em>Watershed Boundary Dataset (WBD)</em>.
+  <a href="https://www.usgs.gov/national-hydrography/watershed-boundary-dataset">USGS ↗</a></p>
+<p>U.S. Geological Survey. (2023b). <em>National Hydrography Dataset Plus High
+  Resolution (NHDPlus HR)</em>.
+  <a href="https://www.usgs.gov/nhd">USGS ↗</a></p>
+<p>U.S. Geological Survey. (2024). <em>3D Elevation Program (3DEP)</em>.
+  <a href="https://www.usgs.gov/3dep">USGS ↗</a></p>
+<p>van der Meer, J. W., Allsop, N. W. H., Bruce, T., De Rouck, J., Kortenhaus, A.,
+  Pullen, T., Schüttrumpf, H., Troch, P., &amp; Zanuttigh, B. (2018). <em>EurOtop: Manual
+  on wave overtopping of sea defences and related structures</em> (2nd ed.).
+  <a href="https://www.overtopping-manual.com">EurOtop ↗</a></p>
+<p>Wing, O. E. J., Bates, P. D., Sampson, C. C., Smith, A. M., Johnson, K. A., &amp;
+  Erickson, T. A. (2017). Validation of a 30 m resolution flood hazard model of the
+  conterminous United States. <em>Water Resources Research</em>, <em>53</em>(9), 7968–7986.
+  <a href="https://doi.org/10.1002/2017WR020917">DOI ↗</a></p>
+<p>Wischmeier, W. H., &amp; Smith, D. D. (1978). <em>Predicting rainfall erosion losses: A
+  guide to conservation planning</em> (Agriculture Handbook No. 537). U.S. Department
+  of Agriculture.
+  <a href="https://www.ars.usda.gov/research/publications/publication/?seqNo115=90921">ARS ↗</a></p>
+<p>Wong, M., &amp; Parker, G. (2006). Reanalysis and correction of bed-load relation of
+  Meyer-Peter and Müller using their own database. <em>Journal of Hydraulic Engineering</em>,
+  <em>132</em>(11), 1159–1168.
+  <a href="https://doi.org/10.1061/(ASCE)0733-9429(2006)132:11(1159)">DOI ↗</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        ﻿<footer class="cwr-footer">
+  <div class="cwr-footer__inner md-grid">
+
+    <div class="cwr-footer__brand">
+      <img src="../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP" class="cwr-footer__logo">
+      <div class="cwr-footer__brand-text">
+        <span class="cwr-footer__name">PyWMP</span>
+        <span class="cwr-footer__tagline">Python based watershed modelling and planning tool</span>
+      </div>
+    </div>
+
+    <nav class="cwr-footer__links" aria-label="Footer navigation">
+      <a href="../index.html">Home</a>
+      <a href="../installation.html">Install</a>
+      <a href="../quickstart.html">Quick Start</a>
+      <a href="../reference/index.html">API Reference</a>
+      <a href="https://github.com/DBishal13/pywmp_documentation" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+
+    <div class="cwr-footer__copy">
+      <span>© 2026 PyWMP · CWR3 · FAU</span>
+      <span class="cwr-footer__ver">v0.2.0 · Dual licensed</span>
+    </div>
+
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand", "navigation.instant", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

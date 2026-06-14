@@ -1,0 +1,1870 @@
+﻿
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="PyWMP is an open-source Python based watershed modelling and planning tool for 1D, 2D, and hybrid simulations.">
+      
+      
+        <meta name="author" content="PyWMP Contributors">
+      
+      
+        <link rel="canonical" href="https://dbishal13.github.io/pywmp_documentation/reference/validation/">
+      
+      
+        <link rel="prev" href="../calibrate_ai/">
+      
+      
+        <link rel="next" href="../coastal/">
+      
+      
+      <link rel="icon" href="../../images/PyWMP_Logo_Design_SVG.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Validation - PyWMP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/overrides.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#validation-and-calibration-module-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PyWMP" class="md-header__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyWMP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Validation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        
+  
+<form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_1"
+    data-md-color-media=""
+    data-md-color-scheme="default"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to dark mode"
+    checked
+  >
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_2"
+    data-md-color-media=""
+    data-md-color-scheme="slate"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to light mode"
+    
+  >
+  
+  <a class="header-github" href="https://github.com/mandalanil/pywmp" target="_blank" rel="noopener" aria-label="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+    </svg>
+  </a>
+  <div class="version-dropdown" id="vd">
+    <button class="version-chip" type="button">v0.2.0</button>
+    <div class="version-panel">
+      <div class="vp-title">What's new in v0.2.0</div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Calibration engine</strong><p>Differential evolution, Nelder-Mead, dual annealing, LHS, grid search. NSE / KGE / PBIAS / RMSE objectives. <a href="reference/calibration/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Validation framework</strong><p>Gauge skill scores + spatial flood metrics — CSI, hit rate, FAR, F1. <a href="reference/validation/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Coastal modeling</strong><p>Seawall routing, TC intensity estimator, SLR scenario sweep. <a href="reference/coastal/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Sediment transport</strong><p>Bedload (MPM), cohesive sediment, morphodynamic bed, Stokes settling. <a href="reference/sediment/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Water quality</strong><p>TSS and TP transport coupled to 1D flow. EMC loading. <a href="reference/wq/">Docs →</a></p></div></div>
+    </div>
+  </div>
+  <div class="nepal-toggle">
+    <label class="nepal-toggle__icon nepal-toggle__sun" title="Light mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M12 2L13.16 7.65L17 3.34L15.18 8.82L20.66 7L16.35 10.84L22 12L16.35 13.16L20.66 17L15.18 15.18L17 20.66L13.16 16.35L12 22L10.84 16.35L7 20.66L8.82 15.18L3.34 17L7.65 13.16L2 12L7.65 10.84L3.34 7L8.82 8.82L7 3.34L10.84 7.65Z"/>
+      </svg>
+    </label>
+    <div class="nepal-toggle__track" role="switch" tabindex="0" aria-checked="false" aria-label="Toggle light and dark mode">
+      <span class="nepal-toggle__thumb"></span>
+    </div>
+    <label class="nepal-toggle__icon nepal-toggle__moon" title="Dark mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </label>
+  </div>
+</form>
+  <script>
+  (function () {
+    if (window.__nepalToggleInit) return;
+    window.__nepalToggleInit = true;
+
+    function removeNavTitle() {
+      var t = document.querySelector('.md-nav--primary > label.md-nav__title');
+      if (t) t.remove();
+      var s = document.querySelector('.md-nav--primary .md-nav__source');
+      if (s) s.remove();
+    }
+    if (window.document$) {
+      window.document$.subscribe(removeNavTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', removeNavTitle);
+    }
+
+    function activate(n) {
+      var el = document.getElementById('__palette_' + n);
+      if (!el || el.checked) return;
+      el.click();
+      var scheme = el.getAttribute('data-md-color-scheme');
+      if (scheme) document.body.setAttribute('data-md-color-scheme', scheme);
+      var track = document.querySelector('.nepal-toggle__track');
+      if (track) track.setAttribute('aria-checked', n === 2 ? 'true' : 'false');
+    }
+
+    function toggle() {
+      var p1 = document.getElementById('__palette_1');
+      activate(p1 && p1.checked ? 2 : 1);
+    }
+
+    document.addEventListener('click', function (e) {
+      var vd = document.getElementById('vd');
+      if (e.target.closest('.version-chip')) {
+        if (vd) vd.classList.toggle('open');
+      } else if (vd && vd.classList.contains('open') && !e.target.closest('#vd')) {
+        vd.classList.remove('open');
+      }
+      if (e.target.closest('.nepal-toggle__sun')) {
+        activate(1);
+      } else if (e.target.closest('.nepal-toggle__moon')) {
+        activate(2);
+      } else if (e.target.closest('.nepal-toggle__track')) {
+        toggle();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.nepal-toggle__track')) {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    function bindTitle() {
+      var title = document.querySelector('.md-header__title');
+      if (title && !title.dataset.pywmpBound) {
+        title.dataset.pywmpBound = '1';
+        title.addEventListener('click', function () {
+          var logo = document.querySelector('.md-header__button.md-logo');
+          window.location.href = logo ? logo.href : '/';
+        });
+      }
+    }
+
+    if (window.document$) {
+      window.document$.subscribe(bindTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', bindTitle);
+    }
+  })();
+  </script>
+  
+
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+  
+    <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+
+          <!-- Compact brand strip -->
+          <div class="sb-brand">
+            <a href="../../index.html" class="sb-brand__link">
+              <div class="sb-brand__mark">
+                <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP">
+              </div>
+              <div class="sb-brand__text">
+                <span class="sb-brand__name">PyWMP</span>
+                <span class="sb-brand__sub">Watershed Modelling & Planning</span>
+              </div>
+              <span class="sb-brand__ver">v0.2.0</span>
+            </a>
+            <p class="sb-brand__copy">© PyWMP · CWR3 · FAU</p>
+          </div>
+
+          
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PyWMP" class="md-nav__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    PyWMP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/full_pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Full Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/dataset_download/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Download
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/hybrid_coupling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hybrid Coupling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/sediment_wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment and Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/calibration_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration and Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/visualization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualization with GeoLibre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/rest_api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    REST API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Module Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flood/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flood Mapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cascade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cascade Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calibration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calibrate_ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Validation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Validation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hydrometrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      HydroMetrics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HydroMetrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metrics-returned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics returned
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-ratings-moriasi-et-al-2007" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance ratings (Moriasi et al., 2007)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kgecomponents" class="md-nav__link">
+    <span class="md-ellipsis">
+      KGEComponents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suspended-sediment-rating-curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      Suspended sediment rating curve
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelvsobserved" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModelVsObserved
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spatialfloodvalidation" class="md-nav__link">
+    <span class="md-ellipsis">
+      SpatialFloodValidation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SpatialFloodValidation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contingency-table-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contingency table metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calibrationengine" class="md-nav__link">
+    <span class="md-ellipsis">
+      CalibrationEngine
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CalibrationEngine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solver-choices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solver choices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameterbound" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterBound
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameterset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterSet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calibrationresults" class="md-nav__link">
+    <span class="md-ellipsis">
+      CalibrationResults
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gaugestation" class="md-nav__link">
+    <span class="md-ellipsis">
+      GaugeStation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download helpers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coastal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coastal Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sediment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment Transport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../baseflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Baseflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gridded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gridded Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Network Elements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reservoir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reservoir Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workflow Builder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+        </div>
+      </div>
+    </div>
+  
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="validation-and-calibration-module-reference">Validation and Calibration Module Reference<a class="headerlink" href="#validation-and-calibration-module-reference" title="Permanent link">&para;</a></h1>
+<p><code>pywmp.validation</code> and <code>pywmp.calibration</code> provide tools for comparing model output
+against gauge and spatial observations, and for automated parameter estimation.</p>
+<hr />
+<h2 id="hydrometrics">HydroMetrics<a class="headerlink" href="#hydrometrics" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">HydroMetrics</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">sim</span><span class="p">)</span>
+</code></pre></div>
+<p>Computes standard hydrologic performance metrics given observed and simulated time series.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>obs</code></td>
+<td>array-like</td>
+<td>Observed discharge or stage series</td>
+</tr>
+<tr>
+<td><code>sim</code></td>
+<td>array-like</td>
+<td>Simulated series aligned to <code>obs</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="metrics-returned">Metrics returned<a class="headerlink" href="#metrics-returned" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Symbol</th>
+<th>Formula</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nash-Sutcliffe Efficiency</td>
+<td>NSE</td>
+<td>1 − Σ(obs−sim)² / Σ(obs−obs_mean)²</td>
+<td>Nash &amp; Sutcliffe, 1970</td>
+</tr>
+<tr>
+<td>Kling-Gupta Efficiency</td>
+<td>KGE</td>
+<td>1 − √[(r−1)² + (α−1)² + (β−1)²]</td>
+<td>Gupta et al., 2009</td>
+</tr>
+<tr>
+<td>KGE revised</td>
+<td>KGE'</td>
+<td>Modified α component (CV ratio)</td>
+<td>Kling et al., 2012</td>
+</tr>
+<tr>
+<td>Root Mean Square Error</td>
+<td>RMSE</td>
+<td>√(mean[(obs−sim)²])</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Percent Bias</td>
+<td>PBIAS</td>
+<td>100 × Σ(sim−obs)/Σobs</td>
+<td>Moriasi et al., 2007</td>
+</tr>
+<tr>
+<td>Peak flow error</td>
+<td>ΔQp</td>
+<td>(sim_peak − obs_peak)/obs_peak</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Peak timing error</td>
+<td>Δtp</td>
+<td>time(sim_peak) − time(obs_peak)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>KGE decomposes performance into three components:
+- r — Pearson correlation coefficient
+- α — variability ratio (σ_sim / σ_obs, or CV_sim / CV_obs for KGE')
+- β — bias ratio (μ_sim / μ_obs)</p>
+<h3 id="performance-ratings-moriasi-et-al-2007">Performance ratings (Moriasi et al., 2007)<a class="headerlink" href="#performance-ratings-moriasi-et-al-2007" title="Permanent link">&para;</a></h3>
+<p>| Rating | NSE | KGE | |PBIAS| |
+|--------|-----|-----|---------|
+| Very Good | &gt; 0.75 | ≥ 0.75 | &lt; 10% |
+| Good | 0.65–0.75 | 0.65–0.75 | 10–15% |
+| Satisfactory | 0.50–0.65 | 0.50–0.65 | 15–25% |
+| Unsatisfactory | &lt; 0.50 | &lt; 0.50 | &gt; 25% |</p>
+<h3 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">HydroMetrics</span><span class="o">.</span><span class="n">nse</span><span class="p">()</span>        <span class="o">-&gt;</span> <span class="nb">float</span>
+<span class="n">HydroMetrics</span><span class="o">.</span><span class="n">kge</span><span class="p">()</span>        <span class="o">-&gt;</span> <span class="nb">float</span>
+<span class="n">HydroMetrics</span><span class="o">.</span><span class="n">kge_prime</span><span class="p">()</span>  <span class="o">-&gt;</span> <span class="nb">float</span>
+<span class="n">HydroMetrics</span><span class="o">.</span><span class="n">kge_components</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">KGEComponents</span>
+<span class="n">HydroMetrics</span><span class="o">.</span><span class="n">rmse</span><span class="p">()</span>       <span class="o">-&gt;</span> <span class="nb">float</span>
+<span class="n">HydroMetrics</span><span class="o">.</span><span class="n">pbias</span><span class="p">()</span>      <span class="o">-&gt;</span> <span class="nb">float</span>
+<span class="n">HydroMetrics</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>    <span class="o">-&gt;</span> <span class="nb">dict</span>
+<span class="n">HydroMetrics</span><span class="o">.</span><span class="n">rating</span><span class="p">()</span>     <span class="o">-&gt;</span> <span class="nb">str</span>   <span class="c1"># &quot;Very Good&quot; | &quot;Good&quot; | &quot;Satisfactory&quot; | &quot;Unsatisfactory&quot;</span>
+</code></pre></div>
+<h3 id="kgecomponents">KGEComponents<a class="headerlink" href="#kgecomponents" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">KGEComponents</span><span class="p">:</span>
+    <span class="n">kge</span><span class="p">:</span>   <span class="nb">float</span>
+    <span class="n">r</span><span class="p">:</span>     <span class="nb">float</span>
+    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">beta</span><span class="p">:</span>  <span class="nb">float</span>
+</code></pre></div>
+<hr />
+<h2 id="suspended-sediment-rating-curve">Suspended sediment rating curve<a class="headerlink" href="#suspended-sediment-rating-curve" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">download_ssc</span><span class="p">,</span> <span class="n">fit_rating_curve</span><span class="p">,</span> <span class="n">estimate_annual_load_rating</span>
+
+<span class="c1"># Download observed SSC from USGS</span>
+<span class="n">ssc</span> <span class="o">=</span> <span class="n">download_ssc</span><span class="p">(</span><span class="s2">&quot;02301500&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-12-31&quot;</span><span class="p">)</span>
+<span class="n">q</span>   <span class="o">=</span> <span class="n">download_streamflow</span><span class="p">(</span><span class="s2">&quot;02301500&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2023-12-31&quot;</span><span class="p">)</span>
+
+<span class="c1"># Fit log-linear rating curve: SSC = a × Q^b</span>
+<span class="n">curve</span> <span class="o">=</span> <span class="n">fit_rating_curve</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="p">,</span> <span class="n">ssc</span><span class="o">=</span><span class="n">ssc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rating curve: SSC = </span><span class="si">{</span><span class="n">curve</span><span class="o">.</span><span class="n">a</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> × Q^</span><span class="si">{</span><span class="n">curve</span><span class="o">.</span><span class="n">b</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Estimate mean annual sediment load</span>
+<span class="n">load</span> <span class="o">=</span> <span class="n">estimate_annual_load_rating</span><span class="p">(</span><span class="n">q_annual</span><span class="o">=</span><span class="n">q</span><span class="p">,</span> <span class="n">rating_curve</span><span class="o">=</span><span class="n">curve</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean annual sediment load: </span><span class="si">{</span><span class="n">load</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> tons/yr&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="modelvsobserved">ModelVsObserved<a class="headerlink" href="#modelvsobserved" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ModelVsObserved</span><span class="p">(</span><span class="n">station</span><span class="p">,</span> <span class="n">sim_series</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Pairs simulated output with a USGS NWIS gauge record and computes all HydroMetrics.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>station</code></td>
+<td><code>GaugeStation</code> instance (site number + date range)</td>
+</tr>
+<tr>
+<td><code>sim_series</code></td>
+<td><code>TimeSeries</code> from <code>SimResults</code></td>
+</tr>
+<tr>
+<td><code>variable</code></td>
+<td><code>'Q'</code> (discharge) or <code>'H'</code> (stage)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># Download, pair, score</span>
+<span class="n">mv</span> <span class="o">=</span> <span class="n">ModelVsObserved</span><span class="p">(</span><span class="n">GaugeStation</span><span class="p">(</span><span class="s2">&quot;02290000&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2021-06-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2021-09-30&quot;</span><span class="p">),</span> <span class="n">sim_q</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">metrics</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">nse</span><span class="p">(),</span> <span class="n">m</span><span class="o">.</span><span class="n">kge</span><span class="p">(),</span> <span class="n">m</span><span class="o">.</span><span class="n">rating</span><span class="p">())</span>
+</code></pre></div>
+<p>Gauge data is downloaded via USGS Water Services REST API (USGS, 2023c), using the
+same HyRiver infrastructure as <code>pywmp.datasets</code>.</p>
+<hr />
+<h2 id="spatialfloodvalidation">SpatialFloodValidation<a class="headerlink" href="#spatialfloodvalidation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SpatialFloodValidation</span><span class="p">(</span><span class="n">sim_depth</span><span class="p">,</span> <span class="n">ref_mask</span><span class="p">,</span> <span class="n">valid_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">depth_threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</code></pre></div>
+<p>Compares a simulated depth raster against a binary reference flood extent.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sim_depth</code></td>
+<td>ndarray</td>
+<td>Simulated max depth (ft or m)</td>
+</tr>
+<tr>
+<td><code>ref_mask</code></td>
+<td>ndarray[bool]</td>
+<td>Reference flood extent (True = flooded)</td>
+</tr>
+<tr>
+<td><code>valid_mask</code></td>
+<td>ndarray[bool]</td>
+<td>Optional AOI mask; only cells within AOI are scored</td>
+</tr>
+<tr>
+<td><code>depth_threshold</code></td>
+<td>float</td>
+<td>Depth above which a cell is considered flooded; default 0.1 ft</td>
+</tr>
+</tbody>
+</table>
+<h3 id="contingency-table-metrics">Contingency table metrics<a class="headerlink" href="#contingency-table-metrics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Definition</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSI (Critical Success Index)</td>
+<td>TP / (TP + FP + FN)</td>
+<td>Schaefer, 1990</td>
+</tr>
+<tr>
+<td>Hit Rate (HR)</td>
+<td>TP / (TP + FN)</td>
+<td>Wing et al., 2017</td>
+</tr>
+<tr>
+<td>False Alarm Ratio (FAR)</td>
+<td>FP / (TP + FP)</td>
+<td>Wing et al., 2017</td>
+</tr>
+<tr>
+<td>F1 Score</td>
+<td>2TP / (2TP + FP + FN)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Validation against FEMA NFHL AE zones (FEMA, 2023) typically yields CSI ≈ 0.25–0.55
+for bathtub-style simulations in flat coastal terrain, consistent with the findings
+of Wing et al. (2017) for 30m national-scale models.</p>
+<p>For high-resolution (1–10m) HLL simulations, CSI &gt; 0.6 indicates good agreement
+with SAR-derived extents, following the benchmarks in Bates et al. (2010).</p>
+<h3 id="methods_1">Methods<a class="headerlink" href="#methods_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">SpatialFloodValidation</span><span class="o">.</span><span class="n">metrics</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span>   <span class="c1"># CSI, HR, FAR, F1, TP, FP, FN, TN</span>
+<span class="n">SpatialFloodValidation</span><span class="o">.</span><span class="n">plot_contingency</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">SpatialFloodValidation</span><span class="o">.</span><span class="n">export_geotiff</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>   <span class="c1"># TP/FP/FN/TN raster</span>
+</code></pre></div>
+<hr />
+<h2 id="calibrationengine">CalibrationEngine<a class="headerlink" href="#calibrationengine" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CalibrationEngine</span><span class="p">(</span><span class="n">model_fn</span><span class="p">,</span> <span class="n">observed</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="s1">&#39;NSE&#39;</span><span class="p">,</span>
+                         <span class="n">method</span><span class="o">=</span><span class="s1">&#39;differential_evolution&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">solver_kwargs</span><span class="p">)</span>
+</code></pre></div>
+<p>Optimises <code>params</code> by minimising/maximising the objective function computed from
+<code>model_fn</code> output vs. <code>observed</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model_fn</code></td>
+<td>Callable that maps <code>ParameterSet → TimeSeries</code>; runs the simulation</td>
+</tr>
+<tr>
+<td><code>observed</code></td>
+<td>Observed <code>TimeSeries</code></td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td>List of <code>ParameterBound</code> instances</td>
+</tr>
+<tr>
+<td><code>objective</code></td>
+<td><code>'NSE'</code>, <code>'KGE'</code>, <code>'KGE_prime'</code>, <code>'RMSE'</code>, or <code>'PBIAS'</code></td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td><code>'differential_evolution'</code> (default), <code>'sce_ua'</code>, or <code>'nelder_mead'</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="solver-choices">Solver choices<a class="headerlink" href="#solver-choices" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Class</th>
+<th>Reference</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Differential evolution</td>
+<td><code>CalibrationEngine</code> default</td>
+<td>Storn &amp; Price, 1997</td>
+<td>Global; recommended for &gt;3 parameters</td>
+</tr>
+<tr>
+<td>SCE-UA</td>
+<td><code>method='sce_ua'</code></td>
+<td>Duan et al., 1992</td>
+<td>Classic hydrology calibration; 3–15 parameters</td>
+</tr>
+<tr>
+<td>Nelder-Mead simplex</td>
+<td><code>method='nelder_mead'</code></td>
+<td>Nelder &amp; Mead, 1965</td>
+<td>Local; use for final refinement near optimum</td>
+</tr>
+</tbody>
+</table>
+<p>Differential evolution (Storn &amp; Price, 1997) is recommended as the default because
+it requires no gradient information and is robust to multi-modal response surfaces,
+which are common in lumped hydrologic parameter spaces (Duan et al., 1992).</p>
+<h3 id="methods_2">Methods<a class="headerlink" href="#methods_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">CalibrationEngine</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">popsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CalibrationResults</span>
+<span class="n">CalibrationEngine</span><span class="o">.</span><span class="n">run_parallel</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>           <span class="o">-&gt;</span> <span class="n">CalibrationResults</span>
+</code></pre></div>
+<hr />
+<h2 id="parameterbound">ParameterBound<a class="headerlink" href="#parameterbound" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ParameterBound</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_scale</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p>Defines search bounds for a single calibration parameter.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Parameter name string (must match <code>model_fn</code> kwarg)</td>
+</tr>
+<tr>
+<td><code>lo</code>, <code>hi</code></td>
+<td>Lower and upper bounds</td>
+</tr>
+<tr>
+<td><code>initial</code></td>
+<td>Starting point; if <code>None</code>, midpoint of [lo, hi]</td>
+</tr>
+<tr>
+<td><code>log_scale</code></td>
+<td>If <code>True</code>, search on log₁₀ space (useful for orders-of-magnitude parameters such as Ks)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="parameterset">ParameterSet<a class="headerlink" href="#parameterset" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ParameterSet</span><span class="p">:</span>
+    <span class="n">values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>   <span class="c1"># {name: optimised_value}</span>
+    <span class="n">objective_value</span><span class="p">:</span> <span class="nb">float</span>     <span class="c1"># final NSE / KGE / RMSE</span>
+    <span class="n">n_evaluations</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">converged</span><span class="p">:</span> <span class="nb">bool</span>
+</code></pre></div>
+<hr />
+<h2 id="calibrationresults">CalibrationResults<a class="headerlink" href="#calibrationresults" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CalibrationResults</span><span class="p">:</span>
+    <span class="n">best</span><span class="p">:</span> <span class="n">ParameterSet</span>
+    <span class="n">all_trials</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ParameterSet</span><span class="p">]</span>   <span class="c1"># full population history</span>
+    <span class="n">convergence_curve</span><span class="p">:</span> <span class="n">ndarray</span>        <span class="c1"># objective per iteration</span>
+    <span class="n">runtime_s</span><span class="p">:</span> <span class="nb">float</span>
+</code></pre></div>
+<hr />
+<h2 id="gaugestation">GaugeStation<a class="headerlink" href="#gaugestation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GaugeStation</span><span class="p">(</span><span class="n">site_no</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Thin wrapper for a USGS NWIS gauge record. Lazy-loads data from USGS Water Services
+REST API (USGS, 2023c) on first access.</p>
+<hr />
+<h2 id="download-helpers">Download helpers<a class="headerlink" href="#download-helpers" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">download_streamflow</span><span class="p">(</span><span class="n">site_no</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TimeSeries</span>
+<span class="n">download_stage</span><span class="p">(</span><span class="n">site_no</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>      <span class="o">-&gt;</span> <span class="n">TimeSeries</span>
+<span class="n">download_ssc</span><span class="p">(</span><span class="n">site_no</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>        <span class="o">-&gt;</span> <span class="n">TimeSeries</span>   <span class="c1"># suspended sediment</span>
+</code></pre></div>
+<hr />
+<h2 id="usage-example">Usage example<a class="headerlink" href="#usage-example" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.calibration</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalibrationEngine</span><span class="p">,</span> <span class="n">ParameterBound</span><span class="p">,</span> <span class="n">ParameterSet</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">HydroMetrics</span><span class="p">,</span> <span class="n">ModelVsObserved</span><span class="p">,</span> <span class="n">GaugeStation</span>
+
+<span class="c1"># --- Define parameter search space ---</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">ParameterBound</span><span class="p">(</span><span class="s2">&quot;cn&quot;</span><span class="p">,</span>        <span class="n">lo</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="mi">98</span><span class="p">,</span>   <span class="n">initial</span><span class="o">=</span><span class="mi">85</span><span class="p">),</span>    <span class="c1"># SCS Curve Number</span>
+    <span class="n">ParameterBound</span><span class="p">(</span><span class="s2">&quot;initial_k&quot;</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="mf">0.60</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">0.30</span><span class="p">),</span>  <span class="c1"># Manning k (lag)</span>
+    <span class="n">ParameterBound</span><span class="p">(</span><span class="s2">&quot;lag_hr&quot;</span><span class="p">,</span>    <span class="n">lo</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>  <span class="n">initial</span><span class="o">=</span><span class="mf">4.0</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># --- Calibrate against USGS gauge ---</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_model</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="n">initial_k</span><span class="p">,</span> <span class="n">lag_hr</span><span class="p">):</span>
+    <span class="c1"># ... build and run simulation, return TimeSeries</span>
+    <span class="o">...</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">CalibrationEngine</span><span class="p">(</span>
+    <span class="n">model_fn</span><span class="o">=</span><span class="n">run_model</span><span class="p">,</span>
+    <span class="n">observed</span><span class="o">=</span><span class="n">download_streamflow</span><span class="p">(</span><span class="s2">&quot;02290000&quot;</span><span class="p">,</span> <span class="s2">&quot;2019-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-12-31&quot;</span><span class="p">),</span>
+    <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+    <span class="n">objective</span><span class="o">=</span><span class="s2">&quot;KGE&quot;</span><span class="p">,</span>                      <span class="c1"># Gupta et al. (2009)</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;differential_evolution&quot;</span><span class="p">,</span>      <span class="c1"># Storn &amp; Price (1997)</span>
+<span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best KGE: </span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">best</span><span class="o">.</span><span class="n">objective_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rating:   </span><span class="si">{</span><span class="n">HydroMetrics</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">rating</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Moriasi et al. (2007)</span>
+</code></pre></div>
+<hr />
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>Bates, P. D., Horritt, M. S., &amp; Fewtrell, T. J. (2010). A simple inertial
+  formulation of the shallow water equations for efficient two-dimensional flood
+  inundation modelling. <em>Journal of Hydrology</em>, <em>387</em>(1–2), 33–45.
+  <a href="https://doi.org/10.1016/j.jhydrol.2010.03.027">DOI ↗</a></p>
+<p>Duan, Q., Sorooshian, S., &amp; Gupta, V. K. (1992). Effective and efficient global
+  optimization for conceptual rainfall-runoff models. <em>Water Resources Research</em>,
+  <em>28</em>(4), 1015–1031.
+  <a href="https://doi.org/10.1029/91WR02985">DOI ↗</a></p>
+<p>Federal Emergency Management Agency. (2023). <em>National Flood Hazard Layer (NFHL)</em>.
+  <a href="https://msc.fema.gov">FEMA MSC ↗</a></p>
+<p>Gupta, H. V., Kling, H., Yilmaz, K. K., &amp; Martinez, G. F. (2009). Decomposition
+  of the mean squared error and NSE performance criteria: Implications for improving
+  hydrological modelling. <em>Journal of Hydrology</em>, <em>377</em>(1–2), 80–91.
+  <a href="https://doi.org/10.1016/j.jhydrol.2009.08.003">DOI ↗</a></p>
+<p>Kling, H., Fuchs, M., &amp; Paulin, M. (2012). Runoff conditions in the upper Danube
+  basin under an ensemble of climate change scenarios. <em>Journal of Hydrology</em>,
+  <em>424–425</em>, 264–277.
+  <a href="https://doi.org/10.1016/j.jhydrol.2012.01.011">DOI ↗</a></p>
+<p>Moriasi, D. N., Arnold, J. G., Van Liew, M. W., Bingner, R. L., Harmel, R. D., &amp;
+  Veith, T. L. (2007). Model evaluation guidelines for systematic quantification of
+  accuracy in watershed simulations. <em>Transactions of the ASABE</em>, <em>50</em>(3), 885–900.
+  <a href="https://doi.org/10.13031/2013.23153">DOI ↗</a></p>
+<p>Nash, J. E., &amp; Sutcliffe, J. V. (1970). River flow forecasting through conceptual
+  models. Part I — A discussion of principles. <em>Journal of Hydrology</em>, <em>10</em>(3),
+  282–290.
+  <a href="https://doi.org/10.1016/0022-1694(70)90255-6">DOI ↗</a></p>
+<p>Nelder, J. A., &amp; Mead, R. (1965). A simplex method for function minimization.
+  <em>The Computer Journal</em>, <em>7</em>(4), 308–313.
+  <a href="https://doi.org/10.1093/comjnl/7.4.308">DOI ↗</a></p>
+<p>Schaefer, J. T. (1990). The critical success index as an indicator of warning skill.
+  <em>Weather and Forecasting</em>, <em>5</em>(4), 570–575.
+  <a href="https://doi.org/10.1175/1520-0434(1990)005&lt;0570:TCSIAA&gt;2.0.CO;2">DOI ↗</a></p>
+<p>Storn, R., &amp; Price, K. (1997). Differential evolution — A simple and efficient
+  heuristic for global optimization over continuous spaces. <em>Journal of Global
+  Optimization</em>, <em>11</em>(4), 341–359.
+  <a href="https://doi.org/10.1023/A:1008202821328">DOI ↗</a></p>
+<p>U.S. Geological Survey. (2023c). <em>National Water Information System (NWIS): USGS
+  water data for the nation</em>.
+  <a href="https://waterdata.usgs.gov">NWIS ↗</a></p>
+<p>Wing, O. E. J., Bates, P. D., Sampson, C. C., Smith, A. M., Johnson, K. A., &amp;
+  Erickson, T. A. (2017). Validation of a 30 m resolution flood hazard model of
+  the conterminous United States. <em>Water Resources Research</em>, <em>53</em>(9), 7968–7986.
+  <a href="https://doi.org/10.1002/2017WR020917">DOI ↗</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        ﻿<footer class="cwr-footer">
+  <div class="cwr-footer__inner md-grid">
+
+    <div class="cwr-footer__brand">
+      <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP" class="cwr-footer__logo">
+      <div class="cwr-footer__brand-text">
+        <span class="cwr-footer__name">PyWMP</span>
+        <span class="cwr-footer__tagline">Python based watershed modelling and planning tool</span>
+      </div>
+    </div>
+
+    <nav class="cwr-footer__links" aria-label="Footer navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../installation.html">Install</a>
+      <a href="../../quickstart.html">Quick Start</a>
+      <a href="../index.html">API Reference</a>
+      <a href="https://github.com/DBishal13/pywmp_documentation" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+
+    <div class="cwr-footer__copy">
+      <span>© 2026 PyWMP · CWR3 · FAU</span>
+      <span class="cwr-footer__ver">v0.2.0 · Dual licensed</span>
+    </div>
+
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

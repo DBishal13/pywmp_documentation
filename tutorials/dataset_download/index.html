@@ -1,0 +1,1655 @@
+﻿
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="PyWMP is an open-source Python based watershed modelling and planning tool for 1D, 2D, and hybrid simulations.">
+      
+      
+        <meta name="author" content="PyWMP Contributors">
+      
+      
+        <link rel="canonical" href="https://dbishal13.github.io/pywmp_documentation/tutorials/dataset_download/">
+      
+      
+        <link rel="prev" href="../full_pipeline/">
+      
+      
+        <link rel="next" href="../hybrid_coupling/">
+      
+      
+      <link rel="icon" href="../../images/PyWMP_Logo_Design_SVG.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Dataset Download - PyWMP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/overrides.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dataset-download-tutorial" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PyWMP" class="md-header__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyWMP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dataset Download
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        
+  
+<form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_1"
+    data-md-color-media=""
+    data-md-color-scheme="default"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to dark mode"
+    checked
+  >
+  
+    
+    
+    
+    
+  <input
+    class="md-option"
+    type="radio"
+    name="__palette"
+    id="__palette_2"
+    data-md-color-media=""
+    data-md-color-scheme="slate"
+    data-md-color-primary="custom"
+    data-md-color-accent="custom"
+    aria-label="Switch to light mode"
+    
+  >
+  
+  <a class="header-github" href="https://github.com/mandalanil/pywmp" target="_blank" rel="noopener" aria-label="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+    </svg>
+  </a>
+  <div class="version-dropdown" id="vd">
+    <button class="version-chip" type="button">v0.2.0</button>
+    <div class="version-panel">
+      <div class="vp-title">What's new in v0.2.0</div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Calibration engine</strong><p>Differential evolution, Nelder-Mead, dual annealing, LHS, grid search. NSE / KGE / PBIAS / RMSE objectives. <a href="reference/calibration/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Validation framework</strong><p>Gauge skill scores + spatial flood metrics — CSI, hit rate, FAR, F1. <a href="reference/validation/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Coastal modeling</strong><p>Seawall routing, TC intensity estimator, SLR scenario sweep. <a href="reference/coastal/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Sediment transport</strong><p>Bedload (MPM), cohesive sediment, morphodynamic bed, Stokes settling. <a href="reference/sediment/">Docs →</a></p></div></div>
+      <div class="rn-entry"><span class="rn-tag new">New</span><div><strong>Water quality</strong><p>TSS and TP transport coupled to 1D flow. EMC loading. <a href="reference/wq/">Docs →</a></p></div></div>
+    </div>
+  </div>
+  <div class="nepal-toggle">
+    <label class="nepal-toggle__icon nepal-toggle__sun" title="Light mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M12 2L13.16 7.65L17 3.34L15.18 8.82L20.66 7L16.35 10.84L22 12L16.35 13.16L20.66 17L15.18 15.18L17 20.66L13.16 16.35L12 22L10.84 16.35L7 20.66L8.82 15.18L3.34 17L7.65 13.16L2 12L7.65 10.84L3.34 7L8.82 8.82L7 3.34L10.84 7.65Z"/>
+      </svg>
+    </label>
+    <div class="nepal-toggle__track" role="switch" tabindex="0" aria-checked="false" aria-label="Toggle light and dark mode">
+      <span class="nepal-toggle__thumb"></span>
+    </div>
+    <label class="nepal-toggle__icon nepal-toggle__moon" title="Dark mode">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </label>
+  </div>
+</form>
+  <script>
+  (function () {
+    if (window.__nepalToggleInit) return;
+    window.__nepalToggleInit = true;
+
+    function removeNavTitle() {
+      var t = document.querySelector('.md-nav--primary > label.md-nav__title');
+      if (t) t.remove();
+      var s = document.querySelector('.md-nav--primary .md-nav__source');
+      if (s) s.remove();
+    }
+    if (window.document$) {
+      window.document$.subscribe(removeNavTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', removeNavTitle);
+    }
+
+    function activate(n) {
+      var el = document.getElementById('__palette_' + n);
+      if (!el || el.checked) return;
+      el.click();
+      var scheme = el.getAttribute('data-md-color-scheme');
+      if (scheme) document.body.setAttribute('data-md-color-scheme', scheme);
+      var track = document.querySelector('.nepal-toggle__track');
+      if (track) track.setAttribute('aria-checked', n === 2 ? 'true' : 'false');
+    }
+
+    function toggle() {
+      var p1 = document.getElementById('__palette_1');
+      activate(p1 && p1.checked ? 2 : 1);
+    }
+
+    document.addEventListener('click', function (e) {
+      var vd = document.getElementById('vd');
+      if (e.target.closest('.version-chip')) {
+        if (vd) vd.classList.toggle('open');
+      } else if (vd && vd.classList.contains('open') && !e.target.closest('#vd')) {
+        vd.classList.remove('open');
+      }
+      if (e.target.closest('.nepal-toggle__sun')) {
+        activate(1);
+      } else if (e.target.closest('.nepal-toggle__moon')) {
+        activate(2);
+      } else if (e.target.closest('.nepal-toggle__track')) {
+        toggle();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.nepal-toggle__track')) {
+        e.preventDefault();
+        toggle();
+      }
+    });
+
+    function bindTitle() {
+      var title = document.querySelector('.md-header__title');
+      if (title && !title.dataset.pywmpBound) {
+        title.dataset.pywmpBound = '1';
+        title.addEventListener('click', function () {
+          var logo = document.querySelector('.md-header__button.md-logo');
+          window.location.href = logo ? logo.href : '/';
+        });
+      }
+    }
+
+    if (window.document$) {
+      window.document$.subscribe(bindTitle);
+    } else {
+      document.addEventListener('DOMContentLoaded', bindTitle);
+    }
+  })();
+  </script>
+  
+
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+  
+    <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+
+          <!-- Compact brand strip -->
+          <div class="sb-brand">
+            <a href="../../index.html" class="sb-brand__link">
+              <div class="sb-brand__mark">
+                <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP">
+              </div>
+              <div class="sb-brand__text">
+                <span class="sb-brand__name">PyWMP</span>
+                <span class="sb-brand__sub">Watershed Modelling & Planning</span>
+              </div>
+              <span class="sb-brand__ver">v0.2.0</span>
+            </a>
+            <p class="sb-brand__copy">© PyWMP · CWR3 · FAU</p>
+          </div>
+
+          
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PyWMP" class="md-nav__button md-logo" aria-label="PyWMP" data-md-component="logo">
+      
+  <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="logo">
+
+    </a>
+    PyWMP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DBishal13/pywmp_documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../full_pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Full Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Dataset Download
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Download
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defining-your-area-of-interest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining your area of interest
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasetmanager-one-manager-for-all-downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      DatasetManager — one manager for all downloads
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-by-dataset-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset-by-dataset guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dataset-by-dataset guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-digital-elevation-model-dem" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Digital Elevation Model (DEM)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-watershed-boundaries-wbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Watershed Boundaries (WBD)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-stream-network-nhd" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Stream Network (NHD)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-land-cover-nlcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Land Cover (NLCD)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-soils-hydrologic-soil-groups-ssurgo" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Soils / Hydrologic Soil Groups (SSURGO)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-curve-number-cn-raster" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Curve Number (CN) raster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-noaa-atlas-14-idf-curves" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. NOAA Atlas 14 IDF Curves
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-fema-flood-zones-nfhl" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. FEMA Flood Zones (NFHL)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-all-at-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download all at once
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handling-download-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling download failures
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hybrid_coupling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hybrid Coupling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sediment_wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment and Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calibration_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration and Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualization with GeoLibre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest_api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    REST API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Module Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/datasets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataset Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/flood/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flood Mapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/cascade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cascade Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/calibration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/calibrate_ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Calibration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/coastal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coastal Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/sediment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sediment Transport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/wq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Water Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/baseflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Baseflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gridded/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gridded Modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Network Elements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/reservoir/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reservoir Routing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/workflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workflow Builder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+        </div>
+      </div>
+    </div>
+  
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="dataset-download-tutorial">Dataset Download Tutorial<a class="headerlink" href="#dataset-download-tutorial" title="Permanent link">&para;</a></h1>
+<p>PyWMP automates the acquisition of every geospatial input a watershed model needs — DEM, watershed boundaries, stream network, land cover, soils, curve numbers, IDF curves, and flood zones — all from freely accessible federal data services.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pywmp[datasets]&quot;</span>
+</code></pre></div>
+<p>This installs the HyRiver suite (<code>py3dep</code>, <code>pynhd</code>, <code>pygeohydro</code>, <code>rioxarray</code>) plus <code>rasterio</code> and <code>geopandas</code>.</p>
+<hr />
+<h2 id="defining-your-area-of-interest">Defining your area of interest<a class="headerlink" href="#defining-your-area-of-interest" title="Permanent link">&para;</a></h2>
+<p>All downloads use a bounding box in WGS-84 decimal degrees:</p>
+<div class="highlight"><pre><span></span><code><span class="n">aoi</span> <span class="o">=</span> <span class="p">(</span><span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span><span class="p">)</span>
+<span class="c1"># example: west-central Florida</span>
+<span class="n">aoi</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">82.05</span><span class="p">,</span> <span class="mf">28.02</span><span class="p">,</span> <span class="o">-</span><span class="mf">81.98</span><span class="p">,</span> <span class="mf">28.07</span><span class="p">)</span>
+</code></pre></div>
+<p>Pick coordinates that fully enclose your watershed with a small buffer (~0.01°). Use <a href="https://bboxfinder.com">bboxfinder.com</a> to draw and copy a bounding box visually.</p>
+<hr />
+<h2 id="datasetmanager-one-manager-for-all-downloads"><code>DatasetManager</code> — one manager for all downloads<a class="headerlink" href="#datasetmanager-one-manager-for-all-downloads" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatasetManager</span>
+
+<span class="n">dm</span> <span class="o">=</span> <span class="n">DatasetManager</span><span class="p">(</span>
+    <span class="n">aoi</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">82.05</span><span class="p">,</span> <span class="mf">28.02</span><span class="p">,</span> <span class="o">-</span><span class="mf">81.98</span><span class="p">,</span> <span class="mf">28.07</span><span class="p">),</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;data/my_watershed&quot;</span><span class="p">,</span>
+    <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>          <span class="c1"># reuse existing files (default True)</span>
+<span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="dataset-by-dataset-guide">Dataset-by-dataset guide<a class="headerlink" href="#dataset-by-dataset-guide" title="Permanent link">&para;</a></h2>
+<h3 id="1-digital-elevation-model-dem">1. Digital Elevation Model (DEM)<a class="headerlink" href="#1-digital-elevation-model-dem" title="Permanent link">&para;</a></h3>
+<p><strong>Source:</strong> USGS 3D Elevation Program (3DEP)<br />
+<strong>Output:</strong> <code>dem.tif</code> — GeoTIFF raster in the native 3DEP CRS<br />
+<strong>Why you need it:</strong> Everything downstream depends on the DEM — watershed delineation, HAND computation, 2D grid construction.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dm</span><span class="o">.</span><span class="n">download_dem</span><span class="p">(</span><span class="n">resolution_m</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>   <span class="c1"># 10 m lidar DEM</span>
+<span class="c1"># options: resolution_m=1, 3, 10, 30</span>
+</code></pre></div>
+<p>Download DEM <strong>first</strong>. All other datasets are clipped to the DEM's extent.</p>
+<table>
+<thead>
+<tr>
+<th><code>resolution_m</code></th>
+<th>Coverage</th>
+<th>Recommended for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Urban / small watersheds (&lt;5 mi²)</td>
+<td>High-resolution flood mapping</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Suburban / medium (5–50 mi²)</td>
+<td>Detailed 2D ROM grids</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Rural / large watersheds</td>
+<td>Standard watershed modeling</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Very large / national-scale</td>
+<td>Regional screening only</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="2-watershed-boundaries-wbd">2. Watershed Boundaries (WBD)<a class="headerlink" href="#2-watershed-boundaries-wbd" title="Permanent link">&para;</a></h3>
+<p><strong>Source:</strong> USGS National Hydrography Dataset — Watershed Boundary Dataset<br />
+<strong>Output:</strong> <code>huc12.gpkg</code> — GeoPackage polygon of the HUC-12 unit<br />
+<strong>Why you need it:</strong> Defines the drainage area; used to clip other datasets and compute basin area.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dm</span><span class="o">.</span><span class="n">download_watershed</span><span class="p">(</span><span class="n">huc_level</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="c1"># options: huc_level=2, 4, 6, 8, 10, 12</span>
+</code></pre></div>
+<p>HUC-12 (~10,000 acres) is the standard scale for site-scale watershed modeling.</p>
+<hr />
+<h3 id="3-stream-network-nhd">3. Stream Network (NHD)<a class="headerlink" href="#3-stream-network-nhd" title="Permanent link">&para;</a></h3>
+<p><strong>Source:</strong> USGS NHDPlus v2<br />
+<strong>Output:</strong> <code>flowlines.gpkg</code> (streams) + <code>catchments.gpkg</code> (contributing areas)<br />
+<strong>Why you need it:</strong> Defines reach connectivity for 1D routing; burned into DEM for hydrologically conditioned terrain analysis.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dm</span><span class="o">.</span><span class="n">download_nhd</span><span class="p">()</span>
+</code></pre></div>
+<p>The flowlines include reach attributes: stream order, GNIS name, length (km), and flow direction.</p>
+<hr />
+<h3 id="4-land-cover-nlcd">4. Land Cover (NLCD)<a class="headerlink" href="#4-land-cover-nlcd" title="Permanent link">&para;</a></h3>
+<p><strong>Source:</strong> Multi-Resolution Land Characteristics Consortium (MRLC)<br />
+<strong>Output:</strong> <code>nlcd.tif</code> — 30 m raster of land cover codes<br />
+<strong>Why you need it:</strong> Required to derive Curve Numbers; describes impervious area and land-use type.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dm</span><span class="o">.</span><span class="n">download_nlcd</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2021</span><span class="p">)</span>
+<span class="c1"># available years: 2001, 2004, 2006, 2008, 2011, 2013, 2016, 2019, 2021</span>
+</code></pre></div>
+<p>Use <code>year=2021</code> unless you are modeling a historical event.</p>
+<p><strong>Land cover code reference (common classes):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Label</th>
+<th>Typical CN (B soils)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11</td>
+<td>Open water</td>
+<td>100</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Developed, open space</td>
+<td>68</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Developed, low intensity</td>
+<td>79</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Developed, medium intensity</td>
+<td>86</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Developed, high intensity</td>
+<td>89</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Deciduous forest</td>
+<td>60</td>
+</tr>
+<tr>
+<td>71</td>
+<td>Herbaceous grassland</td>
+<td>71</td>
+</tr>
+<tr>
+<td>81</td>
+<td>Hay/pasture</td>
+<td>69</td>
+</tr>
+<tr>
+<td>82</td>
+<td>Cultivated crops</td>
+<td>81</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="5-soils-hydrologic-soil-groups-ssurgo">5. Soils / Hydrologic Soil Groups (SSURGO)<a class="headerlink" href="#5-soils-hydrologic-soil-groups-ssurgo" title="Permanent link">&para;</a></h3>
+<p><strong>Source:</strong> USDA Web Soil Survey (SSURGO — Soil Survey Geographic Database)<br />
+<strong>Output:</strong> <code>hsg.tif</code> — 30 m raster of HSG class (1=A, 2=B, 3=C, 4=D)<br />
+<strong>Why you need it:</strong> HSG combined with land cover determines the Curve Number. B and C soils are the most common.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dm</span><span class="o">.</span><span class="n">download_soils</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>HSG definitions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Infiltration</th>
+<th>Typical soils</th>
+<th>Runoff potential</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>High (&gt;0.3 in/hr)</td>
+<td>Sand, gravel</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Moderate (0.15–0.3 in/hr)</td>
+<td>Sandy loam</td>
+<td>Moderately low</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Slow (0.05–0.15 in/hr)</td>
+<td>Clay loam, silty loam</td>
+<td>Moderately high</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Very slow (&lt;0.05 in/hr)</td>
+<td>Clay, high water table</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="6-curve-number-cn-raster">6. Curve Number (CN) raster<a class="headerlink" href="#6-curve-number-cn-raster" title="Permanent link">&para;</a></h3>
+<p><strong>Source:</strong> Derived from NLCD × SSURGO (NRCS TR-55 Table 2-2 lookup)<br />
+<strong>Output:</strong> <code>cn.tif</code> — 30 m raster of composite CN values (integer 0–100)<br />
+<strong>Why you need it:</strong> Direct input to <code>SCSCurveLoss</code>; used to compute the composite basin CN.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dm</span><span class="o">.</span><span class="n">download_cn</span><span class="p">()</span>   <span class="c1"># requires NLCD and soils to be downloaded first</span>
+</code></pre></div>
+<p>Use <code>pywmp.datasets.nlcd_summary(dm.nlcd_path)</code> to review the land cover breakdown and sanity-check the CN distribution.</p>
+<hr />
+<h3 id="7-noaa-atlas-14-idf-curves">7. NOAA Atlas 14 IDF Curves<a class="headerlink" href="#7-noaa-atlas-14-idf-curves" title="Permanent link">&para;</a></h3>
+<p><strong>Source:</strong> NOAA Hydrometeorological Design Studies Center (HDSC)<br />
+<strong>Output:</strong> <code>atlas14.json</code> — IDF table for durations 5-min to 60-day and return periods 1–1000 years<br />
+<strong>Why you need it:</strong> Defines the design storm depth for a given return period (e.g., 100-year 24-hour = X inches).</p>
+<div class="highlight"><pre><span></span><code><span class="n">dm</span><span class="o">.</span><span class="n">download_atlas14</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mf">28.044</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">82.013</span><span class="p">)</span>
+</code></pre></div>
+<p>Returns a structured JSON with point precipitation frequency estimates. Use with <code>IDFCurve</code> to build design storms:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pywmp.meteorology</span><span class="w"> </span><span class="kn">import</span> <span class="n">IDFCurve</span>
+
+<span class="n">idf</span> <span class="o">=</span> <span class="n">IDFCurve</span><span class="p">(</span><span class="s2">&quot;data/my_watershed/atlas14.json&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;100-yr 24-hr depth: </span><span class="si">{</span><span class="n">idf</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;25-yr  1-hr  depth: </span><span class="si">{</span><span class="n">idf</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> in&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h3 id="8-fema-flood-zones-nfhl">8. FEMA Flood Zones (NFHL)<a class="headerlink" href="#8-fema-flood-zones-nfhl" title="Permanent link">&para;</a></h3>
+<p><strong>Source:</strong> FEMA National Flood Hazard Layer (NFHL) via ArcGIS REST<br />
+<strong>Output:</strong> <code>fema_sfha.gpkg</code> — polygon layer of Special Flood Hazard Areas<br />
+<strong>Why you need it:</strong> Baseline flood zone comparison; regulatory reference for the 100-year floodplain.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dm</span><span class="o">.</span><span class="n">download_floodzone</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>FEMA zone codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A / AE</td>
+<td>1% annual chance floodplain (100-year)</td>
+</tr>
+<tr>
+<td>AH</td>
+<td>Shallow flooding (1–3 ft ponding)</td>
+</tr>
+<tr>
+<td>VE</td>
+<td>Coastal high-hazard (wave action)</td>
+</tr>
+<tr>
+<td>X (shaded)</td>
+<td>0.2% annual chance (500-year)</td>
+</tr>
+<tr>
+<td>X (unshaded)</td>
+<td>Minimal flood hazard</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="download-all-at-once">Download all at once<a class="headerlink" href="#download-all-at-once" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">dm</span><span class="o">.</span><span class="n">download_all</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mf">28.044</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">82.013</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</code></pre></div>
+<p><code>download_all()</code> runs everything in the correct dependency order. Output:</p>
+<div class="highlight"><pre><span></span><code>Dataset         Status    Path
+-----------     ------    --------------------------------
+dem             OK        data/my_watershed/dem.tif
+huc12           OK        data/my_watershed/huc12.gpkg
+flowlines       OK        data/my_watershed/flowlines.gpkg
+catchments      OK        data/my_watershed/catchments.gpkg
+nlcd            OK        data/my_watershed/nlcd.tif
+hsg             OK        data/my_watershed/hsg.tif
+cn              OK        data/my_watershed/cn.tif
+atlas14         OK        data/my_watershed/atlas14.json
+fema_sfha       OK        data/my_watershed/fema_sfha.gpkg
+</code></pre></div>
+<hr />
+<h2 id="handling-download-failures">Handling download failures<a class="headerlink" href="#handling-download-failures" title="Permanent link">&para;</a></h2>
+<p><strong>Services go offline occasionally.</strong> The downloaders use tiered fallbacks:</p>
+<ul>
+<li><code>py3dep</code> → 3DEP ImageServer REST → error</li>
+<li><code>pynhd</code> → NHDPlus REST endpoint → error</li>
+<li><code>pygeohydro</code> → MRLC WCS → error</li>
+</ul>
+<p>When a download fails:</p>
+<ol>
+<li>Check internet connectivity and VPN status.</li>
+<li>The cached file (if any) is reused automatically (<code>cache=True</code>).</li>
+<li>Try a slightly larger AOI — some service tiles have sparse coverage at exact boundaries.</li>
+<li>Re-run only the failed step individually:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">dm</span><span class="o">.</span><span class="n">download_nlcd</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2019</span><span class="p">)</span>  <span class="c1"># try an older year if 2021 is unavailable</span>
+</code></pre></div>
+<hr />
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../full_pipeline/">Full Pipeline Tutorial</a> — use these datasets to run a complete simulation</li>
+<li><a href="../../reference/datasets/">Module Reference: datasets</a> — individual downloader API</li>
+<li><a href="../../concepts/">Concepts</a> — how each dataset feeds into the hydrologic model</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        ﻿<footer class="cwr-footer">
+  <div class="cwr-footer__inner md-grid">
+
+    <div class="cwr-footer__brand">
+      <img src="../../images/PyWMP_Logo_Design_SVG.svg" alt="PyWMP" class="cwr-footer__logo">
+      <div class="cwr-footer__brand-text">
+        <span class="cwr-footer__name">PyWMP</span>
+        <span class="cwr-footer__tagline">Python based watershed modelling and planning tool</span>
+      </div>
+    </div>
+
+    <nav class="cwr-footer__links" aria-label="Footer navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../installation.html">Install</a>
+      <a href="../../quickstart.html">Quick Start</a>
+      <a href="../../reference/index.html">API Reference</a>
+      <a href="https://github.com/DBishal13/pywmp_documentation" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+
+    <div class="cwr-footer__copy">
+      <span>© 2026 PyWMP · CWR3 · FAU</span>
+      <span class="cwr-footer__ver">v0.2.0 · Dual licensed</span>
+    </div>
+
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
