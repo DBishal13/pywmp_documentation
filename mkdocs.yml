@@ -1,0 +1,81 @@
+site_name: PyWMP
+site_description: "PyWMP is an open-source Python based watershed modelling and planning tool for 1D, 2D, and hybrid simulations."
+site_author: Anil Mandal, Florida Atlantic University
+site_url: https://mandalanil.github.io/PyWMP/
+repo_name: GitHub
+repo_url: https://github.com/mandalanil/PyWMP
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Quick Start: quickstart.md
+  - Concepts: concepts.md
+  - Architecture: architecture.md
+  - Tutorials:
+      - Full Pipeline: tutorials/full_pipeline.md
+      - Dataset Download: tutorials/dataset_download.md
+      - Hybrid Coupling: tutorials/hybrid_coupling.md
+      - Sediment and Water Quality: tutorials/sediment_wq.md
+      - Calibration and Validation: tutorials/calibration_validation.md
+      - Visualization with GeoLibre: tutorials/visualization.md
+      - REST API: tutorials/rest_api.md
+  - Reference:
+      - Overview: reference/index.md
+      - Module Reference: reference/modules.md
+      - Dataset Reference: reference/datasets.md
+      - Flood Mapping: reference/flood.md
+      - Cascade Routing: reference/cascade.md
+      - Calibration: reference/calibration.md
+      - AI Calibration: reference/calibrate_ai.md
+      - Validation: reference/validation.md
+      - Coastal Modeling: reference/coastal.md
+      - Sediment Transport: reference/sediment.md
+      - Water Quality: reference/wq.md
+      - Baseflow: reference/baseflow.md
+      - Gridded Modeling: reference/gridded.md
+      - Network Elements: reference/network.md
+      - Reservoir Routing: reference/reservoir.md
+      - Workflow Builder: reference/workflow.md
+  - References: references.md
+  - Troubleshooting: troubleshooting.md
+theme:
+  name: material
+  custom_dir: overrides
+  logo: images/PyWMP_Logo_Design_SVG.svg
+  favicon: images/PyWMP_Logo_Design_SVG.svg
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: nepal/sun
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: nepal/moon
+        name: Switch to light mode
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  features:
+    - navigation.expand
+    - navigation.instant
+    - content.code.copy
+extra_css:
+  - css/overrides.css
+plugins:
+  - search
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.details
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/mandalanil/PyWMP
