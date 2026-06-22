@@ -22,6 +22,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Overlay docs from mandalanil/pywmp
+        env:
+          PYWMP_TOKEN: ${{ secrets.PYWMP_READ_TOKEN }}
+          PYWMP_REF: ${{ github.event.client_payload.pywmp_ref || 'main' }}
+        run: |
+          if [ -n "$PYWMP_TOKEN" ]; then
+            git clone --depth 1 --branch "$PYWMP_REF" \
+              "https://${PYWMP_TOKEN}@github.com/mandalanil/pywmp.git" \
+              pywmp-source
+            rsync -av --delete pywmp-source/docs/ docs/
+            cp pywmp-source/mkdocs.yml mkdocs.yml
+            rsync -av pywmp-source/overrides/ overrides/ 2>/dev/null || true
+            rm -rf pywmp-source
+            echo "Docs synced from mandalanil/pywmp@${PYWMP_REF}"
+          else
+            echo "PYWMP_READ_TOKEN not set — building from local docs copy"
+          fi
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
